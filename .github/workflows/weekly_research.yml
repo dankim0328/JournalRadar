@@ -68,8 +68,9 @@ jobs:
   # ── Job 2: 사이트 빌드 & 배포 ──
   deploy:
     runs-on: ubuntu-latest
+    # research 작업이 실행되었다면 성공해야 하고, 실행되지 않았다면(skip) 그냥 진행합니다.
     needs: [research]
-    if: always() && !failure() && !cancelled()
+    if: always() && !contains(needs.research.result, 'failure') && !contains(needs.research.result, 'cancelled')
     
     environment:
       name: github-pages
@@ -79,23 +80,24 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v4
       with:
-        ref: main  # 최신 커밋 포함
+        ref: main
 
     - name: Setup Node.js
       uses: actions/setup-node@v4
       with:
-        node-version: '20'
+        node-version: '24'
         cache: 'npm'
         cache-dependency-path: site/package-lock.json
 
     - name: Install dependencies
       working-directory: site
-      run: npm ci
+      run: npm install # ci 대신 install 사용 (환경 차이 최소화)
 
     - name: Build Next.js static site
       working-directory: site
       env:
         NEXT_PUBLIC_GA_ID: ${{ secrets.NEXT_PUBLIC_GA_ID }}
+        FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
       run: npm run build
 
     - name: Setup Pages
