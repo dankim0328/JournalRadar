@@ -3,6 +3,12 @@ import Link from "next/link";
 import { useLanguage } from "../components/LanguageProvider";
 import { useEffect, useState, use } from "react";
 import { TRACKED_JOURNALS } from "../lib/journals";
+import { getAllCategories } from "../lib/data";
+
+export async function generateStaticParams() {
+  const categories = getAllCategories();
+  return categories.map((category) => ({ category }));
+}
 
 export default function CategoryPage({ params }) {
   const { category } = use(params);

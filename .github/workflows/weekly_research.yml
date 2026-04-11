@@ -55,7 +55,7 @@ jobs:
 
     - name: Generate weekly JSON data
       run: |
-        python scripts/generate_weekly_json.py
+        python scripts/convert_all_to_weekly.py
 
     - name: Commit updated data
       run: |
@@ -97,7 +97,6 @@ jobs:
       working-directory: site
       env:
         NEXT_PUBLIC_GA_ID: ${{ secrets.NEXT_PUBLIC_GA_ID }}
-        FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
       run: |
         npm run build
         touch out/.nojekyll
