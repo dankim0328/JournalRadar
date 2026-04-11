@@ -98,7 +98,9 @@ jobs:
       env:
         NEXT_PUBLIC_GA_ID: ${{ secrets.NEXT_PUBLIC_GA_ID }}
         FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
-      run: npm run build
+      run: |
+        npm run build
+        touch out/.nojekyll
 
     - name: Setup Pages
       uses: actions/configure-pages@v5
