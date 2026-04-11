@@ -2,21 +2,12 @@
   "category": "marketing",
   "year": 2026,
   "week": "W14",
+  "label_ko": "3월 6주차",
+  "label_en": "March Week 6",
   "startDate": "2026-03-30",
   "endDate": "2026-04-05",
   "paperCount": 2,
   "papers": [
-    {
-      "slug": "privacy-preserving-data-fusion",
-      "title": "Privacy-Preserving Data Fusion",
-      "authors": "Longxiu Tian, Dana Turjeman, Samuel Levy",
-      "journal": "Marketing Science",
-      "date": "2026-4-1",
-      "url": "https://doi.org/10.1287/mksc.2023.0068",
-      "abstract": "This paper proposes a generative methodology enabling companies to combine data sets with strong privacy guarantees and near-optimal performance in customer analytics.",
-      "analysis_ko": "AI 분석 실패.",
-      "analysis_en": "AI Analysis Failed."
-    },
     {
       "slug": "express-extended-reality-in-business-to-business-sales-performance-implications-",
       "title": "EXPRESS: Extended Reality in Business-to-Business Sales: Performance Implications, Adoption Drivers, and Contingency Effects",
@@ -25,6 +16,17 @@
       "date": "2026-4-2",
       "url": "https://doi.org/10.1177/00222429261443286",
       "abstract": "Extended reality (XR) technologies hold the potential to transform buyer–seller relationships in business-to-business (B2B) sales. Yet, the consequences, antecedents, and contingency effects of XR integration in B2B organizations remain underexplored. Drawing on multimethod evidence, including a prestudy, quasi-experimental field data (Studies 1a and 1b), a cross-industry salesperson survey (Study 2a), and between-subjects experiments with B2B salespeople (Study 2b) and buyers (Study 3), the authors find that XR improves buyer- and seller-related outcomes (e.g., loyalty, upselling) by strengthening customers’ mental imagery ability, ultimately improving sales success. However, the findings reveal contingencies: XR is most successful for complex, haptic products, with benefits holding across face-to-face and remote meetings. On the buyer side, any incremental information load associated with XR is modest and, where present, outweighed by imagery-mediated gains. On the seller side, however, XR can increase role stress, while an adaptive selling orientation attenuates this effect. Beyond outcomes, the authors examine adoption drivers and inhibitors at the individual and technology-utility levels and highlight organizational innovativeness and salespeople’s XR experience as contingencies. Overall, the findings specify\n                    when, why\n                    , and\n                    how\n                    XR creates value in B2B sales and how firms can implement it to maximize customer engagement and sales while safeguarding salespeople’s well-being.",
+      "analysis_ko": "AI 분석 실패.",
+      "analysis_en": "AI Analysis Failed."
+    },
+    {
+      "slug": "privacy-preserving-data-fusion",
+      "title": "Privacy-Preserving Data Fusion",
+      "authors": "Longxiu Tian, Dana Turjeman, Samuel Levy",
+      "journal": "Marketing Science",
+      "date": "2026-4-1",
+      "url": "https://doi.org/10.1287/mksc.2023.0068",
+      "abstract": "This paper proposes a generative methodology enabling companies to combine data sets with strong privacy guarantees and near-optimal performance in customer analytics.",
       "analysis_ko": "AI 분석 실패.",
       "analysis_en": "AI Analysis Failed."
     }

@@ -1,0 +1,31 @@
+{
+  "category": "finance",
+  "year": 2026,
+  "totalPapers": 21,
+  "weeks": [
+    {
+      "week": "W15",
+      "label_ko": "4월 2주차",
+      "label_en": "April Week 2",
+      "startDate": "2026-04-06",
+      "endDate": "2026-04-12",
+      "paperCount": 6
+    },
+    {
+      "week": "W18",
+      "label_ko": "4월 5주차",
+      "label_en": "April Week 5",
+      "startDate": "2026-04-27",
+      "endDate": "2026-05-03",
+      "paperCount": 5
+    },
+    {
+      "week": "W23",
+      "label_ko": "6월 1주차",
+      "label_en": "June Week 1",
+      "startDate": "2026-06-01",
+      "endDate": "2026-06-07",
+      "paperCount": 10
+    }
+  ]
+}

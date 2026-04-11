@@ -1,32 +1,36 @@
 import fs from "fs";
 import path from "path";
 
-const DATA_DIR = path.join(process.cwd(), "public", "data", "marketing");
+const BASE_DATA_DIR = path.join(process.cwd(), "public", "data");
 
-export function getMarketingIndex() {
-  const filePath = path.join(DATA_DIR, "index.json");
+export function getCategoryIndex(category) {
+  const filePath = path.join(BASE_DATA_DIR, category.toLowerCase(), "index.json");
   if (!fs.existsSync(filePath)) return { years: [] };
   return JSON.parse(fs.readFileSync(filePath, "utf-8"));
 }
 
-export function getYearIndex(year) {
-  const filePath = path.join(DATA_DIR, String(year), "index.json");
+export function getYearIndex(category, year) {
+  const filePath = path.join(BASE_DATA_DIR, category.toLowerCase(), String(year), "index.json");
   if (!fs.existsSync(filePath)) return { weeks: [] };
   return JSON.parse(fs.readFileSync(filePath, "utf-8"));
 }
 
-export function getWeekData(year, week) {
-  const filePath = path.join(DATA_DIR, String(year), `${week}.json`);
+export function getWeekData(category, year, week) {
+  const filePath = path.join(BASE_DATA_DIR, category.toLowerCase(), String(year), `${week}.json`);
   if (!fs.existsSync(filePath)) return null;
   return JSON.parse(fs.readFileSync(filePath, "utf-8"));
 }
 
-export function getAllYears() {
-  const idx = getMarketingIndex();
+export function getAllYears(category) {
+  const idx = getCategoryIndex(category);
   return idx.years.map((y) => String(y.year));
 }
 
-export function getAllWeeks(year) {
-  const idx = getYearIndex(year);
+export function getAllWeeks(category, year) {
+  const idx = getYearIndex(category, year);
   return idx.weeks.map((w) => w.week);
+}
+
+export function getAllCategories() {
+  return ["marketing", "finance", "accounting"];
 }

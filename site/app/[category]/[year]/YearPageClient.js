@@ -1,6 +1,7 @@
 "use client";
 import Link from "next/link";
 import { useLanguage } from "../../components/LanguageProvider";
+import { useParams } from "next/navigation";
 
 function getMonthFromWeek(year, weekStr) {
   const weekNum = parseInt(weekStr.replace("W", ""), 10);
@@ -13,11 +14,17 @@ function getMonthFromWeek(year, weekStr) {
 }
 
 export default function YearPageClient({ year, data }) {
-  const { t } = useLanguage();
+  const { lang, t } = useLanguage();
+  const params = useParams();
+  const category = params.category;
 
   if (!data || !data.weeks) {
     return <div className="page-container"><p>Loading...</p></div>;
   }
+
+  const categoryName = lang === "ko" ? t[category] || category : t[category] || category;
+  // If t[category] is missing, use capital first
+  const displayCategory = t[category] || (category.charAt(0).toUpperCase() + category.slice(1));
 
   const monthGroups = {};
   data.weeks.forEach((w) => {
@@ -35,13 +42,13 @@ export default function YearPageClient({ year, data }) {
       <nav className="breadcrumb fade-in">
         <Link href="/">{t.home}</Link>
         <span className="separator">/</span>
-        <Link href="/marketing">{t.marketing}</Link>
+        <Link href={`/${category}`}>{displayCategory}</Link>
         <span className="separator">/</span>
         <span className="current">{year}</span>
       </nav>
 
       <h1 className="section-title fade-in stagger-1">
-        📊 {t.marketing} {year} — {t.selectWeek}
+        📊 {displayCategory} {year} — {t.selectWeek}
       </h1>
 
       {sortedMonths.map((monthIdx, gi) => (
@@ -52,12 +59,14 @@ export default function YearPageClient({ year, data }) {
               .sort((a, b) => b.week.localeCompare(a.week))
               .map((w) => (
                 <Link
-                  href={`/marketing/${year}/${w.week}`}
+                  href={`/${category}/${year}/${w.week}`}
                   key={w.week}
                   className="week-card"
                   id={`week-${w.week}`}
                 >
-                  <div className="week-number">{w.week}</div>
+                  <div className="week-number" style={{ fontSize: '1rem', whiteSpace: 'nowrap' }}>
+                    {lang === "ko" ? w.label_ko : w.label_en}
+                  </div>
                   <div className="week-info">
                     <div className="week-date">
                       {w.startDate} ~ {w.endDate}

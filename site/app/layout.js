@@ -15,11 +15,13 @@ export const metadata = {
   },
 };
 
+import Footer from "./components/Footer";
+
 export default function RootLayout({ children }) {
   const gaId = process.env.NEXT_PUBLIC_GA_ID;
 
   return (
-    <html lang="ko">
+    <html lang="en">
       <head>
         <link rel="icon" href="/JournalRadar/favicon.ico" />
         {gaId && (
@@ -43,10 +45,8 @@ export default function RootLayout({ children }) {
         <LanguageProvider>
           <div className="bg-ambient" />
           <Header />
-          {children}
-          <footer className="footer">
-            <p>© {new Date().getFullYear()} Journal Radar — AI-Powered Academic Research</p>
-          </footer>
+            <main>{children}</main>
+          <Footer />
         </LanguageProvider>
       </body>
     </html>

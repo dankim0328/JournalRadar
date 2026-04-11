@@ -1,0 +1,15 @@
+{
+  "category": "accounting",
+  "year": 2026,
+  "totalPapers": 4,
+  "weeks": [
+    {
+      "week": "W15",
+      "label_ko": "4월 2주차",
+      "label_en": "April Week 2",
+      "startDate": "2026-04-06",
+      "endDate": "2026-04-12",
+      "paperCount": 4
+    }
+  ]
+}

@@ -3,11 +3,15 @@ import Link from "next/link";
 import { useLanguage } from "../../../components/LanguageProvider";
 import { useState } from "react";
 
-export default function WeekPageClient({ year, week, data }) {
+export default function WeekPageClient({ category, year, week, data }) {
   const { lang, t } = useLanguage();
   const [selectedPaper, setSelectedPaper] = useState(null);
 
   if (!data) return <div className="page-container"><p>{t.noPapers}</p></div>;
+
+  const displayCategory = t[category] || (category.charAt(0).toUpperCase() + category.slice(1));
+  const weekLabel = lang === "ko" ? data.label_ko : data.label_en;
+  const catClass = category.toLowerCase();
 
   // Paper detail view
   if (selectedPaper) {
@@ -22,7 +26,7 @@ export default function WeekPageClient({ year, week, data }) {
 
         <div className="paper-detail">
           <div className="paper-detail-header">
-            <span className="journal-badge">{paper.journal}</span>
+            <span className={`journal-badge ${catClass}`}>{paper.journal}</span>
             <h1>{paper.title}</h1>
           </div>
 
@@ -43,7 +47,7 @@ export default function WeekPageClient({ year, week, data }) {
               <div className="meta-label">{t.link}</div>
               <div className="meta-value">
                 {paper.url ? (
-                  <a href={paper.url} target="_blank" rel="noopener noreferrer">
+                  <a href={paper.url} target="_blank" rel="noopener noreferrer" style={{ color: `var(--color-${catClass})` }}>
                     {t.link} ↗
                   </a>
                 ) : (
@@ -54,11 +58,11 @@ export default function WeekPageClient({ year, week, data }) {
           </div>
 
           <section className="paper-section">
-            <h2>
+            <h2 style={{ borderLeft: `3px solid var(--color-${catClass})`, paddingLeft: '12px' }}>
               <span className="section-icon">📄</span>
               {t.abstract}
             </h2>
-            <div className="abstract-box">{paper.abstract}</div>
+            <div className="abstract-box" style={{ borderLeft: `3px solid var(--color-${catClass})` }}>{paper.abstract}</div>
           </section>
 
           <section className="paper-section">
@@ -79,16 +83,16 @@ export default function WeekPageClient({ year, week, data }) {
       <nav className="breadcrumb fade-in">
         <Link href="/">{t.home}</Link>
         <span className="separator">/</span>
-        <Link href="/marketing">{t.marketing}</Link>
+        <Link href={`/${category}`}>{displayCategory}</Link>
         <span className="separator">/</span>
-        <Link href={`/marketing/${year}`}>{year}</Link>
+        <Link href={`/${category}/${year}`}>{year}</Link>
         <span className="separator">/</span>
-        <span className="current">{week}</span>
+        <span className="current">{weekLabel}</span>
       </nav>
 
       <div className="papers-header fade-in stagger-1">
         <h1>
-          📊 {t.marketing} — {year} {week}
+          📊 {displayCategory} — {year} {weekLabel}
         </h1>
         <p className="date-range">
           {data.startDate} ~ {data.endDate} · {data.paperCount} {t.paperCount}
@@ -103,7 +107,7 @@ export default function WeekPageClient({ year, week, data }) {
             onClick={() => setSelectedPaper(paper)}
             id={`paper-${paper.slug || i}`}
           >
-            <span className="journal-badge">{paper.journal}</span>
+            <span className={`journal-badge ${catClass}`}>{paper.journal}</span>
             <h3>{paper.title}</h3>
             <p className="paper-authors">{paper.authors}</p>
             <p className="paper-date">{paper.date}</p>

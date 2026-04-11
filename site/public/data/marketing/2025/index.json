@@ -5,312 +5,416 @@
   "weeks": [
     {
       "week": "W01",
+      "label_ko": "12월 6주차",
+      "label_en": "December Week 6",
       "startDate": "2024-12-30",
       "endDate": "2025-01-05",
       "paperCount": 14
     },
     {
       "week": "W02",
+      "label_ko": "1월 2주차",
+      "label_en": "January Week 2",
       "startDate": "2025-01-06",
       "endDate": "2025-01-12",
       "paperCount": 2
     },
     {
       "week": "W03",
+      "label_ko": "1월 3주차",
+      "label_en": "January Week 3",
       "startDate": "2025-01-13",
       "endDate": "2025-01-19",
       "paperCount": 1
     },
     {
       "week": "W04",
+      "label_ko": "1월 4주차",
+      "label_en": "January Week 4",
       "startDate": "2025-01-20",
       "endDate": "2025-01-26",
       "paperCount": 8
     },
     {
       "week": "W05",
+      "label_ko": "1월 5주차",
+      "label_en": "January Week 5",
       "startDate": "2025-01-27",
       "endDate": "2025-02-02",
       "paperCount": 6
     },
     {
       "week": "W06",
+      "label_ko": "2월 2주차",
+      "label_en": "February Week 2",
       "startDate": "2025-02-03",
       "endDate": "2025-02-09",
       "paperCount": 4
     },
     {
       "week": "W07",
+      "label_ko": "2월 3주차",
+      "label_en": "February Week 3",
       "startDate": "2025-02-10",
       "endDate": "2025-02-16",
       "paperCount": 5
     },
     {
       "week": "W08",
+      "label_ko": "2월 4주차",
+      "label_en": "February Week 4",
       "startDate": "2025-02-17",
       "endDate": "2025-02-23",
       "paperCount": 1
     },
     {
       "week": "W09",
+      "label_ko": "2월 5주차",
+      "label_en": "February Week 5",
       "startDate": "2025-02-24",
       "endDate": "2025-03-02",
       "paperCount": 20
     },
     {
       "week": "W10",
+      "label_ko": "3월 2주차",
+      "label_en": "March Week 2",
       "startDate": "2025-03-03",
       "endDate": "2025-03-09",
       "paperCount": 1
     },
     {
       "week": "W11",
+      "label_ko": "3월 3주차",
+      "label_en": "March Week 3",
       "startDate": "2025-03-10",
       "endDate": "2025-03-16",
       "paperCount": 3
     },
     {
       "week": "W12",
+      "label_ko": "3월 4주차",
+      "label_en": "March Week 4",
       "startDate": "2025-03-17",
       "endDate": "2025-03-23",
       "paperCount": 5
     },
     {
       "week": "W13",
+      "label_ko": "3월 5주차",
+      "label_en": "March Week 5",
       "startDate": "2025-03-24",
       "endDate": "2025-03-30",
       "paperCount": 8
     },
     {
       "week": "W14",
+      "label_ko": "3월 6주차",
+      "label_en": "March Week 6",
       "startDate": "2025-03-31",
       "endDate": "2025-04-06",
       "paperCount": 3
     },
     {
       "week": "W15",
+      "label_ko": "4월 2주차",
+      "label_en": "April Week 2",
       "startDate": "2025-04-07",
       "endDate": "2025-04-13",
       "paperCount": 6
     },
     {
       "week": "W16",
+      "label_ko": "4월 3주차",
+      "label_en": "April Week 3",
       "startDate": "2025-04-14",
       "endDate": "2025-04-20",
       "paperCount": 2
     },
     {
       "week": "W17",
+      "label_ko": "4월 4주차",
+      "label_en": "April Week 4",
       "startDate": "2025-04-21",
       "endDate": "2025-04-27",
       "paperCount": 9
     },
     {
       "week": "W18",
+      "label_ko": "4월 5주차",
+      "label_en": "April Week 5",
       "startDate": "2025-04-28",
       "endDate": "2025-05-04",
       "paperCount": 16
     },
     {
       "week": "W19",
+      "label_ko": "5월 2주차",
+      "label_en": "May Week 2",
       "startDate": "2025-05-05",
       "endDate": "2025-05-11",
       "paperCount": 6
     },
     {
       "week": "W20",
+      "label_ko": "5월 3주차",
+      "label_en": "May Week 3",
       "startDate": "2025-05-12",
       "endDate": "2025-05-18",
       "paperCount": 6
     },
     {
       "week": "W21",
+      "label_ko": "5월 4주차",
+      "label_en": "May Week 4",
       "startDate": "2025-05-19",
       "endDate": "2025-05-25",
       "paperCount": 4
     },
     {
       "week": "W22",
+      "label_ko": "5월 5주차",
+      "label_en": "May Week 5",
       "startDate": "2025-05-26",
       "endDate": "2025-06-01",
       "paperCount": 5
     },
     {
       "week": "W23",
+      "label_ko": "6월 2주차",
+      "label_en": "June Week 2",
       "startDate": "2025-06-02",
       "endDate": "2025-06-08",
       "paperCount": 4
     },
     {
       "week": "W24",
+      "label_ko": "6월 3주차",
+      "label_en": "June Week 3",
       "startDate": "2025-06-09",
       "endDate": "2025-06-15",
       "paperCount": 7
     },
     {
       "week": "W25",
+      "label_ko": "6월 4주차",
+      "label_en": "June Week 4",
       "startDate": "2025-06-16",
       "endDate": "2025-06-22",
       "paperCount": 7
     },
     {
       "week": "W26",
+      "label_ko": "6월 5주차",
+      "label_en": "June Week 5",
       "startDate": "2025-06-23",
       "endDate": "2025-06-29",
       "paperCount": 9
     },
     {
       "week": "W27",
+      "label_ko": "6월 6주차",
+      "label_en": "June Week 6",
       "startDate": "2025-06-30",
       "endDate": "2025-07-06",
       "paperCount": 19
     },
     {
       "week": "W28",
+      "label_ko": "7월 2주차",
+      "label_en": "July Week 2",
       "startDate": "2025-07-07",
       "endDate": "2025-07-13",
       "paperCount": 3
     },
     {
       "week": "W29",
+      "label_ko": "7월 3주차",
+      "label_en": "July Week 3",
       "startDate": "2025-07-14",
       "endDate": "2025-07-20",
       "paperCount": 4
     },
     {
       "week": "W30",
+      "label_ko": "7월 4주차",
+      "label_en": "July Week 4",
       "startDate": "2025-07-21",
       "endDate": "2025-07-27",
       "paperCount": 8
     },
     {
       "week": "W31",
+      "label_ko": "7월 5주차",
+      "label_en": "July Week 5",
       "startDate": "2025-07-28",
       "endDate": "2025-08-03",
       "paperCount": 4
     },
     {
       "week": "W32",
+      "label_ko": "8월 2주차",
+      "label_en": "August Week 2",
       "startDate": "2025-08-04",
       "endDate": "2025-08-10",
       "paperCount": 1
     },
     {
       "week": "W33",
+      "label_ko": "8월 3주차",
+      "label_en": "August Week 3",
       "startDate": "2025-08-11",
       "endDate": "2025-08-17",
       "paperCount": 3
     },
     {
       "week": "W34",
+      "label_ko": "8월 4주차",
+      "label_en": "August Week 4",
       "startDate": "2025-08-18",
       "endDate": "2025-08-24",
       "paperCount": 1
     },
     {
       "week": "W35",
+      "label_ko": "8월 5주차",
+      "label_en": "August Week 5",
       "startDate": "2025-08-25",
       "endDate": "2025-08-31",
       "paperCount": 7
     },
     {
       "week": "W36",
+      "label_ko": "9월 1주차",
+      "label_en": "September Week 1",
       "startDate": "2025-09-01",
       "endDate": "2025-09-07",
       "paperCount": 5
     },
     {
       "week": "W37",
+      "label_ko": "9월 2주차",
+      "label_en": "September Week 2",
       "startDate": "2025-09-08",
       "endDate": "2025-09-14",
       "paperCount": 2
     },
     {
       "week": "W38",
+      "label_ko": "9월 3주차",
+      "label_en": "September Week 3",
       "startDate": "2025-09-15",
       "endDate": "2025-09-21",
       "paperCount": 8
     },
     {
       "week": "W39",
+      "label_ko": "9월 4주차",
+      "label_en": "September Week 4",
       "startDate": "2025-09-22",
       "endDate": "2025-09-28",
       "paperCount": 7
     },
     {
       "week": "W40",
+      "label_ko": "9월 5주차",
+      "label_en": "September Week 5",
       "startDate": "2025-09-29",
       "endDate": "2025-10-05",
       "paperCount": 14
     },
     {
       "week": "W41",
+      "label_ko": "10월 2주차",
+      "label_en": "October Week 2",
       "startDate": "2025-10-06",
       "endDate": "2025-10-12",
       "paperCount": 8
     },
     {
       "week": "W42",
+      "label_ko": "10월 3주차",
+      "label_en": "October Week 3",
       "startDate": "2025-10-13",
       "endDate": "2025-10-19",
       "paperCount": 1
     },
     {
       "week": "W43",
+      "label_ko": "10월 4주차",
+      "label_en": "October Week 4",
       "startDate": "2025-10-20",
       "endDate": "2025-10-26",
       "paperCount": 7
     },
     {
       "week": "W44",
+      "label_ko": "10월 5주차",
+      "label_en": "October Week 5",
       "startDate": "2025-10-27",
       "endDate": "2025-11-02",
       "paperCount": 16
     },
     {
       "week": "W45",
+      "label_ko": "11월 2주차",
+      "label_en": "November Week 2",
       "startDate": "2025-11-03",
       "endDate": "2025-11-09",
       "paperCount": 8
     },
     {
       "week": "W46",
+      "label_ko": "11월 3주차",
+      "label_en": "November Week 3",
       "startDate": "2025-11-10",
       "endDate": "2025-11-16",
       "paperCount": 3
     },
     {
       "week": "W47",
+      "label_ko": "11월 4주차",
+      "label_en": "November Week 4",
       "startDate": "2025-11-17",
       "endDate": "2025-11-23",
       "paperCount": 7
     },
     {
       "week": "W48",
+      "label_ko": "11월 5주차",
+      "label_en": "November Week 5",
       "startDate": "2025-11-24",
       "endDate": "2025-11-30",
       "paperCount": 4
     },
     {
       "week": "W49",
+      "label_ko": "12월 1주차",
+      "label_en": "December Week 1",
       "startDate": "2025-12-01",
       "endDate": "2025-12-07",
       "paperCount": 8
     },
     {
       "week": "W50",
+      "label_ko": "12월 2주차",
+      "label_en": "December Week 2",
       "startDate": "2025-12-08",
       "endDate": "2025-12-14",
       "paperCount": 10
     },
     {
       "week": "W51",
+      "label_ko": "12월 3주차",
+      "label_en": "December Week 3",
       "startDate": "2025-12-15",
       "endDate": "2025-12-21",
       "paperCount": 5
     },
     {
       "week": "W52",
+      "label_ko": "12월 4주차",
+      "label_en": "December Week 4",
       "startDate": "2025-12-22",
       "endDate": "2025-12-28",
       "paperCount": 2

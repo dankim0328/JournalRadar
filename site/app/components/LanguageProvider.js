@@ -5,7 +5,7 @@ import translations from "../lib/i18n";
 const LanguageContext = createContext();
 
 export function LanguageProvider({ children }) {
-  const [lang, setLang] = useState("ko");
+  const [lang, setLang] = useState("en");
 
   useEffect(() => {
     const saved = localStorage.getItem("jr-lang");

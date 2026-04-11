@@ -5,21 +5,53 @@ import { useEffect, useState } from "react";
 
 export default function Home() {
   const { lang, t } = useLanguage();
-  const [marketingData, setMarketingData] = useState(null);
+  const [stats, setStats] = useState({
+    marketing: null,
+    finance: null,
+    accounting: null
+  });
 
   useEffect(() => {
-    fetch("/JournalRadar/data/marketing/index.json")
-      .then((r) => r.json())
-      .then(setMarketingData)
-      .catch(() => {});
+    const categories = ["marketing", "finance", "accounting"];
+    categories.forEach(cat => {
+      fetch(`/JournalRadar/data/${cat}/index.json`)
+        .then((r) => r.json())
+        .then(data => {
+          setStats(prev => ({ ...prev, [cat]: data }));
+        })
+        .catch(() => {});
+    });
   }, []);
 
-  const totalPapers = marketingData
-    ? marketingData.years.reduce((sum, y) => sum + y.totalPapers, 0)
-    : 0;
-  const totalWeeks = marketingData
-    ? marketingData.years.reduce((sum, y) => sum + y.weekCount, 0)
-    : 0;
+  const getStats = (catData) => {
+    if (!catData) return null;
+    return {
+      totalPapers: catData.years.reduce((sum, y) => sum + y.totalPapers, 0),
+      totalWeeks: catData.years.reduce((sum, y) => sum + y.weekCount, 0),
+      yearsCount: catData.years.length
+    };
+  };
+
+  const renderStats = (catData) => {
+    const s = getStats(catData);
+    if (!s) return null;
+    return (
+      <div className="stats">
+        <div>
+          <span className="stat-value">{s.totalPapers}</span>
+          {t.papers}
+        </div>
+        <div>
+          <span className="stat-value">{s.totalWeeks}</span>
+          {t.weeks}
+        </div>
+        <div>
+          <span className="stat-value">{s.yearsCount}</span>
+          {t.years}
+        </div>
+      </div>
+    );
+  };
 
   return (
     <main className="page-container">
@@ -35,44 +67,29 @@ export default function Home() {
             <span className="emoji">📊</span>
             <h2>{t.marketing}</h2>
             <p className="subtitle">{t.marketingDesc}</p>
-            {marketingData && (
-              <div className="stats">
-                <div>
-                  <span className="stat-value">{totalPapers}</span>
-                  {t.papers}
-                </div>
-                <div>
-                  <span className="stat-value">{totalWeeks}</span>
-                  {t.weeks}
-                </div>
-                <div>
-                  <span className="stat-value">{marketingData.years.length}</span>
-                  {t.years}
-                </div>
-              </div>
-            )}
+            {renderStats(stats.marketing)}
           </div>
         </Link>
 
         {/* Finance */}
-        <div className="category-card finance fade-in stagger-2" id="card-finance" style={{opacity: 0.5, cursor: 'default'}}>
+        <Link href="/finance" className="category-card finance fade-in stagger-2" id="card-finance">
           <div className="category-card-content">
             <span className="emoji">💹</span>
             <h2>{t.finance}</h2>
             <p className="subtitle">{t.financeDesc}</p>
-            <span className="coming-soon-badge">{t.comingSoon}</span>
+            {renderStats(stats.finance)}
           </div>
-        </div>
+        </Link>
 
         {/* Accounting */}
-        <div className="category-card accounting fade-in stagger-3" id="card-accounting" style={{opacity: 0.5, cursor: 'default'}}>
+        <Link href="/accounting" className="category-card accounting fade-in stagger-3" id="card-accounting">
           <div className="category-card-content">
             <span className="emoji">📒</span>
             <h2>{t.accounting}</h2>
             <p className="subtitle">{t.accountingDesc}</p>
-            <span className="coming-soon-badge">{t.comingSoon}</span>
+            {renderStats(stats.accounting)}
           </div>
-        </div>
+        </Link>
       </div>
     </main>
   );

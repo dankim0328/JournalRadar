@@ -86,10 +86,13 @@ def analyze_paper_with_gemini(paper):
 - 저자: {paper['Authors']}
 - 초록(Abstract): {paper['Abstract']}
 
-[요구사항]
 A. 논문 요약 (Summary): 이 논문의 핵심 내용을 요약해 주세요.
 B. 연구적 의의 (Academic Significance): 기존 연구나 논리의 반박인지, 새로운 패러다임 제시인지 등 현 시대적 상황과 연관 지어 분석해 주세요.
 C. 저자 백그라운드 (Author Background): 저자들의 주요 연구 분야, 학력 등 배경 정보에 대해 당신이 아는 선에서 설명해 주세요.
+
+[중요 제약 조건]
+- 마크다운 강조 표시(**)를 절대 사용하지 마세요. 
+- 전문적이고 자연스러운 문장으로 작성해 주세요.
 
 [출력 형식 (반드시 아래 구조 유지)]
 ===KOREAN===
@@ -127,7 +130,7 @@ AI 분석 실패.
 ===ENGLISH===
 AI Analysis Failed."
 
-def # CSV/MD 파일 생성 생략:
+def save_to_local(papers, analyzed_results):
     today_str = datetime.date.today().strftime("%Y%m%d")
     csv_filename = f"finance_papers_{today_str}.csv"
     

@@ -203,13 +203,16 @@ a {
 }
 
 .lang-btn.active {
-  background: var(--text-primary);
-  color: var(--bg-primary);
+  background: #ffffff;
+  color: #000000;
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
   border-radius: 999px;
+  transform: scale(1.05);
 }
 
 .lang-btn:hover:not(.active) {
-  color: var(--text-secondary);
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.1);
 }
 
 /* ── Breadcrumb ── */
@@ -716,11 +719,62 @@ a {
 /* ── Footer ── */
 .footer {
   text-align: center;
-  padding: var(--space-2xl) var(--space-xl);
+  padding: var(--space-3xl) var(--space-xl);
   color: var(--text-tertiary);
-  font-size: 0.8rem;
+  font-size: 0.85rem;
   border-top: 1px solid var(--border-subtle);
   margin-top: var(--space-3xl);
+  background: linear-gradient(to bottom, transparent, rgba(0,0,0,0.3));
+}
+
+.footer-disclaimer {
+  max-width: 800px;
+  margin: var(--space-xl) auto 0;
+  padding: var(--space-md) var(--space-lg);
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  font-size: 0.75rem;
+  line-height: 1.6;
+  color: var(--text-tertiary);
+  text-align: left;
+}
+
+.footer-disclaimer strong {
+  color: var(--text-secondary);
+  display: block;
+  margin-bottom: 4px;
+}
+
+/* ── Tracked Journals List ── */
+.journal-list-section {
+  margin-top: var(--space-3xl);
+  padding: var(--space-2xl);
+  background: var(--bg-glass);
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--border-subtle);
+}
+
+.journal-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: var(--space-md);
+  margin-top: var(--space-xl);
+}
+
+.journal-item {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-sm);
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  line-height: 1.4;
+}
+
+.journal-item::before {
+  content: '•';
+  color: var(--text-accent);
+  font-weight: bold;
 }
 
 /* ── Animations ── */
