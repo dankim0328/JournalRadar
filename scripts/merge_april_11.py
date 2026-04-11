@@ -69,6 +69,16 @@ def parse_markdown_papers(file_path, category):
         })
     return papers
 
+ALLOWED_FINANCE_JOURNALS = [
+    "the journal of finance",
+    "journal of financial economics",
+    "the review of financial studies",
+    "journal of financial and quantitative analysis",
+    "review of finance"
+]
+
+FINANCE_BLACKLIST = ["working paper", "nber", "ssrn", "preprint"]
+
 def merge_all():
     base_file = "backfill_state.json"
     if os.path.exists(base_file):
@@ -76,6 +86,12 @@ def merge_all():
             all_papers = json.load(f)
     else:
         all_papers = []
+
+    # Filter out any existing working papers from previous runs
+    all_papers = [
+        p for p in all_papers 
+        if not (p.get("Category") == "Finance" and any(b in p.get("Journal", "").lower() or b in p.get("Title", "").lower() for b in FINANCE_BLACKLIST))
+    ]
 
     # Clean existing papers
     for p in all_papers:
@@ -89,7 +105,15 @@ def merge_all():
         with open(finance_file, "r", encoding="utf-8") as f:
             reader = csv.DictReader(f)
             for row in reader:
-                if row["URL"] not in existing_urls:
+                journal = row.get("Journal", "").lower()
+                title = row.get("Title", "").lower()
+                
+                # Check if it's a Top 5 journal
+                is_top_5 = any(tj in journal for tj in ALLOWED_FINANCE_JOURNALS)
+                # Check if it's a working paper
+                is_working_paper = any(b in journal or b in title for b in FINANCE_BLACKLIST)
+                
+                if is_top_5 and not is_working_paper and row["URL"] not in existing_urls:
                     date_val = row["Date"]
                     year_month = "2026-04"
                     try:
@@ -131,7 +155,7 @@ def merge_all():
         if "Category" not in p:
             j = p.get("Journal", "").lower()
             if "marketing" in j: p["Category"] = "Marketing"
-            elif "finance" in j or "financial" in j: p["Category"] = "Finance"
+            elif any(tj in j for tj in ALLOWED_FINANCE_JOURNALS): p["Category"] = "Finance"
             elif "accounting" in j: p["Category"] = "Accounting"
             else: p["Category"] = "Marketing" # Default for old backfill
 

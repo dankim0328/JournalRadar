@@ -76,10 +76,19 @@ def process_category(all_papers, category_id, category_name_ko, category_name_en
         week_label = f"W{iso_week:02d}"
         
         analysis = paper.get("AI_Analysis", "")
-        # Since I cleaned them in merge script, they might still have === separators if old
+        # Remove AI conversational prefixes if they slipped through
+        analysis = re.sub(r"^(알겠습니다|물론입니다|네|반갑습니다|안녕하세요)[^.]*AI로서,[^.]*(제공해 드립니다|분석해 드리겠습니다|분석해 보겠습니다|분석해 드립니다)\.?\n*", "", analysis, flags=re.MULTILINE).strip()
+        
+        # Split by marker, fallback to full text if missing
         parts = analysis.split("===ENGLISH===")
         ko = parts[0].replace("===KOREAN===", "").strip()
-        en = parts[1].strip() if len(parts) > 1 else ""
+        
+        if len(parts) > 1:
+            en = parts[1].strip()
+        else:
+            # Fallback for English: Use Korean if no English provided
+            # (User said "English later", so for now we show what we have)
+            en = ko
 
         weekly_groups[(iso_year, week_label)].append({
             "slug": slugify(paper.get("Title", "")),

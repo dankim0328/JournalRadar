@@ -50,12 +50,13 @@ def fetch_recent_papers():
                 
                 journal_name = item.get("container-title", ["Unknown Journal"])[0] if item.get("container-title") else "Unknown Journal"
                 
-                is_target = False
-                for tj in TARGET_JOURNAL_NAMES:
-                    if tj.lower() in journal_name.lower():
-                        is_target = True
-                        break
+                # Strict Top 5 Filter
+                is_target = any(tj.lower() in journal_name.lower() for tj in TARGET_JOURNAL_NAMES)
                 if not is_target: continue
+                
+                # Blacklist Working Papers (SSRN, NBER, etc.)
+                is_working_paper = any(b in journal_name.lower() or b in title.lower() for b in ["working paper", "nber", "ssrn", "preprint"])
+                if is_working_paper: continue
                 
                 papers.append({
                     "Journal": journal_name,
