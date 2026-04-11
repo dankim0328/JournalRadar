@@ -1,0 +1,32 @@
+{
+  "category": "marketing",
+  "year": 2026,
+  "week": "W15",
+  "startDate": "2026-04-06",
+  "endDate": "2026-04-12",
+  "paperCount": 2,
+  "papers": [
+    {
+      "slug": "express-does-puffery-sell-evidence-from-airbnb",
+      "title": "EXPRESS: Does Puffery Sell? Evidence from Airbnb",
+      "authors": "Michael Thomas",
+      "journal": "Journal of Marketing Research",
+      "date": "2026-4-8",
+      "url": "https://doi.org/10.1177/00222437261444259",
+      "abstract": "Sellers frequently make positive but vague claims about product quality—a practice known as “puffery” that typically enjoys legal protection. This research examines whether puffery influences consumer behavior in the context of Airbnb listings. The study exploits within-listing changes to claims made in hosts’ brief property descriptions and estimates their effects using a hazard model of booking timing. Adding a single puffed claim increases bookings by about .7 days per year (.2% above baseline); an exclamation point adds roughly 1.0 days per year. Puffery’s impact is statistically similar to objective claims (.5 days per year), though objective claims often duplicate information available through search filters, reducing their marginal impact; less redundant, weakly subjective claims add roughly 1.0 days per year. The study also evaluates whether puffery backfires by disappointing consumers. Results indicate limited backlash: adding a puffed claim reduces numerical ratings and review sentiment by no more than .03 standard deviations. Together, these findings question the legal assumption that consumers sufficiently discount puffed claims, but remain consistent with puffery’s continued legal protection by showing it does not reduce average consumer-reported satisfaction.",
+      "analysis_ko": "AI 분석 실패.",
+      "analysis_en": "AI Analysis Failed."
+    },
+    {
+      "slug": "express-human-or-ai-identity-salience-enhances-historically-marginalized-but-not",
+      "title": "EXPRESS: Human or AI? Identity Salience Enhances Historically Marginalized (But Not Privileged) Consumers’ Choice of Algorithmic Service Providers",
+      "authors": "Yeseul Kim, Dipayan Biswas, Courtney Szocs, Khalia Jenkins",
+      "journal": "Journal of Marketing",
+      "date": "2026-4-8",
+      "url": "https://doi.org/10.1177/00222429261444284",
+      "abstract": "When their identity is salient, consumers from historically marginalized and privileged groups are differentially influenced when it comes to choosing algorithmic service providers (e.g., AI-enabled tellers, chatbots, robots, and digital kiosks). Under identity salience, as it would be in a service context where the service providers are all from historically privileged groups, consumers from historically marginalized groups (e.g., Black people) become concerned about identity-based social judgment. Underrepresentation of historically marginalized groups in white-collar professions (e.g., financial services), regulatory pressures to abandon diversity hiring initiatives, and a tight labor market, make it increasingly difficult for companies to ensure diversity among frontline employees. How can managers provide consumers from historically marginalized groups the services they seek in non-diverse settings while balancing other constraints and reducing identity-based social judgment concerns? The results of a series of field studies and controlled experiments suggest that algorithmic service providers can provide a means to serve historically marginalized consumers in non-diverse service settings. The effect attenuates in service contexts where historically marginalized consumers are less concerned about identity-based social judgment. Interestingly, identity salience does not influence historically privileged consumers’ choice of algorithmic service providers.",
+      "analysis_ko": "AI 분석 실패.",
+      "analysis_en": "AI Analysis Failed."
+    }
+  ]
+}

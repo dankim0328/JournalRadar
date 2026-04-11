@@ -1,0 +1,76 @@
+"use client";
+import Link from "next/link";
+import { useLanguage } from "../../components/LanguageProvider";
+
+function getMonthFromWeek(year, weekStr) {
+  const weekNum = parseInt(weekStr.replace("W", ""), 10);
+  const jan4 = new Date(parseInt(year), 0, 4);
+  const startOfWeek1 = new Date(jan4);
+  startOfWeek1.setDate(jan4.getDate() - jan4.getDay() + 1);
+  const monday = new Date(startOfWeek1);
+  monday.setDate(startOfWeek1.getDate() + (weekNum - 1) * 7);
+  return monday.getMonth();
+}
+
+export default function YearPageClient({ year, data }) {
+  const { t } = useLanguage();
+
+  if (!data || !data.weeks) {
+    return <div className="page-container"><p>Loading...</p></div>;
+  }
+
+  const monthGroups = {};
+  data.weeks.forEach((w) => {
+    const monthIdx = getMonthFromWeek(year, w.week);
+    if (!monthGroups[monthIdx]) monthGroups[monthIdx] = [];
+    monthGroups[monthIdx].push(w);
+  });
+
+  const sortedMonths = Object.keys(monthGroups)
+    .map(Number)
+    .sort((a, b) => b - a);
+
+  return (
+    <main className="page-container">
+      <nav className="breadcrumb fade-in">
+        <Link href="/">{t.home}</Link>
+        <span className="separator">/</span>
+        <Link href="/marketing">{t.marketing}</Link>
+        <span className="separator">/</span>
+        <span className="current">{year}</span>
+      </nav>
+
+      <h1 className="section-title fade-in stagger-1">
+        📊 {t.marketing} {year} — {t.selectWeek}
+      </h1>
+
+      {sortedMonths.map((monthIdx, gi) => (
+        <div key={monthIdx} className={`month-group fade-in stagger-${Math.min(gi + 1, 4)}`}>
+          <div className="month-label">{t.monthNames[monthIdx]} {year}</div>
+          <div className="week-grid">
+            {monthGroups[monthIdx]
+              .sort((a, b) => b.week.localeCompare(a.week))
+              .map((w) => (
+                <Link
+                  href={`/marketing/${year}/${w.week}`}
+                  key={w.week}
+                  className="week-card"
+                  id={`week-${w.week}`}
+                >
+                  <div className="week-number">{w.week}</div>
+                  <div className="week-info">
+                    <div className="week-date">
+                      {w.startDate} ~ {w.endDate}
+                    </div>
+                    <div className="week-count">
+                      {w.paperCount} {t.paperCount}
+                    </div>
+                  </div>
+                </Link>
+              ))}
+          </div>
+        </div>
+      ))}
+    </main>
+  );
+}

@@ -1,0 +1,319 @@
+{
+  "category": "marketing",
+  "year": 2025,
+  "totalPapers": 327,
+  "weeks": [
+    {
+      "week": "W01",
+      "startDate": "2024-12-30",
+      "endDate": "2025-01-05",
+      "paperCount": 14
+    },
+    {
+      "week": "W02",
+      "startDate": "2025-01-06",
+      "endDate": "2025-01-12",
+      "paperCount": 2
+    },
+    {
+      "week": "W03",
+      "startDate": "2025-01-13",
+      "endDate": "2025-01-19",
+      "paperCount": 1
+    },
+    {
+      "week": "W04",
+      "startDate": "2025-01-20",
+      "endDate": "2025-01-26",
+      "paperCount": 8
+    },
+    {
+      "week": "W05",
+      "startDate": "2025-01-27",
+      "endDate": "2025-02-02",
+      "paperCount": 6
+    },
+    {
+      "week": "W06",
+      "startDate": "2025-02-03",
+      "endDate": "2025-02-09",
+      "paperCount": 4
+    },
+    {
+      "week": "W07",
+      "startDate": "2025-02-10",
+      "endDate": "2025-02-16",
+      "paperCount": 5
+    },
+    {
+      "week": "W08",
+      "startDate": "2025-02-17",
+      "endDate": "2025-02-23",
+      "paperCount": 1
+    },
+    {
+      "week": "W09",
+      "startDate": "2025-02-24",
+      "endDate": "2025-03-02",
+      "paperCount": 20
+    },
+    {
+      "week": "W10",
+      "startDate": "2025-03-03",
+      "endDate": "2025-03-09",
+      "paperCount": 1
+    },
+    {
+      "week": "W11",
+      "startDate": "2025-03-10",
+      "endDate": "2025-03-16",
+      "paperCount": 3
+    },
+    {
+      "week": "W12",
+      "startDate": "2025-03-17",
+      "endDate": "2025-03-23",
+      "paperCount": 5
+    },
+    {
+      "week": "W13",
+      "startDate": "2025-03-24",
+      "endDate": "2025-03-30",
+      "paperCount": 8
+    },
+    {
+      "week": "W14",
+      "startDate": "2025-03-31",
+      "endDate": "2025-04-06",
+      "paperCount": 3
+    },
+    {
+      "week": "W15",
+      "startDate": "2025-04-07",
+      "endDate": "2025-04-13",
+      "paperCount": 6
+    },
+    {
+      "week": "W16",
+      "startDate": "2025-04-14",
+      "endDate": "2025-04-20",
+      "paperCount": 2
+    },
+    {
+      "week": "W17",
+      "startDate": "2025-04-21",
+      "endDate": "2025-04-27",
+      "paperCount": 9
+    },
+    {
+      "week": "W18",
+      "startDate": "2025-04-28",
+      "endDate": "2025-05-04",
+      "paperCount": 16
+    },
+    {
+      "week": "W19",
+      "startDate": "2025-05-05",
+      "endDate": "2025-05-11",
+      "paperCount": 6
+    },
+    {
+      "week": "W20",
+      "startDate": "2025-05-12",
+      "endDate": "2025-05-18",
+      "paperCount": 6
+    },
+    {
+      "week": "W21",
+      "startDate": "2025-05-19",
+      "endDate": "2025-05-25",
+      "paperCount": 4
+    },
+    {
+      "week": "W22",
+      "startDate": "2025-05-26",
+      "endDate": "2025-06-01",
+      "paperCount": 5
+    },
+    {
+      "week": "W23",
+      "startDate": "2025-06-02",
+      "endDate": "2025-06-08",
+      "paperCount": 4
+    },
+    {
+      "week": "W24",
+      "startDate": "2025-06-09",
+      "endDate": "2025-06-15",
+      "paperCount": 7
+    },
+    {
+      "week": "W25",
+      "startDate": "2025-06-16",
+      "endDate": "2025-06-22",
+      "paperCount": 7
+    },
+    {
+      "week": "W26",
+      "startDate": "2025-06-23",
+      "endDate": "2025-06-29",
+      "paperCount": 9
+    },
+    {
+      "week": "W27",
+      "startDate": "2025-06-30",
+      "endDate": "2025-07-06",
+      "paperCount": 19
+    },
+    {
+      "week": "W28",
+      "startDate": "2025-07-07",
+      "endDate": "2025-07-13",
+      "paperCount": 3
+    },
+    {
+      "week": "W29",
+      "startDate": "2025-07-14",
+      "endDate": "2025-07-20",
+      "paperCount": 4
+    },
+    {
+      "week": "W30",
+      "startDate": "2025-07-21",
+      "endDate": "2025-07-27",
+      "paperCount": 8
+    },
+    {
+      "week": "W31",
+      "startDate": "2025-07-28",
+      "endDate": "2025-08-03",
+      "paperCount": 4
+    },
+    {
+      "week": "W32",
+      "startDate": "2025-08-04",
+      "endDate": "2025-08-10",
+      "paperCount": 1
+    },
+    {
+      "week": "W33",
+      "startDate": "2025-08-11",
+      "endDate": "2025-08-17",
+      "paperCount": 3
+    },
+    {
+      "week": "W34",
+      "startDate": "2025-08-18",
+      "endDate": "2025-08-24",
+      "paperCount": 1
+    },
+    {
+      "week": "W35",
+      "startDate": "2025-08-25",
+      "endDate": "2025-08-31",
+      "paperCount": 7
+    },
+    {
+      "week": "W36",
+      "startDate": "2025-09-01",
+      "endDate": "2025-09-07",
+      "paperCount": 5
+    },
+    {
+      "week": "W37",
+      "startDate": "2025-09-08",
+      "endDate": "2025-09-14",
+      "paperCount": 2
+    },
+    {
+      "week": "W38",
+      "startDate": "2025-09-15",
+      "endDate": "2025-09-21",
+      "paperCount": 8
+    },
+    {
+      "week": "W39",
+      "startDate": "2025-09-22",
+      "endDate": "2025-09-28",
+      "paperCount": 7
+    },
+    {
+      "week": "W40",
+      "startDate": "2025-09-29",
+      "endDate": "2025-10-05",
+      "paperCount": 14
+    },
+    {
+      "week": "W41",
+      "startDate": "2025-10-06",
+      "endDate": "2025-10-12",
+      "paperCount": 8
+    },
+    {
+      "week": "W42",
+      "startDate": "2025-10-13",
+      "endDate": "2025-10-19",
+      "paperCount": 1
+    },
+    {
+      "week": "W43",
+      "startDate": "2025-10-20",
+      "endDate": "2025-10-26",
+      "paperCount": 7
+    },
+    {
+      "week": "W44",
+      "startDate": "2025-10-27",
+      "endDate": "2025-11-02",
+      "paperCount": 16
+    },
+    {
+      "week": "W45",
+      "startDate": "2025-11-03",
+      "endDate": "2025-11-09",
+      "paperCount": 8
+    },
+    {
+      "week": "W46",
+      "startDate": "2025-11-10",
+      "endDate": "2025-11-16",
+      "paperCount": 3
+    },
+    {
+      "week": "W47",
+      "startDate": "2025-11-17",
+      "endDate": "2025-11-23",
+      "paperCount": 7
+    },
+    {
+      "week": "W48",
+      "startDate": "2025-11-24",
+      "endDate": "2025-11-30",
+      "paperCount": 4
+    },
+    {
+      "week": "W49",
+      "startDate": "2025-12-01",
+      "endDate": "2025-12-07",
+      "paperCount": 8
+    },
+    {
+      "week": "W50",
+      "startDate": "2025-12-08",
+      "endDate": "2025-12-14",
+      "paperCount": 10
+    },
+    {
+      "week": "W51",
+      "startDate": "2025-12-15",
+      "endDate": "2025-12-21",
+      "paperCount": 5
+    },
+    {
+      "week": "W52",
+      "startDate": "2025-12-22",
+      "endDate": "2025-12-28",
+      "paperCount": 2
+    }
+  ]
+}

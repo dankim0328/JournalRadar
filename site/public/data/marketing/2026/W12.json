@@ -1,0 +1,54 @@
+{
+  "category": "marketing",
+  "year": 2026,
+  "week": "W12",
+  "startDate": "2026-03-16",
+  "endDate": "2026-03-22",
+  "paperCount": 4,
+  "papers": [
+    {
+      "slug": "express-not-just-bad-luck-income-based-gaps-in-lottery-losses",
+      "title": "EXPRESS: Not Just Bad Luck: Income-Based Gaps in Lottery Losses",
+      "authors": "Paul Parker, Paulo Albuquerque, Yakov Bart",
+      "journal": "Journal of Marketing",
+      "date": "2026-3-16",
+      "url": "https://doi.org/10.1177/00222429261437120",
+      "abstract": "This research uncovers a hidden dimension of inequality in lottery play: lower-income consumers not only spend a larger share of their income on lottery tickets—a well-documented regressive pattern—but also earn less per ticket due to systematic differences in how games are designed and played. Using market-level and transaction-level data from California, we show that lower-income consumers are less responsive to high-jackpot games, use random number generators less frequently, and favor popular number combinations. These behaviors interact with pari-mutuel prize structures to reduce expected earnings. Simulations indicate that these factors lead to approximately 7% higher losses per ticket for lower-income consumers, amounting to nearly $3 million annually. We evaluate alternative game formats and policy interventions—including fixed non-jackpot prizes, mandatory random selection, and raffle-style jackpots with decreasing odds—and find that they can reduce income-based disparities by up to 60%. By framing lottery products through the dimensions of function, ergonomics, and form, this research strengthens theoretical links between product design and consumer heterogeneity and offers actionable insights for policymakers seeking to design fairer games and more equitable consumer outcomes.",
+      "analysis_ko": "AI 분석 실패.",
+      "analysis_en": "AI Analysis Failed."
+    },
+    {
+      "slug": "incorporating-switching-reasons-into-a-factor-analytic-choice-model-a-study-on-b",
+      "title": "Incorporating switching reasons into a factor-analytic choice model: A study on benefit segmentation of physicians",
+      "authors": "Sangwoo Shin, Qiang Liu, Siyun Lu, Paul Nelson",
+      "journal": "Quantitative Marketing and Economics",
+      "date": "2026-3-17",
+      "url": "https://doi.org/10.1007/s11129-026-09306-0",
+      "abstract": "초록(Abstract) 정보가 제공되지 않았습니다.",
+      "analysis_ko": "AI 분석 실패.",
+      "analysis_en": "AI Analysis Failed."
+    },
+    {
+      "slug": "large-language-models-for-market-research-a-data-augmentation-approach",
+      "title": "Large Language Models for Market Research: A Data-Augmentation Approach",
+      "authors": "Mengxin Wang, Dennis J. Zhang, Heng Zhang",
+      "journal": "Marketing Science",
+      "date": "2026-3-17",
+      "url": "https://doi.org/10.1287/mksc.2025.0009",
+      "abstract": "This paper proposes a statistical data augmentation approach that efficiently integrates LLM-generated data with real data in conjoint analysis.",
+      "analysis_ko": "AI 분석 실패.",
+      "analysis_en": "AI Analysis Failed."
+    },
+    {
+      "slug": "limiting-accessibility-how-targeting-consumers-with-disabilities-constrains-acce",
+      "title": "Limiting Accessibility: How Targeting Consumers with Disabilities Constrains Acceptable Prices for Innovations",
+      "authors": "Musa Essa, Johannes Boegershausen, Gabriele Paolacci",
+      "journal": "Journal of Consumer Research",
+      "date": "2026-3-21",
+      "url": "https://doi.org/10.1093/jcr/ucag003",
+      "abstract": "Abstract\n                  People with disabilities constitute 15% of the world’s population with a total disposable income of more than $2.6 trillion. However, few companies offer products tailored to the needs of this segment, making it important to understand how mass-market consumers react to innovations that target people with disabilities. Nine studies and six supplementary studies (twelve preregistered) reveal that innovations targeting consumers with disabilities are subject to comparatively greater scrutiny by mass-market consumers. Specifically, consumers find charging price premiums for innovative products less acceptable when they are targeted at people with disabilities. The aversion to targeting this segment occurs only when firms charge a price premium and persists even when firms provide cost justifications for the relatively higher prices. Drawing on research on disability stereotypes, we identify pity for people with disabilities as a critical driver of these reactions. Variations in pity across disabilities are related to the acceptability of a price premium for adaptive innovations. These findings are suggestive of a novel form of paternalism against consumers with disabilities. Paradoxically, this view may render the marketplace less inclusive for consumers with disabilities, as it could penalize companies that provide more options for this underserved segment.",
+      "analysis_ko": "AI 분석 실패.",
+      "analysis_en": "AI Analysis Failed."
+    }
+  ]
+}

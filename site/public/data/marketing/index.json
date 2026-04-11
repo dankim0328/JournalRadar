@@ -1,0 +1,17 @@
+{
+  "category": "marketing",
+  "categoryName_ko": "마케팅",
+  "categoryName_en": "Marketing",
+  "years": [
+    {
+      "year": 2025,
+      "totalPapers": 327,
+      "weekCount": 52
+    },
+    {
+      "year": 2026,
+      "totalPapers": 97,
+      "weekCount": 15
+    }
+  ]
+}
