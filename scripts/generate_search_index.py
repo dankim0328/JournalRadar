@@ -19,7 +19,9 @@ def generate_search_indexes():
         print(f"CRITICAL ERROR: {abs_data_root} does not exist!")
         sys.exit(1)
 
-    categories = [d for d in os.listdir(abs_data_root) if os.path.isdir(os.path.join(abs_data_root, d))]
+    categories = [d.lower() for d in os.listdir(abs_data_root) if os.path.isdir(os.path.join(abs_data_root, d))]
+    # Remove duplicates if any
+    categories = sorted(list(set(categories)))
     
     if not categories:
         print(f"WARNING: No category directories found in {abs_data_root}")

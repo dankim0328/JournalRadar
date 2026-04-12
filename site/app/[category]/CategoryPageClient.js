@@ -12,21 +12,31 @@ export default function CategoryPageClient({ category, data }) {
 
   // Load search index for this category
   useEffect(() => {
+    let isMounted = true;
     async function loadIndex() {
+      if (!category) return;
+      const cat = category.toLowerCase();
       setIsLoadingIndex(true);
+      
       try {
-        const res = await fetch(`/JournalRadar/data/${category}/search_index.json`);
-        if (res.ok) {
-          const indexData = await res.json();
-          setSearchIndex(indexData);
+        const res = await fetch(`/JournalRadar/data/${cat}/search_index.json`);
+        if (isMounted) {
+          if (res.ok) {
+            const indexData = await res.json();
+            setSearchIndex(indexData);
+            console.log(`Loaded ${indexData.length} papers for ${cat}`);
+          } else {
+            console.warn(`Failed to load index for ${cat}: ${res.status}`);
+          }
         }
       } catch (e) {
-        console.error("Failed to load search index:", e);
+        if (isMounted) console.error("Failed to load search index:", e);
       } finally {
-        setIsLoadingIndex(false);
+        if (isMounted) setIsLoadingIndex(false);
       }
     }
     loadIndex();
+    return () => { isMounted = false; };
   }, [category]);
 
   const filteredResults = useMemo(() => {
