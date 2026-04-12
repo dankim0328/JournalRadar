@@ -32,6 +32,10 @@ const translations = {
     totalPapers: "총 논문",
     viewPapers: "논문 보기 →",
     footer: "Journal Radar — AI 기반 학술 연구 분석 플랫폼",
+    searchPlaceholder: "논문 제목 또는 저자 검색...",
+    allJournals: "전체 저널",
+    noSearchResults: "검색 결과가 없습니다. 다른 키워드를 입력해 보세요.",
+    filterByJournal: "저널 필터",
   },
   en: {
     siteName: "Journal Radar",
@@ -66,6 +70,10 @@ const translations = {
     totalPapers: "Total Papers",
     viewPapers: "View Papers →",
     footer: "Journal Radar — AI-Powered Academic Research Analysis Platform",
+    searchPlaceholder: "Search papers or authors...",
+    allJournals: "All Journals",
+    noSearchResults: "No papers found. Try different keywords.",
+    filterByJournal: "Filter by Journal",
   },
 };
 

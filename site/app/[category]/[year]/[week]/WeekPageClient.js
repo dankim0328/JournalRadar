@@ -1,11 +1,30 @@
 "use client";
 import Link from "next/link";
 import { useLanguage } from "../../../components/LanguageProvider";
-import { useState } from "react";
+import { useState, useMemo } from "react";
 
 export default function WeekPageClient({ category, year, week, data }) {
   const { lang, t } = useLanguage();
   const [selectedPaper, setSelectedPaper] = useState(null);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [selectedJournal, setSelectedJournal] = useState("all");
+
+  const uniqueJournals = useMemo(() => {
+    if (!data || !data.papers) return [];
+    const journals = new Set(data.papers.map(p => p.journal));
+    return Array.from(journals).sort();
+  }, [data]);
+
+  const filteredPapers = useMemo(() => {
+    if (!data || !data.papers) return [];
+    return data.papers.filter(paper => {
+      const matchesJournal = selectedJournal === "all" || paper.journal === selectedJournal;
+      const matchesSearch = 
+        paper.title.toLowerCase().includes(searchTerm.toLowerCase()) || 
+        paper.authors.toLowerCase().includes(searchTerm.toLowerCase());
+      return matchesJournal && matchesSearch;
+    });
+  }, [data, searchTerm, selectedJournal]);
 
   if (!data) return <div className="page-container"><p>{t.noPapers}</p></div>;
 
@@ -99,20 +118,58 @@ export default function WeekPageClient({ category, year, week, data }) {
         </p>
       </div>
 
-      <div className="paper-list">
-        {data.papers.map((paper, i) => (
-          <div
-            key={paper.slug || i}
-            className={`paper-card fade-in stagger-${Math.min(i + 1, 4)}`}
-            onClick={() => setSelectedPaper(paper)}
-            id={`paper-${paper.slug || i}`}
+      <div className="controls-area">
+        <div className="search-container">
+          <span className="search-icon">🔍</span>
+          <input 
+            type="text" 
+            className="search-input" 
+            placeholder={t.searchPlaceholder}
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+          />
+        </div>
+
+        <div className="filter-container">
+          <span className="filter-label">{t.filterByJournal}:</span>
+          <button 
+            className={`filter-chip ${selectedJournal === "all" ? "active" : ""}`}
+            onClick={() => setSelectedJournal("all")}
           >
-            <span className={`journal-badge ${catClass}`}>{paper.journal}</span>
-            <h3>{paper.title}</h3>
-            <p className="paper-authors">{paper.authors}</p>
-            <p className="paper-date">{paper.date}</p>
+            {t.allJournals}
+          </button>
+          {uniqueJournals.map(journal => (
+            <button 
+              key={journal}
+              className={`filter-chip ${selectedJournal === journal ? "active" : ""}`}
+              onClick={() => setSelectedJournal(journal)}
+            >
+              {journal}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      <div className="paper-list">
+        {filteredPapers.length > 0 ? (
+          filteredPapers.map((paper, i) => (
+            <div
+              key={paper.slug || i}
+              className={`paper-card fade-in stagger-${Math.min(i + 1, 4)}`}
+              onClick={() => setSelectedPaper(paper)}
+              id={`paper-${paper.slug || i}`}
+            >
+              <span className={`journal-badge ${catClass}`}>{paper.journal}</span>
+              <h3>{paper.title}</h3>
+              <p className="paper-authors">{paper.authors}</p>
+              <p className="paper-date">{paper.date}</p>
+            </div>
+          ))
+        ) : (
+          <div className="no-results fade-in">
+            <p>{t.noSearchResults}</p>
           </div>
-        ))}
+        )}
       </div>
     </main>
   );
