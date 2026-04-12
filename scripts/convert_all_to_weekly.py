@@ -68,14 +68,18 @@ def process_category(all_papers, category_id, category_name_ko, category_name_en
     
     weekly_groups = defaultdict(list)
     for paper in papers:
-        dt = parse_date(paper.get("Date"))
+        # Standardize keys (handling BOM \ufeffJournal or lowercase journal)
+        # We lowercase all keys and remove \ufeff
+        paper = {k.lstrip('\ufeff').lower(): v for k, v in paper.items()}
+        
+        dt = parse_date(paper.get("date"))
         if not dt: continue
         
         iso_year, iso_week = get_iso_week(dt)
         # Use simple WXX as keys for filename/URL stability
         week_label = f"W{iso_week:02d}"
         
-        analysis = paper.get("AI_Analysis", "")
+        analysis = paper.get("ai_analysis", "")
         # Remove AI conversational prefixes if they slipped through
         analysis = re.sub(r"^(알겠습니다|물론입니다|네|반갑습니다|안녕하세요)[^.]*AI로서,[^.]*(제공해 드립니다|분석해 드리겠습니다|분석해 보겠습니다|분석해 드립니다)\.?\n*", "", analysis, flags=re.MULTILINE).strip()
         
@@ -90,13 +94,13 @@ def process_category(all_papers, category_id, category_name_ko, category_name_en
             en = ""
 
         weekly_groups[(iso_year, week_label)].append({
-            "slug": slugify(paper.get("Title", "")),
-            "title": paper.get("Title", "No Title"),
-            "authors": paper.get("Authors", "Unknown"),
-            "journal": paper.get("Journal", "Unknown Journal"),
-            "date": paper.get("Date", "Unknown"),
-            "url": paper.get("URL", ""),
-            "abstract": clean_html(paper.get("Abstract", "")),
+            "slug": slugify(paper.get("title", "")),
+            "title": paper.get("title", "No Title"),
+            "authors": paper.get("authors", "Unknown"),
+            "journal": paper.get("journal", "Unknown Journal"),
+            "date": paper.get("date", "Unknown"),
+            "url": paper.get("url", ""),
+            "abstract": clean_html(paper.get("abstract", "")),
             "analysis_ko": ko,
             "analysis_en": en,
         })

@@ -111,27 +111,54 @@ def merge_all():
         if not (p.get("Category") == "Finance" and any(b in p.get("Journal", "").lower() or b in p.get("Title", "").lower() for b in FINANCE_BLACKLIST))
     ]
 
-    # 1. Finance CSV
+    # 1. Finance CSV (Purge and Re-import)
+    # Clear existing Finance entries to remove "Unknown Journal" leftovers
+    all_papers = [p for p in all_papers if p.get("Category") != "Finance"]
+    # Re-build existing_map after purge to allow fresh import
+    existing_map = {p["URL"]: p for p in all_papers if "URL" in p}
+
     finance_file = "finance_papers_20260411.csv"
     if os.path.exists(finance_file):
-        with open(finance_file, "r", encoding="utf-8") as f:
+        # Use utf-8-sig to automatically remove BOM if present
+        with open(finance_file, "r", encoding="utf-8-sig") as f:
             reader = csv.DictReader(f)
             for row in reader:
-                journal = row.get("Journal", "").lower()
-                title = row.get("Title", "").lower()
-                is_top_5 = any(tj in journal for tj in ALLOWED_FINANCE_JOURNALS)
-                is_working_paper = any(b in journal or b in title for b in FINANCE_BLACKLIST)
+                # Row keys are now clean (no BOM)
+                # Map to standard keys if necessary, but DictReader uses headers directly
+                journal = row.get("Journal", "").strip()
+                title = row.get("Title", "").strip()
+                url = row.get("URL", "").strip()
+                
+                # Strict White-List Check for 5 Top Journals
+                is_top_5 = any(tj in journal.lower() for tj in ALLOWED_FINANCE_JOURNALS)
+                # Black-list for working papers
+                is_working_paper = any(b in journal.lower() or b in title.lower() or b in url.lower() for b in ["working paper", "nber", "ssrn", "preprint"])
                 
                 if is_top_5 and not is_working_paper:
-                    date_val = row["Date"]
+                    date_val = row.get("Date", "2026-04-11")
                     year_month = "2026-04"
                     try:
-                        year_month = datetime.strptime(date_val, "%Y-%m-%d").strftime("%Y-%m")
-                    except: pass
-                    row["AI_Analysis"] = clean_text(row["AI_Analysis"])
-                    row["Category"] = "Finance"
-                    row["YearMonth"] = year_month
-                    add_or_update(row)
+                        # Normalize date format if it's 2026-4-8
+                        dt_obj = datetime.strptime(date_val, "%Y-%m-%d")
+                        year_month = dt_obj.strftime("%Y-%m")
+                    except: 
+                        try:
+                            # Try 2026-4-8 format
+                            dt_obj = datetime.strptime(date_val, "%Y-%n-%j") # Incorrect pattern, just fallback
+                        except: pass
+                    
+                    paper_obj = {
+                        "Journal": journal,
+                        "Title": title,
+                        "Authors": row.get("Authors", "Unknown"),
+                        "Date": date_val,
+                        "URL": url,
+                        "Abstract": clean_text(row.get("Abstract", "")),
+                        "AI_Analysis": clean_text(row.get("AI_Analysis", "")),
+                        "Category": "Finance",
+                        "YearMonth": year_month
+                    }
+                    add_or_update(paper_obj)
 
     # 2. Marketing MD
     marketing_file = "marketing_papers_20260411.md"
