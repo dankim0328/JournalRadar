@@ -7,31 +7,35 @@ export default function CookieBanner() {
   const { lang, t } = useLanguage();
 
   useEffect(() => {
-    // Check if user has already made a choice
-    const consent = localStorage.getItem("cookie-consent");
+    // Check v2 consent
+    const consent = localStorage.getItem("cookie-consent-v2");
     if (!consent) {
-      // Small delay for entrance animation
       const timer = setTimeout(() => setShowBanner(true), 1200);
       return () => clearTimeout(timer);
     }
   }, []);
 
-  const handleAccept = () => {
-    localStorage.setItem("cookie-consent", "granted");
+  const handleAll = () => {
+    localStorage.setItem("cookie-consent-v2", "all");
     
-    // Update GA4 consent state
     if (typeof window !== "undefined" && window.gtag) {
       window.gtag('consent', 'update', {
         'analytics_storage': 'granted',
         'ad_storage': 'granted'
       });
     }
-    
     setShowBanner(false);
   };
 
-  const handleDecline = () => {
-    localStorage.setItem("cookie-consent", "denied");
+  const handleEssential = () => {
+    localStorage.setItem("cookie-consent-v2", "essential");
+    
+    if (typeof window !== "undefined" && window.gtag) {
+      window.gtag('consent', 'update', {
+        'analytics_storage': 'denied',
+        'ad_storage': 'denied'
+      });
+    }
     setShowBanner(false);
   };
 
@@ -43,20 +47,20 @@ export default function CookieBanner() {
         <div className="cookie-banner-icon">🍪</div>
         <div className="cookie-banner-text">
           <p className="cookie-title">
-            {lang === 'ko' ? '쿠키 사용 안내' : 'Cookie Policy'}
+            {lang === 'ko' ? '개인정보 보호 설정' : 'Privacy Settings'}
           </p>
           <p className="cookie-desc">
             {lang === 'ko' 
-              ? '더 나은 연구 분석을 위해 익명의 사용자 데이터를 수집합니다. 동의하시나요?' 
-              : 'We use cookies to analyze site traffic and improve your research experience.'}
+              ? '더 나은 연구 데이터 제공을 위해 쿠키를 사용합니다. 선택해 주세요.' 
+              : 'We use cookies to improve your research experience. Please choose your preference.'}
           </p>
         </div>
         <div className="cookie-banner-actions">
-          <button onClick={handleDecline} className="cookie-btn btn-secondary">
-            {lang === 'ko' ? '거절' : 'Decline'}
+          <button onClick={handleEssential} className="cookie-btn btn-secondary">
+            {lang === 'ko' ? '필수 항목만' : 'Essential Only'}
           </button>
-          <button onClick={handleAccept} className="cookie-btn btn-primary">
-            {lang === 'ko' ? '수락' : 'Accept'}
+          <button onClick={handleAll} className="cookie-btn btn-primary">
+            {lang === 'ko' ? '전체 수락' : 'Accept All'}
           </button>
         </div>
       </div>

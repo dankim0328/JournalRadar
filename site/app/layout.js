@@ -32,17 +32,24 @@ export default function RootLayout({ children }) {
                 window.dataLayer = window.dataLayer || [];
                 function gtag(){dataLayer.push(arguments);}
                 
-                // Set default consent to 'denied'
-                if (!localStorage.getItem('cookie-consent')) {
+                // Set default consent based on v2 choice
+                const consentV2 = localStorage.getItem('cookie-consent-v2');
+                if (!consentV2) {
                   gtag('consent', 'default', {
                     'analytics_storage': 'denied',
                     'ad_storage': 'denied',
                     'wait_for_update': 500
                   });
-                } else if (localStorage.getItem('cookie-consent') === 'granted') {
+                } else if (consentV2 === 'all') {
                   gtag('consent', 'default', {
                     'analytics_storage': 'granted',
                     'ad_storage': 'granted'
+                  });
+                } else {
+                  // 'essential' or other
+                  gtag('consent', 'default', {
+                    'analytics_storage': 'denied',
+                    'ad_storage': 'denied'
                   });
                 }
               `}
