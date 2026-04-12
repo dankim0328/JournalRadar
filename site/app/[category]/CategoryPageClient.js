@@ -97,7 +97,10 @@ export default function CategoryPageClient({ category, data }) {
               {filteredResults.map((paper, i) => (
                 <Link
                   key={paper.slug || i}
-                  href={`/${category}/${paper.year}/${paper.week}?paper=${paper.slug}`}
+                  href={{
+                    pathname: `/${category}/${paper.year}/${paper.week}`,
+                    query: { paper: paper.slug }
+                  }}
                   className={`paper-card fade-in stagger-${Math.min(i + 1, 4)}`}
                 >
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
