@@ -33,6 +33,8 @@
   --color-accounting-bg: rgba(251, 191, 36, 0.08);
   --color-accounting-glow: rgba(251, 191, 36, 0.25);
 
+  --bg-surface: #1c1c2b;
+
   /* Gradients */
   --gradient-marketing: linear-gradient(135deg, #a78bfa 0%, #6d5acf 50%, #4338ca 100%);
   --gradient-finance: linear-gradient(135deg, #34d399 0%, #059669 50%, #047857 100%);
@@ -585,9 +587,27 @@ a {
   font-weight: 600;
   letter-spacing: 0.05em;
   margin-bottom: var(--space-md);
+  background: var(--bg-tertiary); /* Fallback */
+  color: var(--text-secondary); /* Fallback */
+  border: 1px solid var(--border-subtle);
+}
+
+.journal-badge.marketing {
   background: var(--color-marketing-bg);
   color: var(--color-marketing);
   border: 1px solid rgba(167, 139, 250, 0.2);
+}
+
+.journal-badge.finance {
+  background: var(--color-finance-bg);
+  color: var(--color-finance);
+  border: 1px solid rgba(52, 211, 153, 0.2);
+}
+
+.journal-badge.accounting {
+  background: var(--color-accounting-bg);
+  color: var(--color-accounting);
+  border: 1px solid rgba(251, 191, 36, 0.2);
 }
 
 .paper-card h3 {

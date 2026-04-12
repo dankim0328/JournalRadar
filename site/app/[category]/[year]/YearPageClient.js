@@ -72,7 +72,10 @@ export default function YearPageClient({ year, data }) {
                   </div>
                   <div className="week-info">
                     <div className="week-label-sub">
-                      {lang === "ko" ? w.label_ko : w.label_en}
+                      {(lang === "ko" ? w.label_ko : w.label_en) || 
+                        (lang === "ko" 
+                          ? `${parseInt(w.startDate.split('-')[1])}월 ${Math.floor((parseInt(w.startDate.split('-')[2]) - 1) / 7) + 1}주차`
+                          : `Week ${w.week.replace('W', '')}`)}
                     </div>
                     <div className="week-date">
                       {w.startDate} ~ {w.endDate}
