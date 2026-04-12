@@ -22,3 +22,9 @@ Thumbs.db
 # Python
 __pycache__/
 *.pyc
+
+# Data & Cache
+backfill_state.json
+backfill_upload_log.txt
+*_papers_*.csv
+*_papers_*.md

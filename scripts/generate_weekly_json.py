@@ -10,6 +10,8 @@ import json
 import os
 import re
 import datetime
+import sys
+sys.stdout.reconfigure(encoding='utf-8')
 from collections import defaultdict
 
 SITE_DATA_DIR = os.path.join(os.path.dirname(__file__), "..", "site", "public", "data")
@@ -92,7 +94,7 @@ def save_weekly_data(category, year, week_num, papers):
     }
 
     with open(week_file, "w", encoding="utf-8") as f:
-        json.dump(week_data, f, ensure_ascii=False, indent=2)
+        json.dump(week_data, f, ensure_ascii=False, separators=(',', ':'))
 
     print(f"  ✅ {category}/{year}/{week_label}.json — {len(existing_papers)} papers")
     return week_label
@@ -138,7 +140,7 @@ def update_indexes(category):
             "weeks": weeks,
         }
         with open(os.path.join(year_path, "index.json"), "w", encoding="utf-8") as f:
-            json.dump(year_index, f, ensure_ascii=False, indent=2)
+            json.dump(year_index, f, ensure_ascii=False, separators=(',', ':'))
 
         years_data.append({
             "year": year_num,
@@ -155,7 +157,7 @@ def update_indexes(category):
         "years": years_data,
     }
     with open(os.path.join(cat_dir, "index.json"), "w", encoding="utf-8") as f:
-        json.dump(root_index, f, ensure_ascii=False, indent=2)
+        json.dump(root_index, f, ensure_ascii=False, separators=(',', ':'))
 
     print(f"  📋 {category} indexes updated ({len(years_data)} years, {sum(y['totalPapers'] for y in years_data)} total papers)")
 
