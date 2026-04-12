@@ -52,7 +52,7 @@ def generate_search_indexes():
             print(f"  Found {len(week_files)} week files in {year}")
             
             for wf in week_files:
-                week_num = wf.replace("W", "").replace(".json", "")
+                week_num = wf.replace(".json", "")
                 full_wf_path = os.path.join(year_path, wf)
                 with open(full_wf_path, 'r', encoding='utf-8') as f:
                     try:
