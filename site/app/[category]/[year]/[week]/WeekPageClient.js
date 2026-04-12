@@ -1,13 +1,24 @@
 "use client";
 import Link from "next/link";
 import { useLanguage } from "../../../components/LanguageProvider";
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
+import { useSearchParams } from "next/navigation";
 
 export default function WeekPageClient({ category, year, week, data }) {
   const { lang, t } = useLanguage();
+  const searchParams = useSearchParams();
   const [selectedPaper, setSelectedPaper] = useState(null);
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedJournal, setSelectedJournal] = useState("all");
+
+  // Handle deep-linking to a specific paper
+  useEffect(() => {
+    const paperSlug = searchParams.get("paper");
+    if (paperSlug && data && data.papers) {
+      const paper = data.papers.find(p => p.slug === paperSlug);
+      if (paper) setSelectedPaper(paper);
+    }
+  }, [searchParams, data]);
 
   const uniqueJournals = useMemo(() => {
     if (!data || !data.papers) return [];
