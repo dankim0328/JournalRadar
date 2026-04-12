@@ -19,8 +19,9 @@ def parse_markdown_papers(file_path, category):
     with open(file_path, 'r', encoding='utf-8') as f:
         content = f.read()
     
-    # Split by paper (double delimiter)
-    sections = re.split(r'##\s+', content)[1:]
+    # Robust split: Paper titles start with ## at the beginning of a line
+    # We add a newline at start to ensure the first one matches
+    sections = re.split(r'\n##\s+', '\n' + content.strip())[1:]
     papers = []
     
     for section in sections:
@@ -33,28 +34,29 @@ def parse_markdown_papers(file_path, category):
         url = ""
         
         # Look for metadata in <aside> or bullet points
-        journal_match = re.search(r'저널명:\s*(.+)', section)
-        authors_match = re.search(r'저자:\s*(.+)', section)
-        date_match = re.search(r'출판일:\s*(.+)', section)
-        url_match = re.search(r'링크:\s*(https?://\S+)', section)
+        # Use flexible regex to ignore bold markers like **저널명**:
+        journal_match = re.search(r'저널명[*\s:]+(.+)', section)
+        authors_match = re.search(r'저자[*\s:]+(.+)', section)
+        date_match = re.search(r'출판일[*\s:]+(.+)', section)
+        url_match = re.search(r'링크[*\s:]+(https?://\S+)', section)
         
-        if journal_match: journal = journal_match.group(1).strip()
-        if authors_match: authors = authors_match.group(1).strip()
-        if date_match: date = date_match.group(1).strip()
-        if url_match: url = url_match.group(1).strip()
+        if journal_match: journal = journal_match.group(1).replace("**", "").strip()
+        if authors_match: authors = authors_match.group(1).replace("**", "").strip()
+        if date_match: date = date_match.group(1).replace("**", "").strip()
+        if url_match: url = url_match.group(1).replace("**", "").strip()
         
         # Extract abstract
-        abstract_match = re.search(r'### 논문 초록 \(Abstract\)\n*(?:>.*(?:\n>.*)*)', section)
+        abstract_match = re.search(r'###\s*논문\s*초록\s*\(Abstract\)\s*([\s\S]+?)(?=###|$)', section)
         abstract = ""
         if abstract_match:
-            abstract = abstract_match.group(0).replace('### 논문 초록 (Abstract)\n', '').replace('> ', '').replace('>', '').strip()
+            abstract = abstract_match.group(1).replace('<jats:p>', '').replace('</jats:p>', '').replace('>', '').replace('ABSTRACT', '').strip()
         
         # Extract AI analysis
-        analysis_match = re.search(r'### AI 심층 분석 요약\n*([\s\S]+)', section)
+        # Look for the header and capture until the end of the section
+        analysis_match = re.search(r'###\s*AI\s*심층\s*분석\s*요약\s*(?:.*)\n+([\s\S]+)', section)
         analysis = ""
         if analysis_match:
             analysis = analysis_match.group(1).strip()
-            # If it has subheadings A, B, C, include them
         
         papers.append({
             "Journal": journal,
@@ -87,17 +89,27 @@ def merge_all():
     else:
         all_papers = []
 
-    # Filter out any existing working papers from previous runs
+    # Map URLs to existing paper objects for easy access/update
+    existing_map = {p["URL"]: p for p in all_papers if "URL" in p}
+
+    def add_or_update(new_paper):
+        url = new_paper.get("URL")
+        if not url: return
+        
+        if url in existing_map:
+            # Overwrite if current analysis is a failure or empty
+            current_analysis = existing_map[url].get("AI_Analysis", "")
+            if "분석 실패" in current_analysis or not current_analysis.strip():
+                existing_map[url].update(new_paper)
+        else:
+            all_papers.append(new_paper)
+            existing_map[url] = new_paper
+
+    # Filter out existing working papers from previous runs
     all_papers = [
         p for p in all_papers 
         if not (p.get("Category") == "Finance" and any(b in p.get("Journal", "").lower() or b in p.get("Title", "").lower() for b in FINANCE_BLACKLIST))
     ]
-
-    # Clean existing papers
-    for p in all_papers:
-        p["AI_Analysis"] = clean_text(p.get("AI_Analysis", ""))
-
-    existing_urls = {p["URL"] for p in all_papers if "URL" in p}
 
     # 1. Finance CSV
     finance_file = "finance_papers_20260411.csv"
@@ -107,33 +119,26 @@ def merge_all():
             for row in reader:
                 journal = row.get("Journal", "").lower()
                 title = row.get("Title", "").lower()
-                
-                # Check if it's a Top 5 journal
                 is_top_5 = any(tj in journal for tj in ALLOWED_FINANCE_JOURNALS)
-                # Check if it's a working paper
                 is_working_paper = any(b in journal or b in title for b in FINANCE_BLACKLIST)
                 
-                if is_top_5 and not is_working_paper and row["URL"] not in existing_urls:
+                if is_top_5 and not is_working_paper:
                     date_val = row["Date"]
                     year_month = "2026-04"
                     try:
                         year_month = datetime.strptime(date_val, "%Y-%m-%d").strftime("%Y-%m")
                     except: pass
-                    
                     row["AI_Analysis"] = clean_text(row["AI_Analysis"])
                     row["Category"] = "Finance"
                     row["YearMonth"] = year_month
-                    all_papers.append(row)
-                    existing_urls.add(row["URL"])
+                    add_or_update(row)
 
     # 2. Marketing MD
     marketing_file = "marketing_papers_20260411.md"
     if os.path.exists(marketing_file):
         m_papers = parse_markdown_papers(marketing_file, "Marketing")
         for p in m_papers:
-            if p["URL"] not in existing_urls:
-                all_papers.append(p)
-                existing_urls.add(p["URL"])
+            add_or_update(p)
 
     # 3. Accounting Manual JSON
     accounting_file = "scripts/accounting_manual_20260411.json"
@@ -141,23 +146,20 @@ def merge_all():
         with open(accounting_file, "r", encoding="utf-8") as f:
             a_papers = json.load(f)
             for p in a_papers:
-                if p["URL"] not in existing_urls:
-                    date_val = p["Date"]
-                    p["YearMonth"] = datetime.strptime(date_val, "%Y-%m-%d").strftime("%Y-%m")
-                    p["AI_Analysis"] = clean_text(p["AI_Analysis"])
-                    all_papers.append(p)
-                    existing_urls.add(p["URL"])
+                date_val = p["Date"]
+                p["YearMonth"] = datetime.strptime(date_val, "%Y-%m-%d").strftime("%Y-%m")
+                p["AI_Analysis"] = clean_text(p["AI_Analysis"])
+                add_or_update(p)
 
     # Final sweep to ensure ALL papers are cleaned and have Category
     for p in all_papers:
         p["AI_Analysis"] = clean_text(p.get("AI_Analysis", ""))
-        # Assign Category if missing based on patterns if possible, or just leave as is if old
         if "Category" not in p:
             j = p.get("Journal", "").lower()
             if "marketing" in j: p["Category"] = "Marketing"
             elif any(tj in j for tj in ALLOWED_FINANCE_JOURNALS): p["Category"] = "Finance"
             elif "accounting" in j: p["Category"] = "Accounting"
-            else: p["Category"] = "Marketing" # Default for old backfill
+            else: p["Category"] = "Marketing" 
 
     with open(base_file, "w", encoding="utf-8") as f:
         json.dump(all_papers, f, ensure_ascii=False, indent=2)

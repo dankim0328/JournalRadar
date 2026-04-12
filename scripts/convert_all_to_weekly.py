@@ -86,9 +86,8 @@ def process_category(all_papers, category_id, category_name_ko, category_name_en
         if len(parts) > 1:
             en = parts[1].strip()
         else:
-            # Fallback for English: Use Korean if no English provided
-            # (User said "English later", so for now we show what we have)
-            en = ko
+            # User requested: English analysis should be empty if not provided
+            en = ""
 
         weekly_groups[(iso_year, week_label)].append({
             "slug": slugify(paper.get("Title", "")),

@@ -3,13 +3,15 @@ export const TRACKED_JOURNALS = {
     "Journal of Marketing",
     "Journal of Marketing Research",
     "Marketing Science",
-    "Journal of Consumer Research"
+    "Journal of Consumer Research",
+    "Quantitative Marketing and Economics (QME)"
   ],
   finance: [
     "The Journal of Finance",
     "Journal of Financial Economics",
     "The Review of Financial Studies",
-    "Journal of Financial and Quantitative Analysis"
+    "Journal of Financial and Quantitative Analysis",
+    "Review of Finance"
   ],
   accounting: [
     "Journal of Accounting and Economics",
