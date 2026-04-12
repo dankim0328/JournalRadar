@@ -1,12 +1,1 @@
-{
-  "category": "finance",
-  "categoryName_ko": "재무",
-  "categoryName_en": "Finance",
-  "years": [
-    {
-      "year": 2026,
-      "totalPapers": 21,
-      "weekCount": 3
-    }
-  ]
-}
+{"category":"finance","categoryName_ko":"재무","categoryName_en":"Finance","years":[{"year":2026,"totalPapers":21,"weekCount":3}]}

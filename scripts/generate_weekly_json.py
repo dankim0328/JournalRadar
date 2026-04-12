@@ -21,7 +21,14 @@ CATEGORIES = {
         "name_ko": "마케팅",
         "name_en": "Marketing",
     },
-    # Future: finance, accounting
+    "finance": {
+        "name_ko": "재무",
+        "name_en": "Finance",
+    },
+    "accounting": {
+        "name_ko": "회계",
+        "name_en": "Accounting",
+    },
 }
 
 
@@ -89,6 +96,7 @@ def save_weekly_data(category, year, week_num, papers):
         "week": week_label,
         "startDate": start_date,
         "endDate": end_date,
+        "label_ko": f"{start_date.split('-')[1].lstrip('0')}월 {((int(start_date.split('-')[2])-1)//7)+1}주차", # Fallback label
         "paperCount": len(existing_papers),
         "papers": existing_papers,
     }
@@ -124,10 +132,26 @@ def update_indexes(category):
                 fpath = os.path.join(year_path, fname)
                 with open(fpath, "r", encoding="utf-8") as f:
                     wdata = json.load(f)
+                
+                # Capture label_ko and label_en if they exist, or build fallback
+                label_ko = wdata.get("label_ko", "")
+                label_en = wdata.get("label_en", "")
+                
+                # If missing, try to generate one (e.g., "1월 1주차")
+                if not label_ko:
+                    m = int(wdata["startDate"].split("-")[1])
+                    w = ((int(wdata["startDate"].split("-")[2])-1)//7)+1
+                    label_ko = f"{m}월 {w}주차"
+                if not label_en:
+                    # Generic fallback
+                    label_en = f"Week {wdata['week'].replace('W', '')}"
+
                 weeks.append({
                     "week": wdata["week"],
                     "startDate": wdata.get("startDate", ""),
                     "endDate": wdata.get("endDate", ""),
+                    "label_ko": label_ko,
+                    "label_en": label_en,
                     "paperCount": wdata.get("paperCount", 0),
                 })
                 total_papers += wdata.get("paperCount", 0)

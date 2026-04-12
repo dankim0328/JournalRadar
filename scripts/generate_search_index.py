@@ -56,7 +56,7 @@ def generate_search_indexes():
                                 "slug": paper.get("slug"),
                                 "year": year,
                                 "week": week_num,
-                                "week_label": data.get("label_ko")
+                                "week_label": data.get("label_ko") or f"{data.get('startDate', '').split('-')[1].lstrip('0') if '-' in data.get('startDate', '') else ''}월 {((int(data.get('startDate', '').split('-')[2])-1)//7)+1 if '-' in data.get('startDate', '') else ''}주차"
                             }
                             all_papers.append(indexed_paper)
                     except Exception as e:

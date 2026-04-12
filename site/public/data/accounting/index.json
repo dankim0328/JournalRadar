@@ -1,12 +1,1 @@
-{
-  "category": "accounting",
-  "categoryName_ko": "회계",
-  "categoryName_en": "Accounting",
-  "years": [
-    {
-      "year": 2026,
-      "totalPapers": 4,
-      "weekCount": 1
-    }
-  ]
-}
+{"category":"accounting","categoryName_ko":"회계","categoryName_en":"Accounting","years":[{"year":2026,"totalPapers":4,"weekCount":1}]}
