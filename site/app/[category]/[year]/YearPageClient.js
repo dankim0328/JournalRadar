@@ -53,21 +53,27 @@ export default function YearPageClient({ year, data }) {
 
       {sortedMonths.map((monthIdx, gi) => (
         <div key={monthIdx} className={`month-group fade-in stagger-${Math.min(gi + 1, 4)}`}>
-          <div className="month-label">{t.monthNames[monthIdx]} {year}</div>
+          <div className="month-label">
+            <span className="month-icon">📅</span>
+            {t.monthNames[monthIdx]} {year}
+          </div>
           <div className="week-grid">
             {monthGroups[monthIdx]
-              .sort((a, b) => b.week.localeCompare(a.week))
-              .map((w) => (
+              .sort((a, b) => a.week.localeCompare(b.week)) // Sort ascending to assign W1-W5 correctly
+              .map((w, idx) => (
                 <Link
                   href={`/${category}/${year}/${w.week}`}
                   key={w.week}
                   className="week-card"
                   id={`week-${w.week}`}
                 >
-                  <div className="week-number" style={{ fontSize: '1rem', whiteSpace: 'nowrap' }}>
-                    {lang === "ko" ? w.label_ko : w.label_en}
+                  <div className="week-number-badge">
+                    W{idx + 1}
                   </div>
                   <div className="week-info">
+                    <div className="week-label-sub">
+                      {lang === "ko" ? w.label_ko : w.label_en}
+                    </div>
                     <div className="week-date">
                       {w.startDate} ~ {w.endDate}
                     </div>
