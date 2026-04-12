@@ -21,6 +21,9 @@ concurrency:
   group: "pages"
   cancel-in-progress: false
 
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
 jobs:
   # ── Job 1: 주간 논문 수집 & AI 분석 ──
   research:
@@ -101,6 +104,8 @@ jobs:
 
     - name: Generate search index
       run: |
+        echo "Verifying data directory..."
+        ls -R site/public/data/ || echo "Data directory not found!"
         python scripts/generate_search_index.py
 
     - name: Build Next.js static site
