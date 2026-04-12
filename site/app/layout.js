@@ -16,6 +16,7 @@ export const metadata = {
 };
 
 import Footer from "./components/Footer";
+import CookieBanner from "./components/CookieBanner";
 
 export default function RootLayout({ children }) {
   const gaId = process.env.NEXT_PUBLIC_GA_ID;
@@ -26,16 +27,36 @@ export default function RootLayout({ children }) {
         <link rel="icon" href="/JournalRadar/favicon.ico" />
         {gaId && (
           <>
+            <Script id="google-analytics-consent" strategy="beforeInteractive">
+              {`
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                
+                // Set default consent to 'denied'
+                if (!localStorage.getItem('cookie-consent')) {
+                  gtag('consent', 'default', {
+                    'analytics_storage': 'denied',
+                    'ad_storage': 'denied',
+                    'wait_for_update': 500
+                  });
+                } else if (localStorage.getItem('cookie-consent') === 'granted') {
+                  gtag('consent', 'default', {
+                    'analytics_storage': 'granted',
+                    'ad_storage': 'granted'
+                  });
+                }
+              `}
+            </Script>
             <Script
               src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`}
               strategy="afterInteractive"
             />
             <Script id="google-analytics" strategy="afterInteractive">
               {`
-                window.dataLayer = window.dataLayer || [];
-                function gtag(){dataLayer.push(arguments);}
                 gtag('js', new Date());
-                gtag('config', '${gaId}');
+                gtag('config', '${gaId}', {
+                  'anonymize_ip': true
+                });
               `}
             </Script>
           </>
@@ -47,6 +68,7 @@ export default function RootLayout({ children }) {
           <Header />
             <main>{children}</main>
           <Footer />
+          <CookieBanner />
         </LanguageProvider>
       </body>
     </html>
