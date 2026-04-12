@@ -7,11 +7,20 @@ function getMonthFromWeek(year, weekStr) {
   const weekNum = parseInt(weekStr.replace("W", ""), 10);
   const jan4 = new Date(parseInt(year), 0, 4);
   const startOfWeek1 = new Date(jan4);
-  startOfWeek1.setDate(jan4.getDate() - jan4.getDay() + 1);
+  // ISO 8601: Week 1 is the week with Jan 4.
+  // Calculate the Monday of that week.
+  const dayOffset = jan4.getDay() === 0 ? 6 : jan4.getDay() - 1;
+  startOfWeek1.setDate(jan4.getDate() - dayOffset);
+  
   const monday = new Date(startOfWeek1);
   monday.setDate(startOfWeek1.getDate() + (weekNum - 1) * 7);
-  return monday.getMonth();
+  
+  // 4-day rule: Group by the month that contains the majority of the week (Thursday).
+  const thursday = new Date(monday);
+  thursday.setDate(monday.getDate() + 3);
+  return thursday.getMonth();
 }
+
 
 export default function YearPageClient({ year, data }) {
   const { lang, t } = useLanguage();

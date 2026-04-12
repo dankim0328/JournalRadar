@@ -90,13 +90,20 @@ def save_weekly_data(category, year, week_num, papers):
     # Sort by date
     existing_papers.sort(key=lambda p: p.get("date", ""))
 
+    # 4-day rule for fallback label
+    dt_monday = datetime.date(*[int(x) for x in start_date.split('-')])
+    dt_thursday = dt_monday + datetime.timedelta(days=3)
+    dt_first = dt_thursday.replace(day=1)
+    label_month = dt_thursday.month
+    label_week = (dt_thursday.day + dt_first.weekday() - 1) // 7 + 1
+    
     week_data = {
         "category": category,
         "year": year,
         "week": week_label,
         "startDate": start_date,
         "endDate": end_date,
-        "label_ko": f"{start_date.split('-')[1].lstrip('0')}월 {((int(start_date.split('-')[2])-1)//7)+1}주차", # Fallback label
+        "label_ko": f"{label_month}월 {label_week}주차",
         "paperCount": len(existing_papers),
         "papers": existing_papers,
     }
@@ -137,11 +144,12 @@ def update_indexes(category):
                 label_ko = wdata.get("label_ko", "")
                 label_en = wdata.get("label_en", "")
                 
-                # If missing, try to generate one (e.g., "1월 1주차")
+                # If missing, try to generate one (e.g., "1월 1주차") using 4-day rule
                 if not label_ko:
-                    m = int(wdata["startDate"].split("-")[1])
-                    w = ((int(wdata["startDate"].split("-")[2])-1)//7)+1
-                    label_ko = f"{m}월 {w}주차"
+                    dt_m = datetime.date(*[int(x) for x in wdata["startDate"].split("-")])
+                    dt_t = dt_m + datetime.timedelta(days=3)
+                    dt_f = dt_t.replace(day=1)
+                    label_ko = f"{dt_t.month}월 {(dt_t.day + dt_f.weekday() - 1) // 7 + 1}주차"
                 if not label_en:
                     # Generic fallback
                     label_en = f"Week {wdata['week'].replace('W', '')}"

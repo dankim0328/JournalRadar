@@ -39,18 +39,22 @@ def get_week_start_end(iso_year, week_num):
     return monday, sunday
 
 def get_bilingual_labels(monday):
-    # Week of the month logic: (day + weekday_of_1st - 1) // 7 + 1
-    first_day = monday.replace(day=1)
-    dom = monday.day
+    # 4-day rule: A week belongs to the month that contains its Thursday.
+    thursday = monday + timedelta(days=3)
+    first_day = thursday.replace(day=1)
+    
+    # Week of the month: which week of the thursday's month is this?
+    dom = thursday.day
     adjusted_dom = dom + first_day.weekday()
     week_of_month = (adjusted_dom - 1) // 7 + 1
     
-    month_en = MONTH_NAMES_EN[monday.month - 1]
+    month_en = MONTH_NAMES_EN[thursday.month - 1]
     
-    label_ko = f"{monday.month}월 {week_of_month}주차"
+    label_ko = f"{thursday.month}월 {week_of_month}주차"
     label_en = f"{month_en} Week {week_of_month}"
     
     return label_ko, label_en
+
 
 def slugify(title):
     slug = title.lower().strip()

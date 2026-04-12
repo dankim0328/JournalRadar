@@ -1,6 +1,7 @@
 import os
 import json
 import sys
+import datetime
 
 # Ensure UTF-8 output for Windows
 if sys.platform == 'win32':
@@ -8,6 +9,17 @@ if sys.platform == 'win32':
     sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
 
 DATA_ROOT = "site/public/data"
+
+def get_fallback_label(start_date):
+    if not start_date or '-' not in start_date:
+        return ""
+    try:
+        dt_m = datetime.date(*[int(x) for x in start_date.split("-")])
+        dt_t = dt_m + datetime.timedelta(days=3)
+        dt_f = dt_t.replace(day=1)
+        return f"{dt_t.month}월 {(dt_t.day + dt_f.weekday() - 1) // 7 + 1}주차"
+    except:
+        return ""
 
 def generate_search_indexes():
     current_dir = os.getcwd()
@@ -56,7 +68,7 @@ def generate_search_indexes():
                                 "slug": paper.get("slug"),
                                 "year": year,
                                 "week": week_num,
-                                "week_label": data.get("label_ko") or f"{data.get('startDate', '').split('-')[1].lstrip('0') if '-' in data.get('startDate', '') else ''}월 {((int(data.get('startDate', '').split('-')[2])-1)//7)+1 if '-' in data.get('startDate', '') else ''}주차"
+                                "week_label": data.get("label_ko") or get_fallback_label(data.get('startDate', ''))
                             }
                             all_papers.append(indexed_paper)
                     except Exception as e:
