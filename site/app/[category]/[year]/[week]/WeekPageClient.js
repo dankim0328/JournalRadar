@@ -104,7 +104,7 @@ export default function WeekPageClient({ category, year, week, data }) {
       <div className="papers-header fade-in stagger-1">
         <h1>
           <span className="month-icon" style={{ marginRight: '10px' }}>📅</span>
-          {weekLabel} 리포트
+          {weekLabel} {t.report}
         </h1>
         <p className="date-range" style={{ marginTop: '5px' }}>
           {displayCategory} · {data.startDate} ~ {data.endDate} · {data.paperCount} {t.paperCount}

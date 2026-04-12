@@ -36,6 +36,7 @@ const translations = {
     allJournals: "전체 저널",
     noSearchResults: "검색 결과가 없습니다. 다른 키워드를 입력해 보세요.",
     filterByJournal: "저널 필터",
+    report: "리포트",
   },
   en: {
     siteName: "Journal Radar",
@@ -74,6 +75,7 @@ const translations = {
     allJournals: "All Journals",
     noSearchResults: "No papers found. Try different keywords.",
     filterByJournal: "Filter by Journal",
+    report: "Report",
   },
 };
 
