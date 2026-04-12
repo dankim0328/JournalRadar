@@ -13,11 +13,8 @@ def get_new_labels(start_date_str):
     try:
         dt_m = datetime.date(*[int(x) for x in start_date_str.split("-")])
         dt_t = dt_m + datetime.timedelta(days=3)
-        dt_f = dt_t.replace(day=1)
         
-        dom = dt_t.day
-        adjusted_dom = dom + dt_f.weekday()
-        week_of_month = (adjusted_dom - 1) // 7 + 1
+        week_of_month = (dt_t.day - 1) // 7 + 1
         
         month_en = MONTH_NAMES_EN[dt_t.month - 1]
         

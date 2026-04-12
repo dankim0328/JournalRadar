@@ -47,64 +47,64 @@
       "week": "W06",
       "startDate": "2026-02-02",
       "endDate": "2026-02-08",
-      "label_ko": "2월 2주차",
-      "label_en": "February Week 2",
+      "label_ko": "2월 1주차",
+      "label_en": "February Week 1",
       "paperCount": 1
     },
     {
       "week": "W07",
       "startDate": "2026-02-09",
       "endDate": "2026-02-15",
-      "label_ko": "2월 3주차",
-      "label_en": "February Week 3",
+      "label_ko": "2월 2주차",
+      "label_en": "February Week 2",
       "paperCount": 2
     },
     {
       "week": "W08",
       "startDate": "2026-02-16",
       "endDate": "2026-02-22",
-      "label_ko": "2월 4주차",
-      "label_en": "February Week 4",
+      "label_ko": "2월 3주차",
+      "label_en": "February Week 3",
       "paperCount": 2
     },
     {
       "week": "W09",
       "startDate": "2026-02-23",
       "endDate": "2026-03-01",
-      "label_ko": "2월 5주차",
-      "label_en": "February Week 5",
+      "label_ko": "2월 4주차",
+      "label_en": "February Week 4",
       "paperCount": 22
     },
     {
       "week": "W10",
       "startDate": "2026-03-02",
       "endDate": "2026-03-08",
-      "label_ko": "3월 2주차",
-      "label_en": "March Week 2",
+      "label_ko": "3월 1주차",
+      "label_en": "March Week 1",
       "paperCount": 3
     },
     {
       "week": "W11",
       "startDate": "2026-03-09",
       "endDate": "2026-03-15",
-      "label_ko": "3월 3주차",
-      "label_en": "March Week 3",
+      "label_ko": "3월 2주차",
+      "label_en": "March Week 2",
       "paperCount": 9
     },
     {
       "week": "W12",
       "startDate": "2026-03-16",
       "endDate": "2026-03-22",
-      "label_ko": "3월 4주차",
-      "label_en": "March Week 4",
+      "label_ko": "3월 3주차",
+      "label_en": "March Week 3",
       "paperCount": 4
     },
     {
       "week": "W13",
       "startDate": "2026-03-23",
       "endDate": "2026-03-29",
-      "label_ko": "3월 5주차",
-      "label_en": "March Week 5",
+      "label_ko": "3월 4주차",
+      "label_en": "March Week 4",
       "paperCount": 15
     },
     {

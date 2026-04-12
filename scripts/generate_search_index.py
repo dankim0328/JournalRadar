@@ -16,8 +16,7 @@ def get_fallback_label(start_date):
     try:
         dt_m = datetime.date(*[int(x) for x in start_date.split("-")])
         dt_t = dt_m + datetime.timedelta(days=3)
-        dt_f = dt_t.replace(day=1)
-        return f"{dt_t.month}월 {(dt_t.day + dt_f.weekday() - 1) // 7 + 1}주차"
+        return f"{dt_t.month}월 {(dt_t.day - 1) // 7 + 1}주차"
     except:
         return ""
 

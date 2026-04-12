@@ -43,10 +43,9 @@ def get_bilingual_labels(monday):
     thursday = monday + timedelta(days=3)
     first_day = thursday.replace(day=1)
     
-    # Week of the month: which week of the thursday's month is this?
+    # Week of the month: which N-th Thursday of the month is this?
     dom = thursday.day
-    adjusted_dom = dom + first_day.weekday()
-    week_of_month = (adjusted_dom - 1) // 7 + 1
+    week_of_month = (dom - 1) // 7 + 1
     
     month_en = MONTH_NAMES_EN[thursday.month - 1]
     
