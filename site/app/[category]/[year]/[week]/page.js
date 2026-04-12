@@ -1,5 +1,6 @@
 import { getAllCategories, getAllYears, getAllWeeks, getWeekData } from "../../../lib/data";
 import WeekPageClient from "./WeekPageClient";
+import { Suspense } from "react";
 
 export async function generateStaticParams() {
   const categories = getAllCategories();
@@ -21,5 +22,9 @@ export async function generateStaticParams() {
 export default async function WeekPage({ params }) {
   const { category, year, week } = await params;
   const data = getWeekData(category, year, week);
-  return <WeekPageClient category={category} year={year} week={week} data={data} />;
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <WeekPageClient category={category} year={year} week={week} data={data} />
+    </Suspense>
+  );
 }
