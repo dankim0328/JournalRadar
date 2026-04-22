@@ -11,7 +11,10 @@ on:
         description: '검색 종료일 (YYYY-MM-DD)'
         required: true
         default: '2026-04-19'
-
+  schedule:
+    # 매일 한국 시간 오전 10시(UTC 1시) 자동 실행 (무료 한도 50개 소진 시 자동 종료됨)
+    - cron: '0 1 * * *'
+  
 permissions:
   contents: read
 
@@ -39,4 +42,9 @@ jobs:
         NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
         NOTION_PARENT_PAGE_ID: ${{ secrets.NOTION_PARENT_PAGE_ID }}
       run: |
-        python backfill_custom_period.py --from-date ${{ inputs.from_date }} --until-date ${{ inputs.until_date }}
+        FROM_DATE="${{ inputs.from_date }}"
+        UNTIL_DATE="${{ inputs.until_date }}"
+        if [ -z "$FROM_DATE" ]; then FROM_DATE="2026-03-01"; fi
+        if [ -z "$UNTIL_DATE" ]; then UNTIL_DATE="2026-04-19"; fi
+        echo "Running backfill from $FROM_DATE to $UNTIL_DATE"
+        python backfill_custom_period.py --from-date "$FROM_DATE" --until-date "$UNTIL_DATE"
