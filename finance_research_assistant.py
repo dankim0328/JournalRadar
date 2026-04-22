@@ -8,15 +8,14 @@ import sys
 import re
 sys.stdout.reconfigure(encoding='utf-8')
 
-import google.generativeai as genai
 from notion_client import Client
+from gemini_safe_client import GeminiSafeClient, truncate_text, enrich_abstract, ANTI_HALLUCINATION_INSTRUCTION
 
-GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY", "")
 NOTION_TOKEN = os.environ.get("NOTION_TOKEN", "")
 NOTION_PAGE_ID = os.environ.get("NOTION_FINANCE_PAGE_ID", "")
-genai.configure(api_key=GEMINI_API_KEY)
 
-model = genai.GenerativeModel(model_name="gemini-2.5-pro")
+# 안전장치가 적용된 Gemini 클라이언트 초기화
+gemini_client = GeminiSafeClient()
 
 TARGET_JOURNAL_NAMES = ["The Journal of Finance", "Journal of Financial Economics", "The Review of Financial Studies", "Journal of Financial and Quantitative Analysis", "Review of Finance"]
 JOURNAL_ISSNS = ["0022-1082", "1540-6261", "0304-405X", "0893-9454", "1465-7368", "0022-1090", "1756-6916", "1572-3097", "1573-692X"]
@@ -43,10 +42,14 @@ def fetch_recent_papers():
                 pub_date_parts = item.get("published-online", item.get("published-print", item.get("published", {}))).get("date-parts", [[None]])[0]
                 pub_date = "-".join(map(str, pub_date_parts)) if pub_date_parts and pub_date_parts[0] else "Unknown"
                 url_link = item.get("URL", "")
+                doi = item.get("DOI", "")
                 
                 # HTML 태그 완전 제거
                 abstract = item.get("abstract", "초록(Abstract) 정보가 제공되지 않았습니다.")
                 abstract = re.sub(r'<[^>]+>', '', abstract)
+                
+                # OpenAlex fallback: Abstract가 없거나 50자 이하이면 보완
+                abstract = enrich_abstract(abstract, doi)
                 
                 journal_name = item.get("container-title", ["Unknown Journal"])[0] if item.get("container-title") else "Unknown Journal"
                 
@@ -78,6 +81,9 @@ def fetch_recent_papers():
     return unique_papers
 
 def analyze_paper_with_gemini(paper):
+    # 매 호출마다 프롬프트를 새로 생성 (컨텍스트 누적 방지)
+    safe_abstract = truncate_text(paper.get('Abstract', ''))
+    
     prompt = f"""당신은 세계적인 재무(Finance) 학술 연구 보조 AI입니다.
 아래 재무(Finance) 탑 저널 논문 정보를 바탕으로 다음 3가지를 분석해 주세요.
 
@@ -85,7 +91,7 @@ def analyze_paper_with_gemini(paper):
 - 저널명: {paper.get('Journal', 'Unknown')}
 - 논문 제목: {paper['Title']}
 - 저자: {paper['Authors']}
-- 초록(Abstract): {paper['Abstract']}
+- 초록(Abstract): {safe_abstract}
 
 A. 논문 요약 (Summary): 이 논문의 핵심 내용을 요약해 주세요.
 B. 연구적 의의 (Academic Significance): 기존 연구나 논리의 반박인지, 새로운 패러다임 제시인지 등 현 시대적 상황과 연관 지어 분석해 주세요.
@@ -94,6 +100,8 @@ C. 저자 백그라운드 (Author Background): 저자들의 주요 연구 분야
 [중요 제약 조건]
 - 마크다운 강조 표시(**)를 절대 사용하지 마세요. 
 - 전문적이고 자연스러운 문장으로 작성해 주세요.
+
+{ANTI_HALLUCINATION_INSTRUCTION}
 
 [출력 형식 (반드시 아래 구조 유지)]
 ===KOREAN===
@@ -116,20 +124,7 @@ B. Academic Significance:
 C. Author Background:
 [내용]
 """
-    try:
-        safety_settings = [
-            {"category": "HARM_CATEGORY_HARASSMENT", "threshold": "BLOCK_NONE"},
-            {"category": "HARM_CATEGORY_HATE_SPEECH", "threshold": "BLOCK_NONE"},
-            {"category": "HARM_CATEGORY_SEXUALLY_EXPLICIT", "threshold": "BLOCK_NONE"},
-            {"category": "HARM_CATEGORY_DANGEROUS_CONTENT", "threshold": "BLOCK_NONE"},
-        ]
-        response = model.generate_content(prompt, safety_settings=safety_settings)
-        return response.text
-    except Exception as e:
-        return "===KOREAN===
-AI 분석 실패.
-===ENGLISH===
-AI Analysis Failed."
+    return gemini_client.analyze(prompt, cache_key_title=paper['Title'])
 
 def save_to_local(papers, analyzed_results):
     today_str = datetime.date.today().strftime("%Y%m%d")
@@ -237,8 +232,10 @@ def weekly_job():
         
     analyzed_results = []
     for i, paper in enumerate(papers):
+        print(f"📝 [{i+1}/{len(papers)}] 분석 중: {paper['Title'][:60]}...")
         analysis = analyze_paper_with_gemini(paper)
         analyzed_results.append(analysis)
+        # Free Tier 2 RPM 제한 준수 (safe_client 내부 rate limit과 별개로 루프 레벨 대기)
         time.sleep(35) 
         
     # CSV/MD 파일 생성 생략

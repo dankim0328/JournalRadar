@@ -10,15 +10,14 @@ import sys
 import re
 sys.stdout.reconfigure(encoding='utf-8')
 
-import google.generativeai as genai
 from notion_client import Client
+from gemini_safe_client import GeminiSafeClient, truncate_text, enrich_abstract, ANTI_HALLUCINATION_INSTRUCTION
 
-GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY", "")
 NOTION_TOKEN = os.environ.get("NOTION_TOKEN", "")
 NOTION_PAGE_ID = os.environ.get("{PAGE_VAR}", "")
-genai.configure(api_key=GEMINI_API_KEY)
 
-model = genai.GenerativeModel(model_name="gemini-2.5-pro")
+# 안전장치가 적용된 Gemini 클라이언트 초기화
+gemini_client = GeminiSafeClient()
 
 TARGET_JOURNAL_NAMES = {TARGET_JOURNAL_NAMES}
 JOURNAL_ISSNS = {JOURNAL_ISSNS}
@@ -45,10 +44,14 @@ def fetch_recent_papers():
                 pub_date_parts = item.get("published-online", item.get("published-print", item.get("published", {{}}))).get("date-parts", [[None]])[0]
                 pub_date = "-".join(map(str, pub_date_parts)) if pub_date_parts and pub_date_parts[0] else "Unknown"
                 url_link = item.get("URL", "")
+                doi = item.get("DOI", "")
                 
                 # HTML 태그 완전 제거
                 abstract = item.get("abstract", "초록(Abstract) 정보가 제공되지 않았습니다.")
                 abstract = re.sub(r'<[^>]+>', '', abstract)
+                
+                # OpenAlex fallback: Abstract가 없거나 50자 이하이면 보완
+                abstract = enrich_abstract(abstract, doi)
                 
                 journal_name = item.get("container-title", ["Unknown Journal"])[0] if item.get("container-title") else "Unknown Journal"
                 
@@ -79,19 +82,24 @@ def fetch_recent_papers():
     return unique_papers
 
 def analyze_paper_with_gemini(paper):
-    prompt = f\"\"\"당신은 세계적인 {FIELD_NAME} 학술 연구 보조 AI입니다.
+    # 매 호출마다 프롬프트를 새로 생성 (컨텍스트 누적 방지)
+    safe_abstract = truncate_text(paper.get('Abstract', ''))
+    
+    prompt = f\\\"\\\"\\\"당신은 세계적인 {FIELD_NAME} 학술 연구 보조 AI입니다.
 아래 {FIELD_NAME} 탑 저널 논문 정보를 바탕으로 다음 3가지를 분석해 주세요.
 
 [논문 정보]
 - 저널명: {{paper.get('Journal', 'Unknown')}}
 - 논문 제목: {{paper['Title']}}
 - 저자: {{paper['Authors']}}
-- 초록(Abstract): {{paper['Abstract']}}
+- 초록(Abstract): {{safe_abstract}}
 
 [요구사항]
 A. 논문 요약 (Summary): 이 논문의 핵심 내용을 요약해 주세요.
 B. 연구적 의의 (Academic Significance): 기존 연구나 논리의 반박인지, 새로운 패러다임 제시인지 등 현 시대적 상황과 연관 지어 분석해 주세요.
 C. 저자 백그라운드 (Author Background): 저자들의 주요 연구 분야, 학력 등 배경 정보에 대해 당신이 아는 선에서 설명해 주세요.
+
+{{ANTI_HALLUCINATION_INSTRUCTION}}
 
 [출력 형식 (반드시 아래 구조 유지)]
 ===KOREAN===
@@ -113,18 +121,8 @@ B. Academic Significance:
 
 C. Author Background:
 [내용]
-\"\"\"
-    try:
-        safety_settings = [
-            {{"category": "HARM_CATEGORY_HARASSMENT", "threshold": "BLOCK_NONE"}},
-            {{"category": "HARM_CATEGORY_HATE_SPEECH", "threshold": "BLOCK_NONE"}},
-            {{"category": "HARM_CATEGORY_SEXUALLY_EXPLICIT", "threshold": "BLOCK_NONE"}},
-            {{"category": "HARM_CATEGORY_DANGEROUS_CONTENT", "threshold": "BLOCK_NONE"}},
-        ]
-        response = model.generate_content(prompt, safety_settings=safety_settings)
-        return response.text
-    except Exception as e:
-        return "===KOREAN===\nAI 분석 실패.\n===ENGLISH===\nAI Analysis Failed."
+\\\"\\\"\\\"
+    return gemini_client.analyze(prompt, cache_key_title=paper['Title'])
 
 def save_to_files(papers, analyzed_results):
     today_str = datetime.date.today().strftime("%Y%m%d")
@@ -141,12 +139,12 @@ def save_to_files(papers, analyzed_results):
 
 def clean_markdown(text):
     if not text: return ""
-    text = re.sub(r'\\*\\*(.*?)\\*\\*', r'\\1', text)
-    text = re.sub(r'\\*(.*?)\\*', r'\\1', text)
+    text = re.sub(r'\\\\*\\\\*(.*?)\\\\*\\\\*', r'\\\\1', text)
+    text = re.sub(r'\\\\*(.*?)\\\\*', r'\\\\1', text)
     text = re.sub(r'```.*?```', '', text, flags=re.DOTALL)
     text = text.replace('###', '')
     text = text.replace('##', '')
-    text = re.sub(r'^-\\s+', '• ', text, flags=re.MULTILINE)
+    text = re.sub(r'^-\\\\s+', '• ', text, flags=re.MULTILINE)
     return text.strip()
 
 def append_paper_blocks(blocks, paper, analysis_text, header_title):
@@ -159,7 +157,7 @@ def append_paper_blocks(blocks, paper, analysis_text, header_title):
     link_str = "링크" if "한국어" in header_title or "심층" in header_title else "Link"
     abs_title = "초록 (Abstract)" if "한국어" in header_title or "심층" in header_title else "Abstract"
     
-    meta_text = f"{{journal_str}}: {{paper.get('Journal', 'Unknown')}}\\n{{author_str}}: {{paper.get('Authors', '')}}\\n{{date_str}}: {{paper.get('Date', '')}}\\n{{link_str}}: {{paper.get('URL', '')}}"
+    meta_text = f"{{journal_str}}: {{paper.get('Journal', 'Unknown')}}\\\\n{{author_str}}: {{paper.get('Authors', '')}}\\\\n{{date_str}}: {{paper.get('Date', '')}}\\\\n{{link_str}}: {{paper.get('URL', '')}}"
     blocks.append({{"object": "block", "type": "callout", "callout": {{"rich_text": [{{"type": "text", "text": {{"content": meta_text}}}}], "icon": {{"type": "emoji", "emoji": "🔗"}}, "color": "blue_background"}}}})
     
     blocks.append({{"object": "block", "type": "heading_3", "heading_3": {{"rich_text": [{{"type": "text", "text": {{"content": abs_title}}}}]}}}})
@@ -168,7 +166,7 @@ def append_paper_blocks(blocks, paper, analysis_text, header_title):
     
     blocks.append({{"object": "block", "type": "heading_3", "heading_3": {{"rich_text": [{{"type": "text", "text": {{"content": header_title}}}}]}}}})
     
-    paragraphs = analysis_text.split('\\n\\n')
+    paragraphs = analysis_text.split('\\\\n\\\\n')
     for p in paragraphs:
         if not p.strip(): continue
         chunks = [p[i:i+1900] for i in range(0, len(p), 1900)]
@@ -232,8 +230,10 @@ def weekly_job():
         
     analyzed_results = []
     for i, paper in enumerate(papers):
+        print(f"📝 [{{i+1}}/{{len(papers)}}] 분석 중: {{paper['Title'][:60]}}...")
         analysis = analyze_paper_with_gemini(paper)
         analyzed_results.append(analysis)
+        # Free Tier 2 RPM 제한 준수
         time.sleep(35) 
         
     save_to_files(papers, analyzed_results)

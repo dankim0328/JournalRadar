@@ -4,21 +4,19 @@ import time
 import re
 import sys
 sys.stdout.reconfigure(encoding='utf-8')
-import google.generativeai as genai
-from google.api_core import exceptions
+
+# gemini_safe_client는 프로젝트 루트에 있으므로 경로 추가
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
+from gemini_safe_client import GeminiSafeClient, truncate_text, ANTI_HALLUCINATION_INSTRUCTION
 
 # --- Configuration ---
-# Set your API key here or via environment variable
-GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY", "")
-genai.configure(api_key=GEMINI_API_KEY)
-
-# Use a stable model
-MODEL_NAME = "gemini-2.5-pro"
-model = genai.GenerativeModel(model_name=MODEL_NAME)
+# 안전장치가 적용된 Gemini 클라이언트 초기화
+gemini_client = GeminiSafeClient()
 
 DATA_ROOT = "site/public/data"
 FAILURE_MARKERS = ["AI 분석 실패", "AI Analysis Failed"]
-DELAY_SECONDS = 36  # Respect rate limits (slightly over 35s for safety)
+# Free Tier 2 RPM 제한 준수 (safe_client 내부 rate limit과 별개로 루프 레벨 대기)
+DELAY_SECONDS = 35
 
 # --- Prompts ---
 PROMPT_TEMPLATES = {
@@ -28,6 +26,9 @@ PROMPT_TEMPLATES = {
 }
 
 def get_analysis_prompt(field_name, paper):
+    # 매 호출마다 프롬프트를 새로 생성 (컨텍스트 누적 방지)
+    safe_abstract = truncate_text(paper.get('abstract', '초록 정보가 없습니다.'))
+    
     return f"""당신은 세계적인 {field_name} 학술 연구 보조 AI입니다.
 아래 {field_name} 탑 저널 논문 정보를 바탕으로 다음 3가지를 분석해 주세요.
 
@@ -35,7 +36,7 @@ def get_analysis_prompt(field_name, paper):
 - 저널명: {paper.get('journal', 'Unknown')}
 - 논문 제목: {paper.get('title', 'No Title')}
 - 저자: {paper.get('authors', 'Unknown')}
-- 초록(Abstract): {paper.get('abstract', '초록 정보가 없습니다.')}
+- 초록(Abstract): {safe_abstract}
 
 A. 논문 요약 (Summary): 이 논문의 핵심 내용을 요약해 주세요.
 B. 연구적 의의 (Academic Significance): 기존 연구나 논리의 반박인지, 새로운 패러다임 제시인지 등 현 시대적 상황과 연관 지어 분석해 주세요.
@@ -44,6 +45,8 @@ C. 저자 백그라운드 (Author Background): 저자들의 주요 연구 분야
 [중요 제약 조건]
 - 마크다운 강조 표시(**)를 절대 사용하지 마세요. 
 - 전문적이고 자연스러운 문장으로 작성해 주세요.
+
+{ANTI_HALLUCINATION_INSTRUCTION}
 
 [출력 형식 (반드시 아래 구조 유지)]
 ===KOREAN===
@@ -69,18 +72,8 @@ C. Author Background:
 
 def analyze_paper(field_name, paper):
     prompt = get_analysis_prompt(field_name, paper)
-    try:
-        safety_settings = [
-            {"category": "HARM_CATEGORY_HARASSMENT", "threshold": "BLOCK_NONE"},
-            {"category": "HARM_CATEGORY_HATE_SPEECH", "threshold": "BLOCK_NONE"},
-            {"category": "HARM_CATEGORY_SEXUALLY_EXPLICIT", "threshold": "BLOCK_NONE"},
-            {"category": "HARM_CATEGORY_DANGEROUS_CONTENT", "threshold": "BLOCK_NONE"},
-        ]
-        response = model.generate_content(prompt, safety_settings=safety_settings)
-        return response.text
-    except Exception as e:
-        print(f"   [Error] API Failure: {e}")
-        return None
+    title = paper.get('title', 'No Title')
+    return gemini_client.analyze(prompt, cache_key_title=title)
 
 def process_file(file_path, field_name, dry_run=False):
     with open(file_path, 'r', encoding='utf-8') as f:
@@ -108,7 +101,7 @@ def process_file(file_path, field_name, dry_run=False):
             print(f"   [Retrying] analysis for {field_name}...")
             new_analysis = analyze_paper(field_name, paper)
             
-            if new_analysis:
+            if new_analysis and not any(marker in new_analysis for marker in FAILURE_MARKERS):
                 # Split analysis into KO and EN if needed
                 parts = new_analysis.split('===ENGLISH===')
                 ko_part = parts[0].replace('===KOREAN===', '').strip()
