@@ -1,0 +1,42 @@
+name: Custom Period Backfill
+
+on:
+  workflow_dispatch:
+    inputs:
+      from_date:
+        description: '검색 시작일 (YYYY-MM-DD)'
+        required: true
+        default: '2026-03-01'
+      until_date:
+        description: '검색 종료일 (YYYY-MM-DD)'
+        required: true
+        default: '2026-04-19'
+
+permissions:
+  contents: read
+
+jobs:
+  backfill:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.10'
+        
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+        
+    - name: Run Backfill Script
+      env:
+        GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
+        NOTION_PARENT_PAGE_ID: ${{ secrets.NOTION_PARENT_PAGE_ID }}
+      run: |
+        python backfill_custom_period.py --from-date ${{ inputs.from_date }} --until-date ${{ inputs.until_date }}
