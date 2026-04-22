@@ -230,9 +230,9 @@ class GeminiSafeClient:
         self._rate_limit_wait()
         self._last_call_time = time.time()
         
-        # 비용 및 답변 폭주 통제를 위한 파라미터 적용
+        # 비용 및 답변 폭주 통제를 위한 파라미터 적용 (단, 너무 짧으면 MAX_TOKENS 에러로 재시도가 발생하므로 넉넉하게 4000으로 설정)
         generation_config = genai.types.GenerationConfig(
-            max_output_tokens=1000,
+            max_output_tokens=4000,
             temperature=0.2
         )
         
