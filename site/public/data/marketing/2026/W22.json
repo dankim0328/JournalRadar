@@ -1,0 +1,34 @@
+{
+  "category": "marketing",
+  "year": 2026,
+  "week": "W22",
+  "label_ko": "5월 4주차",
+  "label_en": "May Week 4",
+  "startDate": "2026-05-25",
+  "endDate": "2026-05-31",
+  "paperCount": 2,
+  "papers": [
+    {
+      "slug": "express-do-fmri-data-improve-predictions-of-product-adoption-by-store-managers-a",
+      "title": "EXPRESS: Do fMRI Data Improve Predictions of Product Adoption by Store Managers and Sales per Store of Consumer Packaged Goods?",
+      "authors": "Paulo Albuquerque, Anita Tusche, Marton Varga, Nadine R. Gier-Reinartz, Bernd Weber, Hilke Plassmann",
+      "journal": "Journal of Marketing Research",
+      "date": "2026-5-26",
+      "url": "https://doi.org/10.1177/00222437261457044",
+      "abstract": "This research examines whether functional magnetic resonance imaging (fMRI) data add predictive value beyond traditional market and survey data in forecasting two critical outcomes: (1) store manager adoption and (2) consumer sales of consumer packaged goods. Using data from a large retail chain, this study combines observable market variables, survey-based attitudes from a large representative consumer sample, and fMRI signals from a smaller convenience sample. Applying decision tree and least absolute shrinkage and selection operator (LASSO) regression approaches, the authors find that fMRI data enhance sales forecasts—particularly for more innovative products—while survey measures better predict store manager adoption. The research also quantifies the economic value of these improvements relative to data-acquisition costs, providing a framework for evaluating the return on investment of neuroforecasting tools. These findings clarify when neural measures add the most value over conventional analytics — particularly for innovative products at the consumer sales stage — with implications for product launch strategies and data investment decisions.",
+      "analysis_ko": "",
+      "analysis_en": ""
+    },
+    {
+      "slug": "express-haunted-by-a-bad-review-the-afterlife-of-reading-negative-reviews-in-con",
+      "title": "EXPRESS: Haunted by a Bad Review: The Afterlife of Reading (Negative) Reviews in Consumer Experience",
+      "authors": "DENA YADIN, NIRA MUNICHOR, ELANOR F. WILLIAMS, INBAL STOCKHEIM",
+      "journal": "Journal of Marketing Research",
+      "date": "2026-5-26",
+      "url": "https://doi.org/10.1177/00222437261457045",
+      "abstract": "Consumers rely heavily on product reviews in their purchasing and consumption decisions, and how reviews influence product sales is well-documented. This research asks whether reviews might have an afterlife beyond purchase—that is, whether they can affect the product experience itself. Across five studies involving real consumer-generated reviews and product interaction, this research demonstrates that consumers who read reviews before consumption have different experiences with a product than consumers who experience the same product without reading reviews. Specifically, consumers who are exposed to negative reviews before they consume a product experience the reviewed product more negatively than consumers who have not read any reviews. Reading positive reviews, however, does not significantly affect the consumption experience. This asymmetrical assimilative effect arises because negative reviews increase the salience of negative attributes of the reviewed product during consumption, making those attributes more influential during product experience. The effect is robust across various contexts, although forewarning consumers and prompting them to form independent opinions can reduce it. These findings open the door for investigation into the broader influence of reviews on consumption, beyond the point of purchase, and have important practical implications for marketers seeking to navigate this influence.",
+      "analysis_ko": "",
+      "analysis_en": ""
+    }
+  ]
+}

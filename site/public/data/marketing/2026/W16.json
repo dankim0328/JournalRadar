@@ -1,0 +1,122 @@
+{
+  "category": "marketing",
+  "year": 2026,
+  "week": "W16",
+  "label_ko": "4월 3주차",
+  "label_en": "April Week 3",
+  "startDate": "2026-04-13",
+  "endDate": "2026-04-19",
+  "paperCount": 10,
+  "papers": [
+    {
+      "slug": "a-framework-for-understanding-consumer-response-to-the-depiction-of-historically",
+      "title": "A Framework for Understanding Consumer Response to the Depiction of Historically Underrepresented Identities in Marketing Communications",
+      "authors": "Cory Haltman, Jianna Jin, Grant E Donnelly, Rebecca Walker Reczek",
+      "journal": "Journal of Consumer Research",
+      "date": "2026-4-16",
+      "url": "https://doi.org/10.1093/jcr/ucag010",
+      "abstract": "Abstract\n                  In recent years, firms’ depictions of some historically underrepresented identities (HUIs) in marketing communications have elicited backlash, while depictions of other HUIs have been more broadly accepted. The present work develops a framework to explain when and why these divergent responses occur. We propose that, while liberals respond positively to the depiction of all HUIs due to their prioritization of the Fairness moral foundation, conservatives’ responses are more nuanced and depend on how a focal identity is perceived on two dimensions: agency and normativity with respect to descriptive norms related to bodily purity. These dimensions produce a four-quadrant typology whereby, due to their greater emphasis on the Purity/Sanctity moral foundation, conservatives respond negatively only to HUIs perceived as high on both dimensions (e.g., an obese model, a transgender model, or a model who wears a hijab). We validate this framework by showing that conservatives’ negative responses are attenuated when an identity is perceived as low on either dimension. We further identify a managerially relevant boundary condition, wherein conservatives’ negative reactions are also attenuated when the focal identity appears as a numerical minority within a broader campaign featuring primarily non-HUIs.",
+      "analysis_ko": "",
+      "analysis_en": ""
+    },
+    {
+      "slug": "express-a-more-creative-world-is-a-more-sustainable-one-how-to-increase-length-o",
+      "title": "EXPRESS: A More Creative World Is a More Sustainable One: How to Increase Length of Product Usage through Creativity and Emotional Attachment",
+      "authors": "Ludovica Cesareo, Cesare Amatulli, Alessandro M. Peluso, Matteo De Angelis",
+      "journal": "Journal of Marketing Research",
+      "date": "2026-4-17",
+      "url": "https://doi.org/10.1177/00222437261446905",
+      "abstract": "Overproduction and overconsumption represent key issues in the fight against resource waste and environmental degradation. While the scientific debate has mainly focused on how to increase product durability by improving tangible aspects (e.g., technical characteristics, materials used, production processes), the present research focuses on a consumer-based view of durability, looking at how long consumers plan to use a product for, a construct labeled length of product usage (LPU). The core thesis is that LPU might depend not only on tangible, but also on intangible product characteristics, such as creativity, defined in terms of high novelty and adequate appropriateness. In advancing this\n                    creativity-based LPU\n                    account, the authors argue that higher product creativity leads to higher LPU by strengthening consumers’ emotional attachment to products. Seven pre-registered studies, employing different products, populations, and creativity manipulations, empirically support the proposed framework. Results also show that the effect of creativity on LPU, via emotional attachment, is especially pronounced for non-owners, vs. owners, and, for mass-market, vs. luxury, products. By emphasizing that creativity can be key to fostering sustainable consumption, this research advances the literature on the antecedents of LPU and product durability, offers implications for companies, and avenues for future research.",
+      "analysis_ko": "",
+      "analysis_en": ""
+    },
+    {
+      "slug": "express-automated-versus-human-operated-impact-of-ai-driven-autonomous-stores-on",
+      "title": "EXPRESS: Automated Versus Human-Operated: Impact of AI-Driven Autonomous Stores on Prosocial Behavior",
+      "authors": "Xiaoyan (Jenny) Liu, Chi Hoang, Sharon Ng",
+      "journal": "Journal of Marketing",
+      "date": "2026-4-13",
+      "url": "https://doi.org/10.1177/00222429261445436",
+      "abstract": "Many leading retailers have introduced AI-driven autonomous stores, sparking a trend that others are eager to follow. Although prior research has emphasized consumer acceptance of these formats and their operational advantages (e.g., reduced costs, improved efficiency), their broader societal consequences remain underexplored. Across nine online and field experiments, this research demonstrates that consumers engage in less prosocial behavior after interacting with AI-driven autonomous (vs. human-operated) stores. This effect stems from a diminished sense of social connectedness caused by the absence of human interaction at key service touchpoints (e.g., reception, checkout) and persists across both non-embodied and embodied humanlike AI systems. Three boundary conditions specify when this adverse effect can be mitigated, spanning the consumer context (joint consumption), firm context (consumer-welfare AI framing), and charitable organization context (self-benefiting prosocial appeal). Together, these findings provide the first empirical evidence of the social costs associated with autonomous retail formats and offer actionable insights for marketers, charitable organizations, and policymakers seeking to balance technological efficiency with societal well-being in an increasingly automated world.",
+      "analysis_ko": "",
+      "analysis_en": ""
+    },
+    {
+      "slug": "express-brand-performativity-and-consumers-cultivation-of-identity-value",
+      "title": "EXPRESS: Brand Performativity and Consumers’ Cultivation of Identity Value",
+      "authors": "Craig J. Thompson, Anil Isisag",
+      "journal": "Journal of Marketing",
+      "date": "2026-4-17",
+      "url": "https://doi.org/10.1177/00222429261446887",
+      "abstract": "How do brands provide identity value to consumers? The marketing literature provides three primary answers to this key managerial question: by building brand communities; by forging anthropomorphized relations whereby consumers regard brands as relationship partners; and by following cultural branding principles. This article argues that these three conceptual frameworks have often misdiagnosed the sources of the identity value that consumers derive from brands. Accordingly, it proposes that brand performativity is an unrecognized explanatory factor that underlies these extant theorizations. Drawing on sociological theories of performativity, it conceptualizes brand performativity as an arrangement of discourses, practices, material resources, normative standards, metrics, and goals that coalesce as a script that consumers can use to cultivate identity value through brand-mediated experiences. Through an analysis of CrossFit, it demonstrates that a theoretical sensitivity to brand performativity provides a fuller picture of how brands generate consumer identity value. It explains how this conceptualization revises strategic implications that follow from the aforementioned theorizations, especially for brands implementing more extensive modes of performativity. It closes with a discussion of the broader applicability of brand performativity framework and how it can help marketing managers transcend the conventional product versus service brand and functional versus expressive branding strategy distinctions.",
+      "analysis_ko": "",
+      "analysis_en": ""
+    },
+    {
+      "slug": "express-climate-communications-in-ipos-unpacking-the-influence-of-climate-disclo",
+      "title": "EXPRESS: Climate Communications in IPOs: Unpacking the Influence of Climate Disclosure Volume, Sender, and Message Characteristics",
+      "authors": "Ankit Anand, Alok R. Saboo, Ritesh Adhyapak",
+      "journal": "Journal of Marketing",
+      "date": "2026-4-13",
+      "url": "https://doi.org/10.1177/00222429261444729",
+      "abstract": "Climate disclosures have emerged as a prominent communication tool for firms facing growing pressure to address climate challenges, yet their impact on firm performance remains unclear. This study proposes a nonlinear (U-shaped) relationship between climate disclosure volume and IPO firm performance, grounded in a damage-limitation logic. At low to moderate levels, disclosures amplify risk salience and proprietary costs, damaging valuations. At higher levels, offsetting benefits related to information, stewardship, and climate-friendly reputation outweigh these costs. Using multi-sourced data from 1,586 IPO firms, a BERT-based large language model to identify climate-related text in prospectuses, and econometric methods that address endogeneity, the authors find support for the proposed U-shaped relationship. The research further demonstrates that sender characteristics (underwriter reputation, customer concentration, and market orientation) and message characteristics (discretionary disclosure and message clarity) moderate the nonlinear relationship. Post-hoc analyses decomposing disclosure content reveal that climate risk disclosures damage valuations. In contrast, climate risk-management disclosures (governance, strategy, and metrics/targets) generate positive effects, suggesting that disclosure effectiveness depends on both volume and content composition. These effects persist in the long-term performance of firms. The findings provide actionable insights for firms developing disclosure strategies and policymakers encouraging climate-related communication.",
+      "analysis_ko": "",
+      "analysis_en": ""
+    },
+    {
+      "slug": "express-separating-the-artist-from-the-art-social-media-boycotts-platform-sancti",
+      "title": "EXPRESS: Separating the Artist from the Art: Social Media Boycotts, Platform Sanctions, and Music Consumption",
+      "authors": "Daniel Winkler, Nils Wlömert, Jūra Liaukonytė",
+      "journal": "Journal of Marketing Research",
+      "date": "2026-4-13",
+      "url": "https://doi.org/10.1177/00222437261445841",
+      "abstract": "This paper investigates how demand for an artist’s creative work changes when social media mobilizes to “cancel” the artist in response to misconduct. Human brands are particularly vulnerable to reputational shocks, yet how misconduct translates into changes in demand remains poorly understood. Using R. Kelly’s case, we examine how consumption of his music changed following calls for boycott and platform sanctions, including the removal of his songs from major playlists on the largest streaming platform. A cursory examination of music consumption after these scandals would lead to the erroneous conclusion that consumers are intentionally boycotting the artist. We propose an identification strategy that leverages variation in song-removal status and geographic demand to assess the relative roles of platform visibility and intentional consumer responses. Our findings show that the decrease in music consumption is primarily driven by supply-side factors due to reduced platform visibility rather than demand-side factors. Media coverage and calls for boycott have promotional effects, suggesting that social media boycotts can inadvertently increase music demand. The analysis of other cancellation cases involving Morgan Wallen, Rammstein, and Diddy shows no adverse effects on music demand, reinforcing the potential promotional effects of scandals in the absence of supply-side sanctions.",
+      "analysis_ko": "",
+      "analysis_en": ""
+    },
+    {
+      "slug": "express-the-abcs-of-marketing-principles-a-principles-based-framework-for-market",
+      "title": "EXPRESS: The ABCs of Marketing Principles: A Principles-Based Framework for Marketing Alignment and Adaptation",
+      "authors": "Molly R. Burchett, Brian Murtha, Bernard J. Jaworski",
+      "journal": "Journal of Marketing",
+      "date": "2026-4-13",
+      "url": "https://doi.org/10.1177/00222429261445812",
+      "abstract": "Prior research on marketing principles focuses mainly on the benefits of using a relatively small set of high-level principles. However, based on 38 in-depth interviews with marketing professionals across firms and industries, we find that principles are far more widespread and hierarchically layered. Informed by these insights, the present research complements prior research by introducing the “ABC” framework of marketing principles: a principles-based system of marketing alignment and adaptation based on Articulating, Bridging, and Calibrating principles throughout an organization.\n                    Articulating\n                    highlights the tradeoffs of varying a principle’s specificity. Less specific principles offer decision-making flexibility that fosters adaptation but increases misalignment costs (i.e., increased marketing resource misallocation, marketer mental burden, and marketing sprawl). More specific principles offer decision-making clarity that fosters alignment but increases maladaptation costs (i.e., increased marketing staleness, reduced marketer professional development, and increased opportunity costs). To address these tensions, this research identifies two key cost-mitigation processes:\n                    Bridging\n                    , which involves translating less specific principles into more contextualized guidance, and\n                    Calibrating,\n                    which involves evaluating and refining more specific principles to ensure they fit with changing conditions. Collectively, these insights underscore a new prescriptive framework for executing the ABC framework to achieve aligned and adaptive marketing strategy execution.",
+      "analysis_ko": "",
+      "analysis_en": ""
+    },
+    {
+      "slug": "out-of-control-the-interplay-of-subjective-poverty-and-income-on-spending",
+      "title": "Out of Control: The Interplay of Subjective Poverty and Income on Spending",
+      "authors": "Joe J. Gladstone, Silvia Bellezza",
+      "journal": "Journal of Marketing Research",
+      "date": "2026-4-13",
+      "url": "https://doi.org/10.1177/00222437251401839",
+      "abstract": "Consumers’ spending decisions are shaped not only by their objective financial resources but also by their subjective perceptions of wealth. This research investigates the interplay between subjective poverty (e.g., feeling financially constrained) and income in driving spending. Across five studies including real-world spending data from a U.K. financial management app, longitudinal surveys from Kenya and the United States, and controlled experiments, the authors reveal that subjective poverty increases spending among higher-income consumers but decreases spending among lower-income consumers. That is, wealthy consumers who feel financially poor tend to spend more, whereas poorer consumers who feel financially constrained tend to reduce their spending. Drawing on compensatory control theory, the authors demonstrate that subjective poverty threatens individuals’ sense of personal control over life, but people cope with this diminished sense of control differently based on their available resources. Higher-income individuals engage in compensatory consumption to restore control, while lower-income individuals adopt different strategies, including reduced spending. This research advances the understanding of how psychological and material dimensions of wealth interact to shape consumer behavior.",
+      "analysis_ko": "",
+      "analysis_en": ""
+    },
+    {
+      "slug": "repair-service-signals-how-brand-repair-services-signal-unused-utility-and-incre",
+      "title": "Repair Service Signals: How Brand Repair Services Signal Unused Utility and Increase Product Repair",
+      "authors": "Nathan Allred, Karen Page Winterich",
+      "journal": "Journal of Consumer Research",
+      "date": "2026-4-13",
+      "url": "https://doi.org/10.1093/jcr/ucag009",
+      "abstract": "Abstract\n                  Over the past several decades, there has been a shift toward disposable consumption resulting in a ‘throwaway society’, which includes replacing rather than repairing broken durable goods. Third-party repair services exist even as consumers choose to replace over repair, but more brands are offering repair services directly or supporting repair services through certifications. If consumers simply prefer newer products, brand repair services should not deter replacement through promoting repair. However, we propose that unlike third-party repair services, brand and brand-certified repair services signal unused utility in non-fully functioning products, increasing repair. We demonstrate this effect in two field studies and four lab experiments. Drawing upon the role of unused utility, we show the signal from brand repair services is not needed to drive repair when consumers have domain expertise or products hold sentimental value as repair occurs in such cases without an unused utility signal from the brand. However, when product upgrades are salient, consumers’ motivation to upgrade attenuates the effect of brand repair services on unused utility, decreasing repair likelihood. This research makes substantive contributions to sustainability efforts to mitigate overconsumption, offers implications for brand and third-party managers, and contributes to signaling theory and unused utility literature.",
+      "analysis_ko": "",
+      "analysis_en": ""
+    },
+    {
+      "slug": "the-interactive-effect-of-physicianhospital-organization-and-external-environmen",
+      "title": "The Interactive Effect of Physician–Hospital Organization and External Environment on Patient Satisfaction",
+      "authors": "Tanawat Hirunyawipada, Mohammadali Zolfagharian, Yue Pan, Malika Chaudhuri",
+      "journal": "Journal of Marketing Research",
+      "date": "2026-4-17",
+      "url": "https://doi.org/10.1177/00222437251401909",
+      "abstract": "The unique characteristics of the health care industry have given rise to an intriguing and pervasive form of joint venture between hospitals and physicians known as physician–hospital organization (PHO). With transaction cost analysis as the overarching theory, the authors draw on practitioner insights and literature to reveal the advantages and disadvantages of PHOs and identify the boundary conditions under which PHOs are more likely to enhance patient satisfaction. They test the proposed model using multiyear panel data from 19,134 observations in the U.S. health care industry. The results underscore PHOs’ capability to enhance patient satisfaction with hospital services. The significant main effect grows stronger when the market is characterized by intense competition among hospitals, high mortality rates, urban settings, and high unemployment rates. The post hoc analysis reveals that PHOs can additionally improve patient recommendation of a hospital indirectly through patient satisfaction. This study contributes to research on governance structure and customer satisfaction by establishing a connection between PHO and patient satisfaction and identifying its boundary conditions. The findings highlight several fertile avenues for research.",
+      "analysis_ko": "",
+      "analysis_en": ""
+    }
+  ]
+}
