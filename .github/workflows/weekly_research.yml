@@ -2,8 +2,8 @@ name: Weekly Research & Deploy
 
 on:
   schedule:
-    # 매주 월요일 아침 9시(KST) 실행 (UTC 기준 일요일 자정)
-    - cron: '0 0 * * 1'
+    # 매일 자정(UTC) 실행하여 최신 논문 매일 수집
+    - cron: '0 0 * * *'
   workflow_dispatch: # 수동 실행 허용
   push:
     branches: [main]
@@ -47,14 +47,8 @@ jobs:
     - name: Run research scripts
       env:
         GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-        NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
-        NOTION_PARENT_PAGE_ID: ${{ secrets.NOTION_PARENT_PAGE_ID }}
-        NOTION_FINANCE_PAGE_ID: ${{ secrets.NOTION_FINANCE_PAGE_ID }}
-        NOTION_ACCOUNTING_PAGE_ID: ${{ secrets.NOTION_ACCOUNTING_PAGE_ID }}
       run: |
-        python marketing_research_assistant.py
-        python finance_research_assistant.py
-        python accounting_research_assistant.py
+        python scripts/fetch_latest_papers.py
 
     - name: Generate weekly JSON data & search index
       run: |

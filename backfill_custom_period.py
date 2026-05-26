@@ -217,6 +217,11 @@ def append_paper_blocks(blocks, paper, analysis_text, header_title="AI 심층 �
 
 def upload_month_to_notion(month_label, papers_in_month, custom_title=""):
     print(f"\n🚀 Notion 업로드 시작: {month_label} (총 {len(papers_in_month)}편)")
+    
+    if not NOTION_PARENT_PAGE_ID:
+        print("❌ 오류: NOTION_PARENT_PAGE_ID가 설정되지 않았습니다. GitHub Secrets를 확인해주세요.")
+        return
+        
     notion = Client(auth=NOTION_TOKEN)
     title = f"Top Marketing Journals ({custom_title} {month_label})"
 
@@ -310,7 +315,7 @@ def main():
         with open(current_state_file, "w", encoding="utf-8") as f:
             json.dump(state_papers, f, ensure_ascii=False, indent=2)
             
-        time.sleep(35)
+        time.sleep(5)
         
     print("\n[3/3] AI 분석 완료. 노션 업로드 시작.")
     

@@ -6,7 +6,7 @@
   "label_en": "February Week 4",
   "startDate": "2026-02-23",
   "endDate": "2026-03-01",
-  "paperCount": 22,
+  "paperCount": 23,
   "papers": [
     {
       "slug": "a-comparative-analysis-of-frontline-employee-wellness-benefits-and-customer-resp",
@@ -216,6 +216,17 @@
       "abstract": "The paper studies how commission fees charged by platforms affect innovation by digital content developers and consumer welfare.",
       "analysis_ko": "AI 분석 실패.",
       "analysis_en": "AI Analysis Failed."
+    },
+    {
+      "slug": "less-is-more-natural-the-effect-of-ingredient-quantity-framing-on-consumer-prefe",
+      "title": "Less Is More (Natural): The Effect of Ingredient Quantity Framing on Consumer Preferences",
+      "authors": "Michelle Yoosun Kim, Rachel Gershon, Sydney E. Scott, Daniella Kupor, Tianqi Chen, Remi Trudel",
+      "journal": "Journal of Marketing Research",
+      "date": "2026-3-1",
+      "url": "https://doi.org/10.1177/00222437261432622",
+      "abstract": "Despite the ubiquity of ingredient quantity information in the marketplace, prior literature has yet to examine whether ingredient quantity shapes consumer choice. This research presents and tests a novel framework that charts when, why, and how this pervasive ingredient quantity information influences consumers’ food decisions. The findings from two preregistered pilot studies, seven preregistered experiments, and ten supplementary experiments in the\n                    Web Appendix\n                    indicate that consumers are often more interested in food products framed as containing few (vs. many) ingredients, even when the same ingredient list is displayed across products. This preference stems from the perception that fewer ingredients indicate less processing, especially when a product’s processing history is unavailable. As a result, a product with fewer ingredients is perceived as more natural and is thus preferred. Further, the studies also show that although consumers commonly pursue the goal to consume natural products, when other consumption goals (e.g., the goal to seek indulgent or unique products) rise in importance, a product framed as containing more ingredients can become more preferred. This work uncovers how ingredient quantity information biases consumers’ perceptions and daily food product decisions, and it provides easily implementable guidance for marketers seeking to increase consumers’ purchase likelihood.",
+      "analysis_ko": "",
+      "analysis_en": ""
     },
     {
       "slug": "novelty-in-content-creation-experimental-results-using-deep-learningbased-image-",

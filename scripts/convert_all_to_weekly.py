@@ -177,9 +177,7 @@ def main():
         all_papers = json.load(f)
         
     categories = [
-        ("Marketing", "마케팅", "Marketing"),
-        ("Finance", "재무", "Finance"),
-        ("Accounting", "회계", "Accounting")
+        ("Marketing", "마케팅", "Marketing")
     ]
     
     for cat_id, name_ko, name_en in categories:

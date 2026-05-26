@@ -203,7 +203,7 @@ class GeminiCache:
 class GeminiSafeClient:
     """Gemini API 안전 래퍼. 4가지 안전장치가 모두 적용됩니다."""
 
-    def __init__(self, model_name="gemini-2.5-pro", api_key=None):
+    def __init__(self, model_name="gemini-2.5-flash", api_key=None):
         api_key = api_key or os.environ.get("GEMINI_API_KEY", "")
         genai.configure(api_key=api_key)
         self.model = genai.GenerativeModel(model_name=model_name)
