@@ -1,0 +1,155 @@
+{
+  "category": "finance",
+  "year": 2026,
+  "week": "W20",
+  "label_ko": "5월 2주차",
+  "label_en": "May Week 2",
+  "startDate": "2026-05-11",
+  "endDate": "2026-05-17",
+  "paperCount": 13,
+  "papers": [
+    {
+      "slug": "bank-competition-amid-digital-disruption-implications-for-financial-inclusion",
+      "title": "Bank Competition Amid Digital Disruption: Implications for Financial Inclusion",
+      "authors": "ERICA XUEWEI JIANG, GLORIA YANG YU, JINYUAN ZHANG",
+      "journal": "The Journal of Finance",
+      "date": "2026-5-17",
+      "url": "https://doi.org/10.1111/jofi.70051",
+      "abstract": "ABSTRACT\n                  We examine how digital disruption affects bank competition using the staggered rollout of 3G mobile networks. 3G expansion increased mobile banking adoption among tech‐savvy households, reducing branch networks—especially in younger counties. Banks' strategies diverged: Less branch‐reliant banks closed branches and competed on price, while more branch‐reliant banks maintained branches but raised spreads. A structural model shows that perceived digital service improvements among younger consumers drove these shifts, reducing welfare for older savers. Counterfactuals demonstrate that subsidizing adoption for older savers can cost‐effectively reduce these disparities, facilitating a smoother digital transition.",
+      "analysis_ko": "",
+      "analysis_en": ""
+    },
+    {
+      "slug": "collective-moral-hazard-risk-sharing-and-banking-unions",
+      "title": "Collective Moral Hazard, Risk Sharing, and Banking Unions",
+      "authors": "Anatoli Segura, Sergio Vicente",
+      "journal": "The Review of Financial Studies",
+      "date": "2026-5-13",
+      "url": "https://doi.org/10.1093/rfs/hhag024",
+      "abstract": "Abstract\n                  We analyze optimal cross-country risk sharing and bank capital requirements amid collective moral hazard by governments and banks. Transfers provide insurance but weaken fiscal discipline. Since lenient fiscal policies amplify banks’ risk-shifting, optimal support must be contingent on banking system health. For fiscally weak countries, support is larger in sovereign crises with solvent banks. For fiscally strong countries, support is larger in joint sovereign and bank crises, requiring deposit insurance mutualization. Optimal contracts feature lower capital requirements than without cross-country transfers, raising the cost of joint sovereign and bank crises to strengthen fiscal discipline and enable greater risk sharing.",
+      "analysis_ko": "",
+      "analysis_en": ""
+    },
+    {
+      "slug": "consumption-in-asset-returns",
+      "title": "Consumption in Asset Returns",
+      "authors": "SVETLANA BRYZGALOVA, JIANTAO HUANG, CHRISTIAN JULLIARD",
+      "journal": "The Journal of Finance",
+      "date": "2026-5-15",
+      "url": "https://doi.org/10.1111/jofi.70044",
+      "abstract": "ABSTRACT\n                  Using information in returns, we identify the stochastic process of consumption. We find that aggregate consumption reacts over multiple quarters to innovations spanned by financial markets. This persistent component accounts for over a quarter of consumption variation. These shocks command a large and significant risk premium, driving a large share of stocks' and a small yet significant fraction of bonds' time‐series variation. Nevertheless, we find no support for stochastic volatility of consumption driving time‐varying risk premia. Finally, an otherwise standard recursive utility model based on our estimated process explains equity premium and risk‐free rate puzzles with low‐risk aversion.",
+      "analysis_ko": "",
+      "analysis_en": ""
+    },
+    {
+      "slug": "firm-level-labor-shortage-exposure",
+      "title": "Firm-Level Labor Shortage Exposure",
+      "authors": "Jarrad Harford, Qiyang He, Buhui Qiu",
+      "journal": "The Review of Financial Studies",
+      "date": "2026-5-14",
+      "url": "https://doi.org/10.1093/rfs/hhag049",
+      "abstract": "Abstract\n                  We extract information from earnings call transcripts to develop a comprehensive and reliable measure of labor shortage exposure. After validating the measure at the state, industry, and firm levels, we show that firms with labor shortage exposures experience lower earnings call CARs, future stock returns and operating performance. Firms respond to labor shortages by substituting labor with capital and R&amp;D investments, and by producing more production-process patents. Such responses help mitigate the negative effects on future performance. Our measure has broad applicability, and our findings provide new insight into labor-capital substitution in imperfectly competitive labor markets. JEL G12, G30, J2",
+      "analysis_ko": "",
+      "analysis_en": ""
+    },
+    {
+      "slug": "generative-ai-and-asset-management",
+      "title": "Generative AI and Asset Management",
+      "authors": "Jinfei Sheng, Zheng Sun, Baozhong Yang, Alan L Zhang",
+      "journal": "The Review of Financial Studies",
+      "date": "2026-5-12",
+      "url": "https://doi.org/10.1093/rfs/hhag050",
+      "abstract": "Abstract\n                  Using a novel measure of investment companies’ reliance on generative artificial intelligence (GenAI), we document a sharp increase in GenAI usage by hedge funds after ChatGPT’s 2022 launch. A difference-in-differences test shows that hedge funds adopting GenAI earn 2-4% higher annualized abnormal returns than nonadopters, while non-hedge funds do not benefit. The outperformance originates from funds’ AI talent and ChatGPT’s strength in analyzing firm-specific information. We conduct a new survey of fund managers’ GenAI usage to provide direct validation of our measure and offer additional new insights on how managers adopt GenAI tools in their practice. (JEL C81, G11, G14, G23)",
+      "analysis_ko": "",
+      "analysis_en": ""
+    },
+    {
+      "slug": "operational-proximity-and-cross-border-shareholder-monitoring",
+      "title": "Operational Proximity and Cross-Border Shareholder Monitoring",
+      "authors": "Fariborz Moshirian, Peter Pham, Jenny Jihyun Tak",
+      "journal": "Journal of Financial and Quantitative Analysis",
+      "date": "2026-5-15",
+      "url": "https://doi.org/10.1017/s0022109026102932",
+      "abstract": "Using US mutual funds' international voting records, we investigate whether proximity to firm operations promotes active monitoring by foreign investors. To identify monitoring effects, we exploit proximity variations arising from actions of existing portfolio firms. We find that after a non-US firm expands operations into the US, US funds cast more dissenting votes at the firm's shareholder meetings, especially in response to poor performance and contentious proposals. The increase in dissent voting is consistent with funds becoming more engaged shareholders as they gain better information. Our findings suggest that cross-border economic activities facilitate the global dissemination of best-practice shareholder activism.",
+      "analysis_ko": "",
+      "analysis_en": ""
+    },
+    {
+      "slug": "optimal-retirement-saving-and-dissaving",
+      "title": "Optimal retirement saving and dissaving",
+      "authors": "Claus Munk",
+      "journal": "Journal of Financial and Quantitative Analysis",
+      "date": "2026-5-14",
+      "url": "https://doi.org/10.1017/s0022109026102968",
+      "abstract": "Applying a rich model of individuals' life-cycle utility maximization, we conduct a comprehensive evaluation of retirement saving plans for workers determining their contributions to the plan, emulating retirement saving with 401(k)s in the U.S. Across a range of individual characteristics, the access to basic plans with constant expected payouts and either no or full annuitization leads to individual welfare gains of up to 5.06% of initial wealth and lifetime income (around $43,700 in present value terms), and almost all the individuals prefer full annuitization and a target-date fund investment strategy. With flexible plans allowing for partial annuitization, non-constant expected payouts, and unscheduled withdrawals from the pension account, the welfare gains go up to 6.20%, and most individuals prefer a high degree of annuitization and expected payouts being increasing through retirement.",
+      "analysis_ko": "",
+      "analysis_en": ""
+    },
+    {
+      "slug": "porter-might-be-right-environmental-policy-innovation-and-product-differentiatio",
+      "title": "Porter might be right: environmental policy, innovation, and product differentiation",
+      "authors": "Wensi Xie",
+      "journal": "Review of Finance",
+      "date": "2026-5-15",
+      "url": "https://doi.org/10.1093/rof/rfag013",
+      "abstract": "Abstract\n                  We evaluate the effects of environmental regulation on corporate innovation and real outcomes. Exploiting plant-level regulatory shocks induced by the 1990 Clean Air Act Amendments, we identify firms’ exposure to stricter environmental standards based on whether their plants emit newly regulated pollutants in counties designated as nonattainment. We show that firms more heavily exposed to the regulatory shock increase green innovation, including green process and green product patents, with no corresponding changes in nongreen patenting. The innovation-enhancing effects are concentrated among firms in industries with low external finance dependence and are stronger in areas with more intensive environmental enforcement. In addition, employment declines in response to the regulatory shock, and the effects are more pronounced among firms relying heavily on external finance. Overall, the results support the Porter hypothesis while highlighting the roles of financial capacity and enforcement intensity in shaping firms’ innovation and labor responses to environmental regulation.",
+      "analysis_ko": "",
+      "analysis_en": ""
+    },
+    {
+      "slug": "proud-to-not-own-stocks-how-identity-shapes-financial-decisions",
+      "title": "Proud to Not Own Stocks: How Identity Shapes Financial Decisions",
+      "authors": "Luca Henkel, Christian Pugnaghi-Zimpelmann",
+      "journal": "The Review of Financial Studies",
+      "date": "2026-5-14",
+      "url": "https://doi.org/10.1093/rfs/hhag034",
+      "abstract": "Abstract\n                  This paper introduces a key factor influencing households’ decision to invest in the stock market: how people view stockholders. Using surveys we conducted with nearly 8,500 individuals from 11 countries, we document that a large majority hold negative views of stockholders based on identity-relevant characteristics. Linking survey and administrative data, we find that negative perceptions strongly predict households’ stock market participation. We show that negative perceptions causally influence household decision-making and provide evidence supporting identity concerns as the underlying mechanism. Our findings provide new perspectives on the malleability of financial decision-making and a novel explanation for low stock market participation.",
+      "analysis_ko": "",
+      "analysis_en": ""
+    },
+    {
+      "slug": "riskfree-rates-and-convenience-yields-around-the-world",
+      "title": "Risk‐Free Rates and Convenience Yields around the World",
+      "authors": "William Diamond, Peter Van Tassel",
+      "journal": "The Journal of Finance",
+      "date": "2026-5-11",
+      "url": "https://doi.org/10.1111/jofi.70045",
+      "abstract": "ABSTRACT\n                  We infer risk‐free rates from index option prices to estimate safe asset convenience yields in 10 G11 currencies. Countries' convenience yields increase with the level of their interest rates, with U.S. convenience yields fifth largest. During financial crises, convenience yields grow, but the difference between United States and foreign convenience yields generally does not. Covered interest parity (CIP) deviations using our option‐implied rates are a similar size between the United States and each other country. A model in which convenience yields depend on domestic financial intermediaries, but CIP deviations reflect the funding costs of international arbitrageurs financed with dollar‐denominated debt, explains these results.",
+      "analysis_ko": "",
+      "analysis_en": ""
+    },
+    {
+      "slug": "the-drivers-and-implications-of-retail-margin-trading",
+      "title": "The Drivers and Implications of Retail Margin Trading",
+      "authors": "JIANGZE BIAN, ZHI DA, ZHIGUO HE, DONG LOU, KELLY SHUE, HAO ZHOU",
+      "journal": "The Journal of Finance",
+      "date": "2026-5-15",
+      "url": "https://doi.org/10.1111/jofi.70049",
+      "abstract": "ABSTRACT\n                  Using granular data covering both regulated (brokerage‐financed) and unregulated (shadow‐financed) margin accounts in China, we provide novel evidence on retail investors' margin trading behavior and its price implications. We first show that retail investors' decisions to lever up in stock trading despite the hefty borrowing cost is related to their lottery preferences. We then show that margin borrowing affects investors' trading behavior—investors are more likely to liquidate their holdings as they approach margin calls. Finally, we show that margin‐induced trading aggregates to affect asset prices and contributes to shock spillovers across stocks (e.g., from lottery stocks to nonlottery stocks).",
+      "analysis_ko": "",
+      "analysis_en": ""
+    },
+    {
+      "slug": "the-equilibrium-effects-of-eviction-policies",
+      "title": "The Equilibrium Effects of Eviction Policies",
+      "authors": "BOAZ ABRAMSON",
+      "journal": "The Journal of Finance",
+      "date": "2026-5-11",
+      "url": "https://doi.org/10.1111/jofi.70046",
+      "abstract": "ABSTRACT\n                  I propose a dynamic equilibrium model of rental markets that endogenously gives rise to defaults on rents and evictions. In the model, eviction protections make it harder to evict delinquent renters, but higher default costs to landlords increase equilibrium rents. I quantify the model using micro data on evictions, rents, and homelessness. I find that stronger eviction protections exacerbate housing insecurity and lower welfare. The key empirical driver of this result is the persistent nature of risk underlying rent delinquencies. Rental assistance reduces housing insecurity and improves welfare because it lowers the likelihood that renters default ex ante.",
+      "analysis_ko": "",
+      "analysis_en": ""
+    },
+    {
+      "slug": "when-is-the-price-of-analysts-disagreement-risk-positive",
+      "title": "When Is the Price of Analysts’ Disagreement Risk Positive?",
+      "authors": "Alexander David, Amel Farhat",
+      "journal": "Journal of Financial and Quantitative Analysis",
+      "date": "2026-5-13",
+      "url": "https://doi.org/10.1017/s0022109026102956",
+      "abstract": "We provide robust evidence that the price of analysts' disagreement risk in the cross-section of stock returns changes sign over time; it's positive (negative) in periods of high (low) disagreement. We construct a general equilibrium model in which analysts have heterogeneous beliefs about aggregate earnings growth. The consumer does not trust either analyst fully and dynamically adjusts each analyst's weight, based on their performance. Each asset's risk premium depends on its exposure to (i) the market portfolio, (ii) aggregate earnings growth, and, (iii) a ``flight-to-safety'' factor. (i) decreases and (iii) increases with disagreement as investors choose lower cash flow beta assets during periods of high disagreement. We find support for such a flight-to-safetyin the data.",
+      "analysis_ko": "",
+      "analysis_en": ""
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "category": "finance",
+  "year": 2026,
+  "week": "W22",
+  "label_ko": "5월 4주차",
+  "label_en": "May Week 4",
+  "startDate": "2026-05-25",
+  "endDate": "2026-05-31",
+  "paperCount": 1,
+  "papers": [
+    {
+      "slug": "careers-in-finance",
+      "title": "Careers in Finance",
+      "authors": "Andrew Ellul, Marco Pagano, Annalisa Scognamiglio",
+      "journal": "Journal of Financial and Quantitative Analysis",
+      "date": "2026-5-25",
+      "url": "https://doi.org/10.1017/s0022109026102750",
+      "abstract": "Abstract\n                  Past research has documented a substantial finance wage premium. We examine whether this premium reflects differences in lifetime career opportunities. Using resume data, we reconstruct career trajectories in finance and nonfinance sectors and build synthetic measures of career attractiveness that account for compensation levels, growth, and risk. We find that asset management and investment banking provide a sizable risk-adjusted career premium relative to banking, insurance, and other sectors. This premium has declined across cohorts, particularly relative to high tech. Labor-market entry patterns respond to these premia: potential entrants treat finance and high-tech careers as substitutes when choosing where to start.",
+      "analysis_ko": "",
+      "analysis_en": ""
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "category": "accounting",
+  "year": 2026,
+  "week": "W22",
+  "label_ko": "5월 4주차",
+  "label_en": "May Week 4",
+  "startDate": "2026-05-25",
+  "endDate": "2026-05-31",
+  "paperCount": 1,
+  "papers": [
+    {
+      "slug": "regulatory-intermediation-in-times-of-crisis-the-impact-of-independent-oversight",
+      "title": "Regulatory Intermediation in Times of Crisis: The Impact of Independent Oversight on the Functioning of Professional Accounting Bodies",
+      "authors": "Brendan O'Dwyer, Roel Boomsma, Chris Humphrey",
+      "journal": "Contemporary Accounting Research",
+      "date": "2026-5-25",
+      "url": "https://doi.org/10.1111/1911-3846.70056",
+      "abstract": "ABSTRACT\n                  The rise of independent oversight of the accounting profession has attracted considerable research attention. Much of this research has studied how professional accounting bodies and the Big 4 firms have shaped the mandate and capabilities of independent oversight bodies. Less is known about how independent oversight has affected the workings of professional accounting bodies, particularly their capacity to simultaneously govern and represent their members. This paper advances our understanding of this dynamic through a longitudinal, interpretive case study of how the Dutch professional accounting body, the NBA (the Royal Netherlands Institute of Chartered Accountants), adapted and developed its regulatory intermediary role during a lengthy period of intense oversight by the Dutch regulator, the AFM (the Authority for the Financial Markets), and shifting levels of Big 4 firm discord. Drawing on extensive archival materials and insights gained from in‐depth interviews with key participants, the study advances existing theorizations of the work of regulatory intermediaries by highlighting both their functional variability and fragility. In responding to recurring crises and critique, the NBA's intermediary role shifted from facilitation to curation and ultimately to orchestrating the Big 4 firms' regulatory response. Such shifts were neither smooth nor predictable—characterized by a sense of “role limbo” as the NBA battled to bolster its identity and authority when sidelined by the AFM or dictated to or impeded by the Big 4 firms. In examining such shifting intermediation and contesting levels of influence, the NBA's governance and representation functions emerge as more symbiotic than oppositional, with the NBA using its fulfillment of one as a means of strengthening its execution of the other. Overall, the paper's analysis uncovers the functional fragility of the NBA, which questions whether repeated calls for professional accounting bodies to rediscover their public interest mandate have adequately appreciated the complex, contested nature of the regulatory environment in which they operate.",
+      "analysis_ko": "",
+      "analysis_en": ""
+    }
+  ]
+}

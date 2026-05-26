@@ -1,0 +1,45 @@
+{
+  "category": "accounting",
+  "year": 2026,
+  "week": "W20",
+  "label_ko": "5월 2주차",
+  "label_en": "May Week 2",
+  "startDate": "2026-05-11",
+  "endDate": "2026-05-17",
+  "paperCount": 3,
+  "papers": [
+    {
+      "slug": "firmspecific-information-processing-and-the-delayed-discovery-of-macroeconomic-n",
+      "title": "Firm–specific information processing and the delayed discovery of macroeconomic news: evidence from earnings announcement returns",
+      "authors": "Jing Pan, Edward Sul, Sean Wang",
+      "journal": "Review of Accounting Studies",
+      "date": "2026-5-13",
+      "url": "https://doi.org/10.1007/s11142-026-09959-y",
+      "abstract": "Abstract\n                  Analyzing a panel of earnings announcers from 1998–2022, we document that the aggregate market return on quarterly earnings announcement dates is positively associated with the announcing firm’s subsequent three-day abnormal returns. This phenomenon is strongest for firms with extreme earnings surprises and dissipates by day seven, indicating a short-lived delay in incorporating the aggregate news. We also document a sluggish return response to same-day macro news disclosures, especially when earnings surprises are extreme. Effects strengthen when investors exert more effort in acquiring announcing firm information, measured by SEC EDGAR filing downloads, when macronews has a larger impact on a firm’s stock returns, when firms are smaller, and when investors’ attention and processing capacity are more constrained, proxied by retail trading. Overall, the findings support the notion that investors have finite information processing capacity and that intensive efforts to acquire firm earnings news delay the incorporation of macroeconomic news into prices.",
+      "analysis_ko": "",
+      "analysis_en": ""
+    },
+    {
+      "slug": "incidence-risk-and-disclosure-of-corporate-litigation-insights-from-federal-cour",
+      "title": "Incidence, Risk, and Disclosure of Corporate Litigation: Insights from Federal Court Filings",
+      "authors": "MARY BROOKE BILLINGS, ROBERT W. HOLTHAUSEN, CHRISTINE PETROVITS, DANYE WANG",
+      "journal": "Journal of Accounting Research",
+      "date": "2026-5-11",
+      "url": "https://doi.org/10.1111/1475-679x.70071",
+      "abstract": "ABSTRACT\n                  We assemble and describe a sample of 174,782 lawsuits filed against 218,437 public‐company lawsuit‐defendants in federal district court from 2006 to 2021. These lawsuits involve an array of allegations, including product liability, civil rights discrimination, contract breaches, improper compensation and labor practices, antitrust violations, corruption, securities violations, pollution, and intellectual property infringement. The sample exhibits rich variation across firms, industries, time, suit type, plaintiffs, and outcomes—reflecting not only firm activities but also social, political, and regulatory trends. Although many claims matter very little, some are important individually or in aggregate. We observe 23% of defendants experience a market value decline exceeding 10% of current assets around the lawsuit filing. Consistent with the notion that even low‐stakes claims, when numerous or persistent, can introduce frictions or reflect underlying issues, we find that aggregate legal exposure is associated with increased return volatility and decreased profitability. Subsequent tests indicate that materiality, public and private enforcement, and firms’ information environments (as well as other firm traits) are associated with managers’ decisions to disclose these claims. Collectively, our descriptive evidence establishes a foundation for further research into underexplored types of corporate litigation that represent a broad range of alleged wrongdoing and socially irresponsible behavior.",
+      "analysis_ko": "",
+      "analysis_en": ""
+    },
+    {
+      "slug": "revenue-recognition-comparability-and-analysts-disclosure-processing-costs",
+      "title": "Revenue Recognition Comparability and Analysts’ Disclosure Processing Costs",
+      "authors": "ANDREA TILLET",
+      "journal": "Journal of Accounting Research",
+      "date": "2026-5-12",
+      "url": "https://doi.org/10.1111/1475-679x.70068",
+      "abstract": "ABSTRACT\n                  I examine whether the FASB's revenue recognition guidance under ASC 606 influences revenue comparability across firms and industries and whether revenue comparability reduces analysts’ disclosure processing costs. I extract firms’ revenue policy disclosures from 10‐K filings to measure their textual similarity and compare revenue policies across firms and industries. I find an increase in revenue comparability for firms in different industries with similar revenue‐generating transactions upon adoption of ASC 606. In contrast, I find a decrease in revenue comparability for firms in the same industry with similar revenue‐generating transactions. Further, though I find that analysts are more likely to forecast revenues when firms have higher revenue comparability, this benefit of revenue comparability is less pronounced under ASC 606. This finding suggests the ASC 606‐related changes to revenue comparability impose disclosure processing costs on analysts.",
+      "analysis_ko": "",
+      "analysis_en": ""
+    }
+  ]
+}

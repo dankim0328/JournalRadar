@@ -1,0 +1,56 @@
+{
+  "category": "finance",
+  "year": 2026,
+  "week": "W31",
+  "label_ko": "7월 5주차",
+  "label_en": "July Week 5",
+  "startDate": "2026-07-27",
+  "endDate": "2026-08-02",
+  "paperCount": 4,
+  "papers": [
+    {
+      "slug": "dirty-air-and-green-investments-the-impact-of-pollution-information-on-portfolio",
+      "title": "Dirty air and green investments: The impact of pollution information on portfolio allocations",
+      "authors": "Raymond Fisman, Pulak Ghosh, Arkodipta Sarkar, Jian Zhang",
+      "journal": "Journal of Financial Economics",
+      "date": "2026-8",
+      "url": "https://doi.org/10.1016/j.jfineco.2026.104309",
+      "abstract": "초록(Abstract) 정보가 제공되지 않았습니다.",
+      "analysis_ko": "",
+      "analysis_en": ""
+    },
+    {
+      "slug": "monetary-policy-transmission-through-the-exchange-rate-factor-structure",
+      "title": "Monetary policy transmission through the exchange rate factor structure",
+      "authors": "Erik Loualiche, Alexandre R. Pecora, Fabricius Somogyi, Colin Ward",
+      "journal": "Journal of Financial Economics",
+      "date": "2026-8",
+      "url": "https://doi.org/10.1016/j.jfineco.2026.104305",
+      "abstract": "초록(Abstract) 정보가 제공되지 않았습니다.",
+      "analysis_ko": "",
+      "analysis_en": ""
+    },
+    {
+      "slug": "out-of-sight-out-of-mind-divestments-and-the-global-reallocation-of-pollutive-as",
+      "title": "Out of sight, out of mind: Divestments and the global reallocation of pollutive assets",
+      "authors": "Tobias Berg, Lin Ma, Daniel Streitz",
+      "journal": "Journal of Financial Economics",
+      "date": "2026-8",
+      "url": "https://doi.org/10.1016/j.jfineco.2026.104308",
+      "abstract": "초록(Abstract) 정보가 제공되지 않았습니다.",
+      "analysis_ko": "",
+      "analysis_en": ""
+    },
+    {
+      "slug": "the-co-pricing-factor-zoo",
+      "title": "The co-pricing factor zoo",
+      "authors": "Alexander Dickerson, Christian Julliard, Philippe Mueller",
+      "journal": "Journal of Financial Economics",
+      "date": "2026-8",
+      "url": "https://doi.org/10.1016/j.jfineco.2026.104295",
+      "abstract": "We analyze 18 quadrillion models for the joint pricing of corporate bond and stock returns. Strikingly, we find that equity and nontradable factors alone suffice to explain corporate bond risk premia once their Treasury term structure risk is accounted for, rendering the extensive bond factor literature largely redundant for this purpose. While only a handful of factors, behavioral and nontradable, are likely robust sources of priced risk, the true latent stochastic discount factor is dense in the space of observable factors. Consequently, a Bayesian Model Averaging Stochastic Discount Factor explains risk premia better than all low-dimensional models, in- and out-of-sample, by optimally aggregating dozens of factors that serve as noisy proxies for common underlying risks, yielding an out-of-sample Sharpe ratio of 1.5 to 1.8. This SDF, as well as its conditional mean and volatility, are persistent, track the business cycle and times of heightened economic uncertainty, and predict future asset returns.",
+      "analysis_ko": "",
+      "analysis_en": ""
+    }
+  ]
+}

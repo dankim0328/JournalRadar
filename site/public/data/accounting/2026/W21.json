@@ -1,0 +1,56 @@
+{
+  "category": "accounting",
+  "year": 2026,
+  "week": "W21",
+  "label_ko": "5월 3주차",
+  "label_en": "May Week 3",
+  "startDate": "2026-05-18",
+  "endDate": "2026-05-24",
+  "paperCount": 4,
+  "papers": [
+    {
+      "slug": "a-survey-of-the-archival-audit-literature",
+      "title": "A Survey of the Archival Audit Literature",
+      "authors": "Clive Lennox, Chan Li, Yiqian Wang",
+      "journal": "Contemporary Accounting Research",
+      "date": "2026-5-20",
+      "url": "https://doi.org/10.1111/1911-3846.70046",
+      "abstract": "ABSTRACT\n                  External audits enhance the credibility of financial statements and are a cornerstone of capital market integrity. However, the growing and complex auditing literature poses challenges for researchers. This survey synthesizes and critically evaluates archival audit research published in top accounting journals from 1995 to 2025, organizing over 600 studies into three core areas: the audit market, audit quality, and audit personnel and processes. We offer new conceptual insights into the audit market, emphasizing that audit assurance is unobservable and that audit fee studies generally estimate reduced‐form models rather than separate demand and supply functions. On audit quality, we expand upon DeAngelo's definition to include the auditor's responsibility to assess ex ante risk. We suggest an alternative three‐dimensional definition of audit quality that is more closely aligned with professional standards. We also clarify common misconceptions arising from conflating audit quality with financial reporting quality. Finally, we review the growing literature on audit personnel and call for more research into underexplored roles of personnel in the early stages of the audit process. Our survey contributes by reframing key constructs, identifying limitations in common proxies, and suggesting future research directions to advance our understanding of how audits function and shape financial reporting outcomes.",
+      "analysis_ko": "",
+      "analysis_en": ""
+    },
+    {
+      "slug": "analysts-cultural-longterm-orientation-and-their-information-production",
+      "title": "Analysts' Cultural Long‐Term Orientation and Their Information Production",
+      "authors": "Shuping Chen, Jay Heon Jung, Sonya S. Lim, Yong Yu",
+      "journal": "Contemporary Accounting Research",
+      "date": "2026-5-20",
+      "url": "https://doi.org/10.1111/1911-3846.70058",
+      "abstract": "ABSTRACT\n                  We study how analysts' inherited cultural attitudes to time orientation affect their production of long‐term information and the profitability of their stock recommendations. We find that analysts from long‐term‐oriented cultures exhibit a longer forecast horizon and issue more long‐term forecasts. They also produce more accurate long‐term forecasts and ask more long‐term‐focused questions during conference calls, eliciting greater long‐term disclosure from managers. In addition, they are more likely to use discounted valuation models that explicitly incorporate expectations about firms' long‐term prospects. Further, their stock recommendations are more profitable, consistent with their production of long‐term information enhancing valuation. Our findings highlight the role of cultural long‐term orientation in shaping analysts' information production in capital markets.",
+      "analysis_ko": "",
+      "analysis_en": ""
+    },
+    {
+      "slug": "national-security-related-foreign-investment-screening-laws-and-investment-effic",
+      "title": "National security-related foreign investment screening laws and investment efficiency",
+      "authors": "David Godsell",
+      "journal": "Review of Accounting Studies",
+      "date": "2026-5-18",
+      "url": "https://doi.org/10.1007/s11142-026-09956-1",
+      "abstract": "Abstract\n                  This study investigates the effect of national security-related foreign investment screening laws on managers’ investment choices. These laws weaken takeover markets by granting regulators broad new powers to revise or reject foreign takeovers of firms in national security-related industries. I identify exogenous variation in national security-related foreign investment screening laws using the enactment of a U.S. national security-related foreign investment screening law known as the Foreign Investment and National Security Act (FINSA). Consistent with managerial entrenchment theory, I document that, following the enactment of FINSA, national security firms’ inefficient investment increases. Event-time tests corroborate and cross-sectional tests demonstrate that results strengthen with treatment strength. Results generalize to seven alternative investment efficiency measures. Stacked panel tests exploiting regulators’ staggered enforcement of FINSA across 66 industries over time between 2008 and 2021 further corroborate. Overall, this study documents the unintended consequences of national security-related foreign investment screening laws on managers’ investment choices.",
+      "analysis_ko": "",
+      "analysis_en": ""
+    },
+    {
+      "slug": "product-market-threats-implications-for-future-performance-and-use-by-market-par",
+      "title": "Product Market Threats: Implications for Future Performance and Use by Market Participants",
+      "authors": "Marcus Kirk, Zhenhao (Jeffery) Piao, Diana L. Weng",
+      "journal": "Contemporary Accounting Research",
+      "date": "2026-5-18",
+      "url": "https://doi.org/10.1111/1911-3846.70059",
+      "abstract": "ABSTRACT\n                  This study examines whether competition in the form of emerging threats from rivals' overlapping product strategies has explanatory power for future performance and volatility, beyond existing competition measures and firm life cycle proxies. We proxy for emerging threats using product market fluidity, which captures competitive pressures and instability arising from rivals' evolving product overlap. Specifically, higher fluidity (i.e., higher product market threats) is negatively associated with future profitability and operating cash flows and positively associated with the variability of future profitability and operating cash flows. We also find fluidity is negatively associated with future asset turnover, margins, and expenses, and only moderately positively associated with future sales, shedding light on the mechanisms through which product market threats manifest in future performance. However, capital market participants do not fully incorporate this information, leading to predictable future stock returns and analyst forecast errors. Overall, our findings suggest that the dynamism and fluidity in a firm's product market space convey valuable and distinct information to capital market participants.",
+      "analysis_ko": "",
+      "analysis_en": ""
+    }
+  ]
+}

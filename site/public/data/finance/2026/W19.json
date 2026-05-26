@@ -1,0 +1,89 @@
+{
+  "category": "finance",
+  "year": 2026,
+  "week": "W19",
+  "label_ko": "5월 1주차",
+  "label_en": "May Week 1",
+  "startDate": "2026-05-04",
+  "endDate": "2026-05-10",
+  "paperCount": 7,
+  "papers": [
+    {
+      "slug": "a-dynamic-model-of-the-racial-wealth-gap",
+      "title": "A Dynamic Model of the Racial Wealth Gap",
+      "authors": "Sylvain Catherine, Ellen Jiayang Lu, James D Paron",
+      "journal": "The Review of Financial Studies",
+      "date": "2026-5-6",
+      "url": "https://doi.org/10.1093/rfs/hhag047",
+      "abstract": "Abstract\n                  What explains wealth and portfolio differences between black and white Americans? We find that disparities in economic factors explain portfolios well, but only partly explain the wealth gap. In a dynamic setting, economic factors often change optimal saving rates in ways that offset their effects on income and returns. Consequently, their net wealth effect is often limited, making the wealth gap harder to explain. We estimate that differences in income levels, income risk, family structures, mortality, health expenditures, property taxes, mortgage rates, and asset returns explain half of the differential between the racial wealth gap and the racial income gap.",
+      "analysis_ko": "",
+      "analysis_en": ""
+    },
+    {
+      "slug": "household-finance-at-the-origin-home-ownership-as-a-cultural-heritage-from-agric",
+      "title": "Household Finance at the Origin: Home Ownership as a Cultural Heritage from Agriculture",
+      "authors": "Guillaume Vuillemey",
+      "journal": "Journal of Financial and Quantitative Analysis",
+      "date": "2026-5-6",
+      "url": "https://doi.org/10.1017/s0022109025102524",
+      "abstract": "Abstract\n                  I show that home ownership decisions across countries and individuals are shaped by a cultural heritage from agriculture. For centuries, dominant assets in preindustrial economies were either land or cattle. Consequently, the type of farming prevailing locally shaped preferences and beliefs about the relative value of immovable and movable assets. This cultural heritage had long-lasting consequences. Today, individuals originating from societies with a history of crop agriculture—where the dominant asset was land—are more likely to be homeowners. For identification, I rely both on home ownership decisions of second-generation immigrants in the United States and on an instrument.",
+      "analysis_ko": "",
+      "analysis_en": ""
+    },
+    {
+      "slug": "learning-in-the-limit-income-inference-from-credit-extensions",
+      "title": "Learning in the Limit: Income Inference from Credit Extensions",
+      "authors": "XIAO YIN",
+      "journal": "The Journal of Finance",
+      "date": "2026-5-7",
+      "url": "https://doi.org/10.1111/jofi.70040",
+      "abstract": "ABSTRACT\n                  Combining a randomized controlled trial with administrative and survey data, this paper shows that credit limit extensions significantly increase total spending and income expectations. By controlling for changes in personal income expectations, the spending response to credit limit extensions weakens by approximately 30%. For financially unconstrained consumers, expectation changes account for around two‐thirds of the spending responses to limit extensions. These findings are consistent with consumers inferring future income from credit supply.",
+      "analysis_ko": "",
+      "analysis_en": ""
+    },
+    {
+      "slug": "macroeconomic-expectations-and-credit-card-spending",
+      "title": "Macroeconomic Expectations and Credit Card Spending",
+      "authors": "Mikhail Galashin, Martin Kanz, Ricardo Perez-Truglia",
+      "journal": "The Review of Financial Studies",
+      "date": "2026-5-7",
+      "url": "https://doi.org/10.1093/rfs/hhaf079",
+      "abstract": "Abstract\n                  We examine how macroeconomic expectations affect consumer decisions, using an experiment with 2,872 credit card customers at a large commercial bank. In the experiment, participants are randomized into receiving expert forecasts of inflation and the nominal exchange rate. We find that forecasts shift inflation and exchange rate expectations, but do not change spending or self-reported consumption plans as predicted by standard models of intertemporal choice. Results from a supplementary survey experiment suggest that consumers are sophisticated enough to anticipate nominal rigidities and reduce spending on durables for precautionary reasons, counteracting the effects predicted by standard models of intertemporal optimization.",
+      "analysis_ko": "",
+      "analysis_en": ""
+    },
+    {
+      "slug": "mutual-fund-flows-and-the-supply-of-capital-in-municipal-financing",
+      "title": "Mutual Fund Flows and the Supply of Capital in Municipal Financing",
+      "authors": "Manuel Adelino, Sophia Chiyoung Cheong, Jaewon Choi, Ji Yeol Jimmy Oh",
+      "journal": "The Review of Financial Studies",
+      "date": "2026-5-9",
+      "url": "https://doi.org/10.1093/rfs/hhag048",
+      "abstract": "Abstract\n                  This paper investigates how capital supply from mutual funds affects municipal bond financing, making three key contributions. First, we introduce an identification strategy using the rule-based update of Morningstar ratings for 5-year-old funds, isolating supply-side effects from fund and issuer fundamentals. The results indicate that exogenous fund flows increase bond issuance probability and decrease yields. Second, these fund flows lead to more issuances when funds and issuers are connected through underwriters, highlighting relationship lending in municipal bond financing. Third, municipal issuers leverage favorable financing conditions for new issuance of revenue bonds, which translates into higher local house prices. (JEL G23, G32, H74)",
+      "analysis_ko": "",
+      "analysis_en": ""
+    },
+    {
+      "slug": "partisan-entrepreneurship",
+      "title": "Partisan Entrepreneurship",
+      "authors": "JOSEPH ENGELBERG, JORGE GUZMAN, RUNJING LU, WILLIAM MULLINS",
+      "journal": "The Journal of Finance",
+      "date": "2026-5-8",
+      "url": "https://doi.org/10.1111/jofi.70042",
+      "abstract": "ABSTRACT\n                  Republicans start more firms than Democrats. In a sample of 40 million party‐identified Americans between 2005 and 2017, we find that 5.5% of Republicans and 3.7% of Democrats become entrepreneurs. This partisan entrepreneurship gap is time‐varying—Republicans increase their relative entrepreneurship during Republican administrations and decrease it during Democratic administrations, amounting to a partisan reallocation of 170,000 new firms over our 13‐year sample. We find sharp changes in partisan entrepreneurship around the elections of President Obama and President Trump, with the strongest effects among the most politically active partisans: those that donate and vote.",
+      "analysis_ko": "",
+      "analysis_en": ""
+    },
+    {
+      "slug": "private-equity-fund-debt-agency-costs-and-cash-flow-management",
+      "title": "Private Equity Fund Debt: Agency Costs and Cash Flow Management",
+      "authors": "James F. Albertus, Matthew Denes",
+      "journal": "Journal of Financial and Quantitative Analysis",
+      "date": "2026-5-7",
+      "url": "https://doi.org/10.1017/s0022109026102890",
+      "abstract": "초록(Abstract) 정보가 제공되지 않았습니다.",
+      "analysis_ko": "",
+      "analysis_en": ""
+    }
+  ]
+}
