@@ -11,9 +11,7 @@ on:
         description: '검색 종료일 (YYYY-MM-DD)'
         required: true
         default: '2026-04-19'
-  schedule:
-    # 매일 한국 시간 오전 10시(UTC 1시) 자동 실행 (무료 한도 50개 소진 시 자동 종료됨)
-    - cron: '0 1 * * *'
+  # Legacy Notion backfill is manual-only. Website updates use weekly_research.yml.
   
 permissions:
   contents: read

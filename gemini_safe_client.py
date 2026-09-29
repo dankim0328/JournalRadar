@@ -36,7 +36,7 @@ if not logger.handlers:
 
 # ─── 상수 ───
 MAX_TEXT_LENGTH = 8000          # Abstract 등 텍스트 최대 글자 수
-MIN_CALL_INTERVAL_SEC = 3      # API 호출 사이 최소 대기 시간(초)
+MIN_CALL_INTERVAL_SEC = float(os.environ.get("GEMINI_MIN_INTERVAL", "35"))
 MIN_ABSTRACT_LENGTH = 50       # Abstract 최소 유효 길이 (이하이면 OpenAlex fallback)
 CACHE_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)), "gemini_cache.json")
 FAILURE_MARKERS = ["AI 분석 실패", "AI Analysis Failed", "AI 백필 분석 실패"]
@@ -203,7 +203,8 @@ class GeminiCache:
 class GeminiSafeClient:
     """Gemini API 안전 래퍼. 4가지 안전장치가 모두 적용됩니다."""
 
-    def __init__(self, model_name="gemini-2.5-flash", api_key=None):
+    def __init__(self, model_name=None, api_key=None):
+        model_name = model_name or os.environ.get("GEMINI_MODEL", "gemini-2.5-flash")
         api_key = api_key or os.environ.get("GEMINI_API_KEY", "")
         genai.configure(api_key=api_key)
         self.model = genai.GenerativeModel(model_name=model_name)
@@ -239,7 +240,8 @@ class GeminiSafeClient:
         response = self.model.generate_content(
             prompt, 
             safety_settings=SAFETY_SETTINGS,
-            generation_config=generation_config
+            generation_config=generation_config,
+            request_options={"timeout": 90}
         )
         return response.text
 

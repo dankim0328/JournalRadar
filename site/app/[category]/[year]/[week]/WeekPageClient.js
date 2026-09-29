@@ -28,6 +28,7 @@ export default function WeekPageClient({ category, year, week, data }) {
   if (selectedPaper) {
     const paper = selectedPaper;
     const analysis = lang === "ko" ? paper.analysis_ko : paper.analysis_en;
+    const hasAnalysis = analysis?.trim() && !["AI 분석 실패", "AI Analysis Failed", "AI 백필 분석 실패"].some(marker => analysis.includes(marker));
 
     return (
       <main className="page-container">
@@ -81,7 +82,7 @@ export default function WeekPageClient({ category, year, week, data }) {
               <span className="section-icon">🤖</span>
               {t.aiAnalysis}
             </h2>
-            <div className="analysis-box">{analysis || t.noPapers}</div>
+            <div className="analysis-box">{hasAnalysis ? analysis : (category === "marketing" ? t.aiPaused : t.noAnalysis)}</div>
           </section>
         </div>
       </main>

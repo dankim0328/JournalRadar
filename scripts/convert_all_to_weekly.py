@@ -3,8 +3,13 @@ import os
 import re
 from datetime import datetime, timedelta
 from collections import defaultdict
+from pathlib import Path
+try:
+    from . import generate_weekly_json as weekly
+except ImportError:
+    import generate_weekly_json as weekly
 
-BACKFILL_FILE = os.path.join(os.path.dirname(__file__), "..", "backfill_state.json")
+BACKFILL_FILE = os.path.join(os.path.dirname(__file__), "..", ".weekly_batch.json")
 SITE_PUBLIC_DATA = os.path.join(os.path.dirname(__file__), "..", "site", "public", "data")
 
 MONTH_NAMES_EN = [
@@ -24,7 +29,7 @@ def parse_date(date_str):
         if len(parts) < 2: return None
         y, m = int(parts[0]), int(parts[1])
         d = int(parts[2]) if len(parts) >= 3 else 1
-        return datetime(y, m, min(d, 28))
+        return datetime(y, m, d)
     except: return None
 
 def get_iso_week(dt):
@@ -68,12 +73,33 @@ def process_category(all_papers, category_id, category_name_ko, category_name_en
     
     output_base = os.path.join(SITE_PUBLIC_DATA, category_id.lower())
     os.makedirs(output_base, exist_ok=True)
+
+    # Existing routes and summaries stay stable when publisher metadata changes.
+    existing_by_title = {}
+    documents = {}
+    changed = set()
+    for path in Path(output_base).glob("*/W*.json"):
+        documents[path] = json.loads(path.read_text(encoding="utf-8"))
+        for existing in documents[path].get("papers", []):
+            existing_by_title[existing.get("title", "").strip().lower()] = (path, existing)
     
     weekly_groups = defaultdict(list)
     for paper in papers:
         # Standardize keys (handling BOM \ufeffJournal or lowercase journal)
         # We lowercase all keys and remove \ufeff
         paper = {k.lstrip('\ufeff').lower(): v for k, v in paper.items()}
+
+        match = existing_by_title.get(paper.get("title", "").strip().lower())
+        if match:
+            path, existing = match
+            abstract = clean_html(paper.get("abstract", ""))
+            placeholders = ("초록(Abstract) 정보가 제공되지 않았습니다.",
+                            "초록 정보가 없습니다.", "No abstract available")
+            if abstract and not any(text in abstract for text in placeholders):
+                if existing.get("abstract") != abstract:
+                    existing["abstract"] = abstract
+                    changed.add(path)
+            continue
         
         dt = parse_date(paper.get("date"))
         if not dt: continue
@@ -108,70 +134,20 @@ def process_category(all_papers, category_id, category_name_ko, category_name_en
             "analysis_en": en,
         })
 
-    years_data = defaultdict(list)
+    # A fresh Actions runner only has this batch, not the ignored backfill state.
+    # Merge into tracked weekly files, then index ALL historical weeks.
+    weekly.SITE_DATA_DIR = SITE_PUBLIC_DATA
+    for path in changed:
+        path.write_text(json.dumps(documents[path], ensure_ascii=False, indent=2), encoding="utf-8")
     for (year, week_label), week_papers in sorted(weekly_groups.items()):
-        year_dir = os.path.join(output_base, str(year))
-        os.makedirs(year_dir, exist_ok=True)
-        
-        week_num = int(week_label[1:])
-        monday, sunday = get_week_start_end(year, week_num)
-        label_ko, label_en = get_bilingual_labels(monday)
-        
-        week_data = {
-            "category": category_id.lower(),
-            "year": year,
-            "week": week_label,
-            "label_ko": label_ko,
-            "label_en": label_en,
-            "startDate": monday.strftime("%Y-%m-%d"),
-            "endDate": sunday.strftime("%Y-%m-%d"),
-            "paperCount": len(week_papers),
-            "papers": week_papers,
-        }
-        
-        with open(os.path.join(year_dir, f"{week_label}.json"), "w", encoding="utf-8") as f:
-            json.dump(week_data, f, ensure_ascii=False, indent=2)
-            
-        years_data[year].append({
-            "week": week_label,
-            "label_ko": label_ko,
-            "label_en": label_en,
-            "startDate": week_data["startDate"],
-            "endDate": week_data["endDate"],
-            "paperCount": len(week_papers),
-        })
+        weekly.save_weekly_data(category_id.lower(), year, int(week_label[1:]), week_papers)
+    weekly.update_indexes(category_id.lower())
 
-    all_years_summary = []
-    for year, weeks in sorted(years_data.items()):
-        weeks.sort(key=lambda w: w["week"])
-        year_index = {
-            "category": category_id.lower(),
-            "year": year,
-            "totalPapers": sum(w["paperCount"] for w in weeks),
-            "weeks": weeks,
-        }
-        with open(os.path.join(output_base, str(year), "index.json"), "w", encoding="utf-8") as f:
-            json.dump(year_index, f, ensure_ascii=False, indent=2)
-            
-        all_years_summary.append({
-            "year": year,
-            "totalPapers": year_index["totalPapers"],
-            "weekCount": len(weeks),
-        })
-
-    root_index = {
-        "category": category_id.lower(),
-        "categoryName_ko": category_name_ko,
-        "categoryName_en": category_name_en,
-        "years": all_years_summary,
-    }
-    with open(os.path.join(output_base, "index.json"), "w", encoding="utf-8") as f:
-        json.dump(root_index, f, ensure_ascii=False, indent=2)
 
 def main():
     if not os.path.exists(BACKFILL_FILE):
-        print("❌ backfill_state.json not found!")
-        return
+        print("❌ .weekly_batch.json not found!")
+        raise SystemExit(1)
         
     with open(BACKFILL_FILE, "r", encoding="utf-8") as f:
         all_papers = json.load(f)
@@ -182,6 +158,12 @@ def main():
     
     for cat_id, name_ko, name_en in categories:
         process_category(all_papers, cat_id, name_ko, name_en)
+
+    status_path = Path(BACKFILL_FILE).with_name(".weekly_collection_status.json")
+    if status_path.exists():
+        status = json.loads(status_path.read_text(encoding="utf-8"))
+        target = Path(SITE_PUBLIC_DATA) / "marketing" / "update_status.json"
+        target.write_text(json.dumps(status, ensure_ascii=False, indent=2), encoding="utf-8")
         
     print("\nAll categories processed and indices generated!")
 
