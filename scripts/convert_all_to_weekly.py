@@ -153,7 +153,9 @@ def main():
         all_papers = json.load(f)
         
     categories = [
-        ("Marketing", "마케팅", "Marketing")
+        ("Marketing", "마케팅", "Marketing"),
+        ("Finance", "재무", "Finance"),
+        ("Accounting", "회계", "Accounting")
     ]
     
     for cat_id, name_ko, name_en in categories:
@@ -162,8 +164,9 @@ def main():
     status_path = Path(BACKFILL_FILE).with_name(".weekly_collection_status.json")
     if status_path.exists():
         status = json.loads(status_path.read_text(encoding="utf-8"))
-        target = Path(SITE_PUBLIC_DATA) / "marketing" / "update_status.json"
-        target.write_text(json.dumps(status, ensure_ascii=False, indent=2), encoding="utf-8")
+        for category, details in status.items():
+            target = Path(SITE_PUBLIC_DATA) / category / "update_status.json"
+            target.write_text(json.dumps(details, ensure_ascii=False, indent=2), encoding="utf-8")
         
     print("\nAll categories processed and indices generated!")
 

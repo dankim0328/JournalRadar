@@ -48,7 +48,7 @@
       "journal": "The Review of Financial Studies",
       "date": "2026-5-14",
       "url": "https://doi.org/10.1093/rfs/hhag049",
-      "abstract": "Abstract\n                  We extract information from earnings call transcripts to develop a comprehensive and reliable measure of labor shortage exposure. After validating the measure at the state, industry, and firm levels, we show that firms with labor shortage exposures experience lower earnings call CARs, future stock returns and operating performance. Firms respond to labor shortages by substituting labor with capital and R&amp;D investments, and by producing more production-process patents. Such responses help mitigate the negative effects on future performance. Our measure has broad applicability, and our findings provide new insight into labor-capital substitution in imperfectly competitive labor markets. JEL G12, G30, J2",
+      "abstract": "Abstract\n                  We extract information from earnings call transcripts to develop a comprehensive and reliable measure of labor shortage exposure. After validating the measure at the state, industry, and firm levels, we show that firms with labor shortage exposures experience lower earnings call CARs, future stock returns and operating performance. Firms respond to labor shortages by substituting labor with capital and R&amp;D investments, and by producing more production-process patents. Such responses help mitigate the negative effects on future performance. Our measure has broad applicability, and our findings provide new insight into labor-capital substitution in imperfectly competitive labor markets.",
       "analysis_ko": "",
       "analysis_en": ""
     },
@@ -59,7 +59,7 @@
       "journal": "The Review of Financial Studies",
       "date": "2026-5-12",
       "url": "https://doi.org/10.1093/rfs/hhag050",
-      "abstract": "Abstract\n                  Using a novel measure of investment companies’ reliance on generative artificial intelligence (GenAI), we document a sharp increase in GenAI usage by hedge funds after ChatGPT’s 2022 launch. A difference-in-differences test shows that hedge funds adopting GenAI earn 2-4% higher annualized abnormal returns than nonadopters, while non-hedge funds do not benefit. The outperformance originates from funds’ AI talent and ChatGPT’s strength in analyzing firm-specific information. We conduct a new survey of fund managers’ GenAI usage to provide direct validation of our measure and offer additional new insights on how managers adopt GenAI tools in their practice. (JEL C81, G11, G14, G23)",
+      "abstract": "Abstract\n                  Using a novel measure of investment companies’ reliance on generative artificial intelligence (GenAI), we document a sharp increase in GenAI usage by hedge funds after ChatGPT’s 2022 launch. A difference-in-differences test shows that hedge funds adopting GenAI earn 2-4% higher annualized abnormal returns than nonadopters, while non-hedge funds do not benefit. The outperformance originates from funds’ AI talent and ChatGPT’s strength in analyzing firm-specific information. We conduct a new survey of fund managers’ GenAI usage to provide direct validation of our measure and offer additional new insights on how managers adopt GenAI tools in their practice.",
       "analysis_ko": "",
       "analysis_en": ""
     },
@@ -70,7 +70,7 @@
       "journal": "Journal of Financial and Quantitative Analysis",
       "date": "2026-5-15",
       "url": "https://doi.org/10.1017/s0022109026102932",
-      "abstract": "Using US mutual funds' international voting records, we investigate whether proximity to firm operations promotes active monitoring by foreign investors. To identify monitoring effects, we exploit proximity variations arising from actions of existing portfolio firms. We find that after a non-US firm expands operations into the US, US funds cast more dissenting votes at the firm's shareholder meetings, especially in response to poor performance and contentious proposals. The increase in dissent voting is consistent with funds becoming more engaged shareholders as they gain better information. Our findings suggest that cross-border economic activities facilitate the global dissemination of best-practice shareholder activism.",
+      "abstract": "Using US mutual funds' international voting records, we investigate whether proximity to firm operations promotes active monitoring by foreign investors. To identify monitoring effects, we exploit variations in proximity arising from existing portfolio firms' actions. We find that after a non-US firm expands operations into the US, US funds cast more dissenting votes at the firm's shareholder meetings, especially in response to poor performance and close-call proposals. The increase in dissent voting is consistent with funds becoming more engaged shareholders as they gain better information. Our findings suggest that cross-border economic activities facilitate the global dissemination of best-practice shareholder activism.",
       "analysis_ko": "",
       "analysis_en": ""
     },
@@ -81,7 +81,7 @@
       "journal": "Journal of Financial and Quantitative Analysis",
       "date": "2026-5-14",
       "url": "https://doi.org/10.1017/s0022109026102968",
-      "abstract": "Applying a rich model of individuals' life-cycle utility maximization, we conduct a comprehensive evaluation of retirement saving plans for workers determining their contributions to the plan, emulating retirement saving with 401(k)s in the U.S. Across a range of individual characteristics, the access to basic plans with constant expected payouts and either no or full annuitization leads to individual welfare gains of up to 5.06% of initial wealth and lifetime income (around $43,700 in present value terms), and almost all the individuals prefer full annuitization and a target-date fund investment strategy. With flexible plans allowing for partial annuitization, non-constant expected payouts, and unscheduled withdrawals from the pension account, the welfare gains go up to 6.20%, and most individuals prefer a high degree of annuitization and expected payouts being increasing through retirement.",
+      "abstract": "Abstract\n                  Applying a rich model of individuals’ life-cycle utility maximization, I comprehensively evaluate retirement saving plans. Across a range of individual characteristics, access to basic plans with constant expected payouts and no or full annuitization leads to individual utility gains of up to 5.07% of initial wealth and lifetime income ($43,800 in present value terms), and almost all individuals prefer full annuitization and a target-date fund investment strategy. With flexible plans allowing for partial annuitization and non-constant expected payouts, utility gains go up to 5.81%, and most individuals prefer a high degree of annuitization and expected payouts being increasing through retirement.",
       "analysis_ko": "",
       "analysis_en": ""
     },
@@ -147,7 +147,7 @@
       "journal": "Journal of Financial and Quantitative Analysis",
       "date": "2026-5-13",
       "url": "https://doi.org/10.1017/s0022109026102956",
-      "abstract": "We provide robust evidence that the price of analysts' disagreement risk in the cross-section of stock returns changes sign over time; it's positive (negative) in periods of high (low) disagreement. We construct a general equilibrium model in which analysts have heterogeneous beliefs about aggregate earnings growth. The consumer does not trust either analyst fully and dynamically adjusts each analyst's weight, based on their performance. Each asset's risk premium depends on its exposure to (i) the market portfolio, (ii) aggregate earnings growth, and, (iii) a ``flight-to-safety'' factor. (i) decreases and (iii) increases with disagreement as investors choose lower cash flow beta assets during periods of high disagreement. We find support for such a flight-to-safetyin the data.",
+      "abstract": "We provide robust evidence that the price of analysts' disagreement risk in the cross-section of stock returns changes sign over time; it's positive (negative) in periods of high (low) disagreement. We construct a general equilibrium model in which analysts have heterogeneous beliefs about aggregate earnings growth. The consumer does not trust either analyst fully and dynamically adjusts each analyst's weight, based on their performance. Each asset's risk premium depends on its exposure to (i) the market portfolio, (ii) aggregate earnings growth, and, (iii) a ``flight-to-safety'' factor. (i) decreases and (iii) increases with disagreement as investors choose lower cash flow beta assets during periods of high disagreement. We find support for such a flight-to-safety in the data.",
       "analysis_ko": "",
       "analysis_en": ""
     }

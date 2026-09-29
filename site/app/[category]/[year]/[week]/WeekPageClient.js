@@ -82,7 +82,7 @@ export default function WeekPageClient({ category, year, week, data }) {
               <span className="section-icon">🤖</span>
               {t.aiAnalysis}
             </h2>
-            <div className="analysis-box">{hasAnalysis ? analysis : (category === "marketing" ? t.aiPaused : t.noAnalysis)}</div>
+            <div className="analysis-box">{hasAnalysis ? analysis : t.aiPaused}</div>
           </section>
         </div>
       </main>
