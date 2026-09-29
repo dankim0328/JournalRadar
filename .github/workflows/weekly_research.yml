@@ -17,6 +17,8 @@ on:
       - 'scripts/**'
       - '.github/workflows/**'
       - 'gemini_safe_client.py'
+      - 'paper_metadata.py'
+      - 'tests/**'
       - 'requirements.txt'
 
 permissions:

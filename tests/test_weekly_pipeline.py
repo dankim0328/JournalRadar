@@ -62,6 +62,12 @@ class WeeklyPipelineTests(unittest.TestCase):
         self.save("Future", 2027, 1, "2027-01-01")
         self.assertEqual(fetch.default_from_date(datetime.date(2026, 9, 29)), "2026-05-08")
 
+    def test_each_category_uses_its_own_recovery_date(self):
+        self.save("Marketing latest", 2026, 39, "2026-09-25")
+        weekly.save_weekly_data("finance", 2026, 22, [dict(title="Finance older", slug="finance-older", date="2026-05-29")])
+        self.assertEqual(fetch.default_from_date(datetime.date(2026, 9, 29), "Finance"), "2026-05-08")
+        self.assertEqual(fetch.default_from_date(datetime.date(2026, 9, 29), "Marketing"), "2026-09-04")
+
     @patch.object(fetch.requests, "Session")
     @patch.object(fetch, "enrich_abstract", side_effect=lambda abstract, doi: abstract)
     def test_duplicate_issns_are_skipped_but_existing_abstracts_can_refresh(self, enrich, session):
@@ -113,13 +119,16 @@ class WeeklyPipelineTests(unittest.TestCase):
                       Abstract="Publisher abstract", AI_Analysis="", YearMonth="2026-09")
         with patch.object(fetch, "BACKFILL_FILE", str(batch)), \
              patch.object(convert, "BACKFILL_FILE", str(batch)), \
-             patch.object(fetch, "fetch_domain_papers", return_value=[record]), \
+             patch.object(fetch, "fetch_domain_papers", side_effect=lambda cat, *args: [dict(record, Category=cat)]), \
              patch.object(sys, "argv", ["fetch", "--from-date", "2020-01-01", "--until-date", cutoff]):
             fetch.main()
             convert.main()
         self.assertEqual(json.loads(legacy.read_text())[0]["Title"], "Legacy")
         self.assertEqual(self.read("marketing/update_status.json")["throughDate"], cutoff)
         self.assertFalse(self.read("marketing/update_status.json")["aiEnabled"])
+        for category in ("finance", "accounting"):
+            self.assertEqual(self.read(f"{category}/update_status.json")["throughDate"], cutoff)
+            self.assertEqual(self.read(f"{category}/2026/W40.json")["paperCount"], 1)
 
     @patch.object(fetch.requests, "Session")
     def test_http_failure_is_not_reported_as_empty_success(self, session):

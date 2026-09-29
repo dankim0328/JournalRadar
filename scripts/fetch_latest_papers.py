@@ -21,10 +21,10 @@ def published_titles(category):
     return titles
 
 
-def default_from_date(today):
+def default_from_date(today, category="Marketing"):
     # Recover missed runs, ignoring future issue dates in the stored data.
     dates = []
-    for path in (DATA_ROOT / "marketing").glob("*/W*.json"):
+    for path in (DATA_ROOT / category.lower()).glob("*/W*.json"):
         for paper in json.loads(path.read_text(encoding="utf-8")).get("papers", []):
             try:
                 dt = datetime.date.fromisoformat(paper.get("date", ""))
@@ -46,6 +46,35 @@ DOMAINS = {
         "issns": ["0022-2429", "1547-7185", "0022-2437", "1547-7193", "0093-5301", "1537-5277", "0732-2399", "1526-548X", "1570-7156", "1573-7155"]
     }
 }
+
+DOMAINS.update({'Finance': {'journals': ['The Journal of Finance',
+                          'Journal of Financial Economics',
+                          'The Review of Financial Studies',
+                          'Journal of Financial and Quantitative Analysis',
+                          'Review of Finance'],
+             'issns': ['0022-1082',
+                       '1540-6261',
+                       '0304-405X',
+                       '0893-9454',
+                       '1465-7368',
+                       '0022-1090',
+                       '1756-6916',
+                       '1572-3097',
+                       '1573-692X']},
+ 'Accounting': {'journals': ['The Accounting Review',
+                             'Journal of Accounting Research',
+                             'Journal of Accounting and Economics',
+                             'Contemporary Accounting Research',
+                             'Review of Accounting Studies'],
+                'issns': ['0001-4826',
+                          '1558-7967',
+                          '0021-8456',
+                          '1475-679X',
+                          '0165-4101',
+                          '0823-9150',
+                          '1911-3846',
+                          '1380-6653',
+                          '1573-7136']}})
 
 def get_year_month(date_str):
     if not date_str or date_str == "Unknown": return "0000-Unknown"
@@ -136,22 +165,27 @@ def main():
     datetime.date.fromisoformat(until_date)
     if until_date > today.isoformat():
         raise ValueError("until-date cannot be in the future")
-    from_date = args.from_date or default_from_date(today)
-    datetime.date.fromisoformat(from_date)  # Reject malformed manual input.
-    if from_date > until_date:
-        raise ValueError("from-date cannot be in the future")
+
     # Weekly JSON is the durable source of truth. Never reuse a stale local batch.
     all_papers = []
     existing_titles = set()
 
     new_papers_count = 0
     
+    statuses = {}
     for category, config in DOMAINS.items():
+        from_date = args.from_date or default_from_date(today, category)
+        datetime.date.fromisoformat(from_date)
+        if from_date > until_date:
+            raise ValueError("from-date cannot exceed until-date")
         fetched = fetch_domain_papers(category, config, from_date, until_date)
+        statuses[category.lower()] = {"fromDate": from_date, "throughDate": until_date,
+            "collectedAt": datetime.datetime.now(datetime.timezone.utc).isoformat(),
+            "fetchedPapers": len(fetched), "aiEnabled": False}
         for p in fetched:
-            if p["Title"].lower() not in existing_titles:
+            if (category, p["Title"].lower()) not in existing_titles:
                 all_papers.append(p)
-                existing_titles.add(p["Title"].lower())
+                existing_titles.add((category, p["Title"].lower()))
                 new_papers_count += 1
                 
     print(f"\n수집한 논문 수 (기존 논문 초록 갱신 포함): {new_papers_count}편")
@@ -162,11 +196,8 @@ def main():
     with open(BACKFILL_FILE, "w", encoding="utf-8") as f:
         json.dump(all_papers, f, ensure_ascii=False, indent=2)
         
-    status = {"fromDate": from_date, "throughDate": until_date,
-              "collectedAt": datetime.datetime.now(datetime.timezone.utc).isoformat(),
-              "fetchedPapers": len(all_papers), "aiEnabled": False}
     Path(BACKFILL_FILE).with_name(".weekly_collection_status.json").write_text(
-        json.dumps(status, ensure_ascii=False, indent=2), encoding="utf-8")
+        json.dumps(statuses, ensure_ascii=False, indent=2), encoding="utf-8")
     print("✅ 논문 및 초록 수집 완료 (AI 호출 없음)")
 
 if __name__ == "__main__":
