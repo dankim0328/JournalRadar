@@ -103,6 +103,7 @@ def save_weekly_data(category, year, week_num, papers):
         "startDate": start_date,
         "endDate": end_date,
         "label_ko": f"{label_month}월 {label_week}주차",
+        "label_en": f"{dt_thursday.strftime('%B')} Week {label_week}",
         "paperCount": len(existing_papers),
         "papers": existing_papers,
     }

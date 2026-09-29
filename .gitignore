@@ -25,6 +25,8 @@ __pycache__/
 
 # Data & Cache
 backfill_state.json
+.weekly_batch.json
+.weekly_collection_status.json
 backfill_upload_log.txt
 *_papers_*.csv
 *_papers_*.md

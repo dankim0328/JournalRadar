@@ -3,12 +3,13 @@ import os
 import re
 from datetime import datetime, timedelta
 from collections import defaultdict
+from pathlib import Path
 try:
     from . import generate_weekly_json as weekly
 except ImportError:
     import generate_weekly_json as weekly
 
-BACKFILL_FILE = os.path.join(os.path.dirname(__file__), "..", "backfill_state.json")
+BACKFILL_FILE = os.path.join(os.path.dirname(__file__), "..", ".weekly_batch.json")
 SITE_PUBLIC_DATA = os.path.join(os.path.dirname(__file__), "..", "site", "public", "data")
 
 MONTH_NAMES_EN = [
@@ -72,12 +73,33 @@ def process_category(all_papers, category_id, category_name_ko, category_name_en
     
     output_base = os.path.join(SITE_PUBLIC_DATA, category_id.lower())
     os.makedirs(output_base, exist_ok=True)
+
+    # Existing routes and summaries stay stable when publisher metadata changes.
+    existing_by_title = {}
+    documents = {}
+    changed = set()
+    for path in Path(output_base).glob("*/W*.json"):
+        documents[path] = json.loads(path.read_text(encoding="utf-8"))
+        for existing in documents[path].get("papers", []):
+            existing_by_title[existing.get("title", "").strip().lower()] = (path, existing)
     
     weekly_groups = defaultdict(list)
     for paper in papers:
         # Standardize keys (handling BOM \ufeffJournal or lowercase journal)
         # We lowercase all keys and remove \ufeff
         paper = {k.lstrip('\ufeff').lower(): v for k, v in paper.items()}
+
+        match = existing_by_title.get(paper.get("title", "").strip().lower())
+        if match:
+            path, existing = match
+            abstract = clean_html(paper.get("abstract", ""))
+            placeholders = ("초록(Abstract) 정보가 제공되지 않았습니다.",
+                            "초록 정보가 없습니다.", "No abstract available")
+            if abstract and not any(text in abstract for text in placeholders):
+                if existing.get("abstract") != abstract:
+                    existing["abstract"] = abstract
+                    changed.add(path)
+            continue
         
         dt = parse_date(paper.get("date"))
         if not dt: continue
@@ -115,6 +137,8 @@ def process_category(all_papers, category_id, category_name_ko, category_name_en
     # A fresh Actions runner only has this batch, not the ignored backfill state.
     # Merge into tracked weekly files, then index ALL historical weeks.
     weekly.SITE_DATA_DIR = SITE_PUBLIC_DATA
+    for path in changed:
+        path.write_text(json.dumps(documents[path], ensure_ascii=False, indent=2), encoding="utf-8")
     for (year, week_label), week_papers in sorted(weekly_groups.items()):
         weekly.save_weekly_data(category_id.lower(), year, int(week_label[1:]), week_papers)
     weekly.update_indexes(category_id.lower())
@@ -122,7 +146,7 @@ def process_category(all_papers, category_id, category_name_ko, category_name_en
 
 def main():
     if not os.path.exists(BACKFILL_FILE):
-        print("❌ backfill_state.json not found!")
+        print("❌ .weekly_batch.json not found!")
         raise SystemExit(1)
         
     with open(BACKFILL_FILE, "r", encoding="utf-8") as f:
@@ -134,6 +158,12 @@ def main():
     
     for cat_id, name_ko, name_en in categories:
         process_category(all_papers, cat_id, name_ko, name_en)
+
+    status_path = Path(BACKFILL_FILE).with_name(".weekly_collection_status.json")
+    if status_path.exists():
+        status = json.loads(status_path.read_text(encoding="utf-8"))
+        target = Path(SITE_PUBLIC_DATA) / "marketing" / "update_status.json"
+        target.write_text(json.dumps(status, ensure_ascii=False, indent=2), encoding="utf-8")
         
     print("\nAll categories processed and indices generated!")
 

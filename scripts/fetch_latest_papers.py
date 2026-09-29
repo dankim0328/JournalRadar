@@ -9,7 +9,7 @@ from pathlib import Path
 from requests.adapters import HTTPAdapter
 from urllib3.util.retry import Retry
 sys.path.append(os.path.join(os.path.dirname(__file__), ".."))
-from gemini_safe_client import enrich_abstract
+from paper_metadata import enrich_abstract
 
 DATA_ROOT = Path(__file__).resolve().parents[1] / "site/public/data"
 
@@ -38,7 +38,7 @@ def default_from_date(today):
 
 sys.stdout.reconfigure(encoding='utf-8')
 
-BACKFILL_FILE = os.path.join(os.path.dirname(__file__), "..", "backfill_state.json")
+BACKFILL_FILE = os.path.join(os.path.dirname(__file__), "..", ".weekly_batch.json")
 
 DOMAINS = {
     "Marketing": {
@@ -60,7 +60,7 @@ def fetch_domain_papers(category, config, from_date, until_date=None):
     print(f"\n[{category}] {from_date} 이후 최신 논문 수집 중...")
     papers = []
     headers = {"User-Agent": "JournalRadar/1.0 (https://github.com/dankim0328/JournalRadar)"}
-    seen = published_titles(category)
+    seen = set()
     session = requests.Session()
     session.mount("https://", HTTPAdapter(max_retries=Retry(
         total=3, backoff_factor=2, status_forcelist=[429, 500, 502, 503, 504])))
@@ -89,6 +89,8 @@ def fetch_domain_papers(category, config, from_date, until_date=None):
                     raise ValueError(f"Missing publication date for {title}")
                 # Month-only dates are assigned to the first day, as in the converter.
                 pub_date = datetime.date(*((pub_date_parts + [1, 1])[:3])).isoformat()
+                if pub_date > until_date:
+                    continue
                 
                 url_link = item.get("URL", "")
                 doi = item.get("DOI", "")
@@ -127,10 +129,16 @@ def fetch_domain_papers(category, config, from_date, until_date=None):
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--from-date", default=os.environ.get("FROM_DATE") or None)
+    parser.add_argument("--until-date", default=os.environ.get("UNTIL_DATE") or None)
     args = parser.parse_args()
-    from_date = args.from_date or default_from_date(datetime.date.today())
+    today = datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=9))).date()
+    until_date = args.until_date or today.isoformat()
+    datetime.date.fromisoformat(until_date)
+    if until_date > today.isoformat():
+        raise ValueError("until-date cannot be in the future")
+    from_date = args.from_date or default_from_date(today)
     datetime.date.fromisoformat(from_date)  # Reject malformed manual input.
-    if from_date > datetime.date.today().isoformat():
+    if from_date > until_date:
         raise ValueError("from-date cannot be in the future")
     # Weekly JSON is the durable source of truth. Never reuse a stale local batch.
     all_papers = []
@@ -139,14 +147,14 @@ def main():
     new_papers_count = 0
     
     for category, config in DOMAINS.items():
-        fetched = fetch_domain_papers(category, config, from_date)
+        fetched = fetch_domain_papers(category, config, from_date, until_date)
         for p in fetched:
             if p["Title"].lower() not in existing_titles:
                 all_papers.append(p)
                 existing_titles.add(p["Title"].lower())
                 new_papers_count += 1
                 
-    print(f"\n새로 추가된 논문 수: {new_papers_count}편")
+    print(f"\n수집한 논문 수 (기존 논문 초록 갱신 포함): {new_papers_count}편")
     
     # 정렬 및 저장
     all_papers.sort(key=lambda x: (x.get("YearMonth", ""), x.get("Title", "")))
@@ -154,7 +162,12 @@ def main():
     with open(BACKFILL_FILE, "w", encoding="utf-8") as f:
         json.dump(all_papers, f, ensure_ascii=False, indent=2)
         
-    print("✅ 데이터 업데이트 완료!")
+    status = {"fromDate": from_date, "throughDate": until_date,
+              "collectedAt": datetime.datetime.now(datetime.timezone.utc).isoformat(),
+              "fetchedPapers": len(all_papers), "aiEnabled": False}
+    Path(BACKFILL_FILE).with_name(".weekly_collection_status.json").write_text(
+        json.dumps(status, ensure_ascii=False, indent=2), encoding="utf-8")
+    print("✅ 논문 및 초록 수집 완료 (AI 호출 없음)")
 
 if __name__ == "__main__":
     main()

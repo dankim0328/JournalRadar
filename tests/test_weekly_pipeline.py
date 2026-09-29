@@ -4,6 +4,8 @@ import os
 from pathlib import Path
 import tempfile
 import unittest
+import subprocess
+import sys
 from unittest.mock import patch, Mock
 
 from scripts import convert_all_to_weekly as convert
@@ -62,7 +64,7 @@ class WeeklyPipelineTests(unittest.TestCase):
 
     @patch.object(fetch.requests, "Session")
     @patch.object(fetch, "enrich_abstract", side_effect=lambda abstract, doi: abstract)
-    def test_duplicate_issns_and_published_titles_are_skipped(self, enrich, session):
+    def test_duplicate_issns_are_skipped_but_existing_abstracts_can_refresh(self, enrich, session):
         self.save("Existing", 2026, 22, "2026-05-29")
         item = {"title": ["New"], "container-title": ["Journal of Marketing"],
                 "published": {"date-parts": [[2026, 9, 29]]}}
@@ -70,9 +72,54 @@ class WeeklyPipelineTests(unittest.TestCase):
         response.json.return_value = {"message": {"items": [item, dict(item, title=["Existing"])]}}
         session.return_value.get.return_value = response
         result = fetch.fetch_domain_papers("Marketing", fetch.DOMAINS["Marketing"], "2026-05-01")
-        self.assertEqual([p["Title"] for p in result], ["New"])
-        self.assertEqual(enrich.call_count, 1)
+        self.assertEqual([p["Title"] for p in result], ["New", "Existing"])
+        self.assertEqual(enrich.call_count, 2)
         self.assertEqual(session.return_value.get.call_args.kwargs["timeout"], 30)
+
+    def test_existing_abstract_refresh_preserves_summary_and_original_route(self):
+        self.save("Existing", 2026, 22, "2026-05-29", abstract="Old abstract")
+        batch = [dict(Category="Marketing", Title="Existing", Date="2026-09-29",
+                      Abstract="Updated publisher abstract", AI_Analysis="")]
+        convert.process_category(batch, "Marketing", "마케팅", "Marketing")
+        paper = self.read("marketing/2026/W22.json")["papers"][0]
+        self.assertEqual(paper["abstract"], "Updated publisher abstract")
+        self.assertEqual(paper["analysis_ko"], "기존 요약")
+        self.assertFalse((self.root / "marketing/2026/W40.json").exists())
+
+    def test_missing_fetched_abstract_does_not_erase_saved_abstract(self):
+        self.save("Existing", 2026, 22, "2026-05-29", abstract="Saved abstract")
+        convert.process_category([dict(Category="Marketing", Title="Existing", Date="2026-05-29",
+                                      Abstract="초록(Abstract) 정보가 제공되지 않았습니다.")],
+                                 "Marketing", "마케팅", "Marketing")
+        self.assertEqual(self.read("marketing/2026/W22.json")["papers"][0]["abstract"], "Saved abstract")
+
+    def test_metadata_collector_does_not_import_gemini(self):
+        subprocess.run([sys.executable, "-c",
+                        "from scripts import fetch_latest_papers; import sys; "
+                        "assert 'gemini_safe_client' not in sys.modules; "
+                        "assert 'google.generativeai' not in sys.modules"], check=True)
+
+    def test_weekly_workflow_has_no_ai_step_or_secret(self):
+        workflow = Path('.github/workflows/weekly_research.yml').read_text(encoding='utf-8')
+        self.assertNotIn('secrets.GEMINI_API_KEY', workflow)
+        self.assertNotIn('python scripts/analyze_pending.py', workflow)
+
+    def test_collection_batch_does_not_overwrite_legacy_state(self):
+        legacy = self.root / "backfill_state.json"
+        legacy.write_text('[{"Title": "Legacy"}]', encoding="utf-8")
+        batch = self.root / ".weekly_batch.json"
+        cutoff = datetime.date.today().isoformat()
+        record = dict(Category="Marketing", Title="New", Date="2026-09-28",
+                      Abstract="Publisher abstract", AI_Analysis="", YearMonth="2026-09")
+        with patch.object(fetch, "BACKFILL_FILE", str(batch)), \
+             patch.object(convert, "BACKFILL_FILE", str(batch)), \
+             patch.object(fetch, "fetch_domain_papers", return_value=[record]), \
+             patch.object(sys, "argv", ["fetch", "--from-date", "2020-01-01", "--until-date", cutoff]):
+            fetch.main()
+            convert.main()
+        self.assertEqual(json.loads(legacy.read_text())[0]["Title"], "Legacy")
+        self.assertEqual(self.read("marketing/update_status.json")["throughDate"], cutoff)
+        self.assertFalse(self.read("marketing/update_status.json")["aiEnabled"])
 
     @patch.object(fetch.requests, "Session")
     def test_http_failure_is_not_reported_as_empty_success(self, session):
