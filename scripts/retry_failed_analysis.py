@@ -11,7 +11,7 @@ from gemini_safe_client import GeminiSafeClient, truncate_text, ANTI_HALLUCINATI
 
 # --- Configuration ---
 # 안전장치가 적용된 Gemini 클라이언트 초기화
-gemini_client = GeminiSafeClient()
+gemini_client = None
 
 DATA_ROOT = "site/public/data"
 FAILURE_MARKERS = ["AI 분석 실패", "AI Analysis Failed"]
@@ -71,6 +71,9 @@ C. Author Background:
 """
 
 def analyze_paper(field_name, paper):
+    global gemini_client
+    if gemini_client is None:
+        gemini_client = GeminiSafeClient()
     prompt = get_analysis_prompt(field_name, paper)
     title = paper.get('title', 'No Title')
     return gemini_client.analyze(prompt, cache_key_title=title)

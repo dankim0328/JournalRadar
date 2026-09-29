@@ -1,0 +1,108 @@
+import datetime
+import json
+import os
+from pathlib import Path
+import tempfile
+import unittest
+from unittest.mock import patch, Mock
+
+from scripts import convert_all_to_weekly as convert
+from scripts import generate_weekly_json as weekly
+from scripts import fetch_latest_papers as fetch
+from scripts import analyze_pending as analysis
+
+
+class WeeklyPipelineTests(unittest.TestCase):
+    def setUp(self):
+        self.temp = tempfile.TemporaryDirectory()
+        self.addCleanup(self.temp.cleanup)
+        self.root = Path(self.temp.name)
+        for module, name in [(convert, "SITE_PUBLIC_DATA"), (weekly, "SITE_DATA_DIR"),
+                             (fetch, "DATA_ROOT")]:
+            patcher = patch.object(module, name, self.root)
+            patcher.start()
+            self.addCleanup(patcher.stop)
+
+    def save(self, title, year, week, date, **extra):
+        paper = dict(title=title, slug=weekly.slugify(title), date=date,
+                     analysis_ko="기존 요약", analysis_en="Existing summary")
+        paper.update(extra)
+        weekly.save_weekly_data("marketing", year, week, [paper])
+
+    def read(self, path):
+        return json.loads((self.root / path).read_text(encoding="utf-8"))
+
+    def test_batch_preserves_history_and_summaries_and_is_idempotent(self):
+        self.save("Old", 2025, 1, "2025-01-01")
+        self.save("Existing", 2026, 22, "2026-05-26")
+        batch = [dict(Category="Marketing", Title=title, Date="2026-05-29", AI_Analysis="")
+                 for title in ("Existing", "New")]
+        for _ in range(2):
+            convert.process_category(batch, "Marketing", "마케팅", "Marketing")
+        week = self.read("marketing/2026/W22.json")
+        self.assertEqual(week["paperCount"], 2)
+        self.assertEqual(week["papers"][0]["analysis_ko"], "기존 요약")
+        self.assertEqual(len(self.read("marketing/index.json")["years"]), 2)
+        self.assertEqual(self.read("marketing/2026/index.json")["totalPapers"], 2)
+
+    def test_empty_batch_does_not_hide_existing_weeks(self):
+        self.save("Old", 2025, 1, "2025-01-01")
+        convert.process_category([], "Marketing", "마케팅", "Marketing")
+        self.assertEqual(self.read("marketing/index.json")["years"][0]["totalPapers"], 1)
+
+    def test_month_end_and_iso_year_dates_are_not_clamped(self):
+        self.assertEqual(convert.get_iso_week(convert.parse_date("2026-03-31")), (2026, 14))
+        self.assertEqual(convert.get_iso_week(convert.parse_date("2025-12-31")), (2026, 1))
+        self.assertIsNone(convert.parse_date("2026-02-30"))
+
+    def test_recovery_date_ignores_future_issue_dates(self):
+        self.save("Old", 2026, 22, "2026-05-29")
+        self.save("Future", 2027, 1, "2027-01-01")
+        self.assertEqual(fetch.default_from_date(datetime.date(2026, 9, 29)), "2026-05-08")
+
+    @patch.object(fetch.requests, "Session")
+    @patch.object(fetch, "enrich_abstract", side_effect=lambda abstract, doi: abstract)
+    def test_duplicate_issns_and_published_titles_are_skipped(self, enrich, session):
+        self.save("Existing", 2026, 22, "2026-05-29")
+        item = {"title": ["New"], "container-title": ["Journal of Marketing"],
+                "published": {"date-parts": [[2026, 9, 29]]}}
+        response = Mock()
+        response.json.return_value = {"message": {"items": [item, dict(item, title=["Existing"])]}}
+        session.return_value.get.return_value = response
+        result = fetch.fetch_domain_papers("Marketing", fetch.DOMAINS["Marketing"], "2026-05-01")
+        self.assertEqual([p["Title"] for p in result], ["New"])
+        self.assertEqual(enrich.call_count, 1)
+        self.assertEqual(session.return_value.get.call_args.kwargs["timeout"], 30)
+
+    @patch.object(fetch.requests, "Session")
+    def test_http_failure_is_not_reported_as_empty_success(self, session):
+        session.return_value.get.side_effect = fetch.requests.Timeout("timeout")
+        with self.assertRaisesRegex(RuntimeError, "Crossref fetch failed"):
+            fetch.fetch_domain_papers("Marketing", fetch.DOMAINS["Marketing"], "2026-05-01")
+
+    @patch.dict(os.environ, {"GEMINI_API_KEY": "test-only"})
+    @patch.object(analysis, "analyze_paper")
+    def test_partial_ai_failure_keeps_success_and_retries_pending(self, analyze):
+        for title in ("A", "B"):
+            self.save(title, 2026, 22, "2026-05-29", analysis_ko="", analysis_en="")
+        analyze.side_effect = ["===KOREAN===\n완료\n===ENGLISH===\nDone", "AI Analysis Failed"]
+        with self.assertRaises(RuntimeError):
+            analysis.run(self.root / "marketing")
+        papers = self.read("marketing/2026/W22.json")["papers"]
+        self.assertEqual(papers[0]["analysis_en"], "Done")
+        self.assertEqual(papers[1]["analysis_en"], "")
+        analyze.side_effect = None
+        analyze.return_value = "===KOREAN===\n완료\n===ENGLISH===\nDone"
+        self.assertEqual(analysis.run(self.root / "marketing"), (1, 0))
+
+    @patch.dict(os.environ, {"GEMINI_API_KEY": "test-only"})
+    @patch.object(analysis, "analyze_paper", return_value="===KOREAN===\n완료\n===ENGLISH===\nDone")
+    def test_ai_batch_limit_and_english_only_failure(self, analyze):
+        for title in ("A", "B"):
+            self.save(title, 2026, 22, "2026-05-29", analysis_en="")
+        self.assertEqual(analysis.run(self.root / "marketing", limit=1), (1, 1))
+        self.assertEqual(analyze.call_count, 1)
+
+
+if __name__ == "__main__":
+    unittest.main()

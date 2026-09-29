@@ -2,15 +2,22 @@ name: Weekly Research & Deploy
 
 on:
   schedule:
-    # 매일 자정(UTC) 실행하여 최신 논문 매일 수집
-    - cron: '0 0 * * *'
-  workflow_dispatch: # 수동 실행 허용
+    # 매주 월요일 오전 9:17 KST
+    - cron: '17 0 * * 1'
+  workflow_dispatch:
+    inputs:
+      from_date:
+        description: 'Optional recovery start date (YYYY-MM-DD)'
+        required: false
+        type: string
   push:
     branches: [main]
     paths:
       - 'site/**'
       - 'scripts/**'
       - '.github/workflows/**'
+      - 'gemini_safe_client.py'
+      - 'requirements.txt'
 
 permissions:
   contents: read
@@ -28,7 +35,10 @@ jobs:
   # ── Job 1: 주간 논문 수집 & AI 분석 ──
   research:
     runs-on: ubuntu-latest
-    if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+    timeout-minutes: 60
+    permissions:
+      contents: write
+    if: github.ref == 'refs/heads/main' && (github.event_name == 'schedule' || github.event_name == 'workflow_dispatch')
     
     steps:
     - name: Checkout repository
@@ -43,10 +53,13 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         pip install -r requirements.txt
+
+    - name: Test weekly pipeline
+      run: python -m unittest discover -s tests -v
         
     - name: Run research scripts
       env:
-        GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        FROM_DATE: ${{ inputs.from_date }}
       run: |
         python scripts/fetch_latest_papers.py
 
@@ -55,13 +68,31 @@ jobs:
         python scripts/convert_all_to_weekly.py
         python scripts/generate_search_index.py
 
+    - name: Analyze pending marketing papers
+      id: analysis
+      continue-on-error: true
+      env:
+        GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        GEMINI_MODEL: ${{ vars.GEMINI_MODEL || 'gemini-2.5-flash' }}
+        MAX_ANALYSES: '40'
+      run: python scripts/analyze_pending.py
+
+    - name: Report incomplete AI analysis
+      if: steps.analysis.outcome == 'failure'
+      run: |
+        echo "::warning::AI analysis is incomplete. Check the analysis step, GEMINI_API_KEY and quota. Saved papers will retry next run."
+        echo "AI analysis incomplete; metadata and successful summaries will still be published. See the analysis step for the error." >> "$GITHUB_STEP_SUMMARY"
+
     - name: Commit updated data
       run: |
         git config user.name "github-actions[bot]"
         git config user.email "github-actions[bot]@users.noreply.github.com"
         git add site/public/data/
-        git diff --staged --quiet || git commit -m "📊 Weekly data update $(date +'%Y-%m-%d')"
-        git push
+        if ! git diff --staged --quiet; then
+          git commit -m "📊 Weekly data update $(date +'%Y-%m-%d')"
+          git pull --rebase origin main
+          git push origin HEAD:main
+        fi
 
   # ── Job 2: 사이트 빌드 & 배포 ──
   deploy:
@@ -94,7 +125,7 @@ jobs:
 
     - name: Install dependencies
       working-directory: site
-      run: npm install
+      run: npm ci
 
     - name: Generate search index
       run: |
