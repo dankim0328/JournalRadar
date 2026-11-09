@@ -1,7 +1,7 @@
 {
-  "fromDate": "2026-10-05",
-  "throughDate": "2026-11-02",
-  "collectedAt": "2026-11-02T06:16:03.361424+00:00",
-  "fetchedPapers": 50,
+  "fromDate": "2026-10-11",
+  "throughDate": "2026-11-09",
+  "collectedAt": "2026-11-09T06:42:56.762299+00:00",
+  "fetchedPapers": 52,
   "aiEnabled": false
 }
