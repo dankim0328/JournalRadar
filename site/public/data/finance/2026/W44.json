@@ -37,7 +37,7 @@
       "journal": "The Review of Financial Studies",
       "date": "2026-10-28",
       "url": "https://doi.org/10.1093/rfs/hhag094",
-      "abstract": "Abstract\n                  I propose a mechanism through which institutional investors’ correlated demand shocks provide a source of market risk in asset pricing. Institutional investors have mandates to beat a similar market index. During periods of strong stock market performance, their incentive to outperform intensifies as more of them fall short of the market index. This incentive induces procyclical risk-taking behavior, generating correlated demand that elevates the market betas and risk premia of exposed stocks. Quasi-experiments using exogenous changes in index membership support a causal interpretation of the mechanism. Elevated betas are associated with a higher perceived cost of capital and reduced firm investment. (JEL G1, G2)",
+      "abstract": "Abstract\n                  I propose a mechanism through which institutional investors’ correlated demand shocks provide a source of market risk in asset pricing. Institutional investors have mandates to beat a similar market index. During periods of strong stock market performance, their incentive to outperform intensifies as more of them fall short of the market index. This incentive induces procyclical risk-taking behavior, generating correlated demand that elevates the market betas and risk premia of exposed stocks. Quasi-experiments using exogenous changes in index membership support a causal interpretation of the mechanism. Elevated betas are associated with a higher perceived cost of capital and reduced firm investment.",
       "analysis_ko": "",
       "analysis_en": ""
     },
@@ -268,7 +268,7 @@
       "journal": "Journal of Financial Economics",
       "date": "2026-11-01",
       "url": "https://doi.org/10.1016/j.jfineco.2026.104357",
-      "abstract": "We develop a theory of stakeholder governance to study how pro-social stakeholders shape organizations. Conflicts of interest arising from diverging pro-social preferences can lead to shifts in control rights, which significantly affect organizational sustainability. We provide conditions under which more pro-social stakeholders benefit or harm an organization's sustainability, showing that they do not necessarily make it more sustainable. The key insight of our analysis is that a top-down approach to addressing sustainability concerns consistently improves organizational sustainability, while a bottom-up approach can harm it. Our results apply to CEO authority and retention, board composition, and shareholder proposals and engagement.",
+      "abstract": "We develop a theory of stakeholder governance examining how green stakeholders influence organizations. Conflicts of interest arise from heterogeneous green preferences and intensify as they diverge. Changes in green preferences can generate unexpected outcomes by shifting control rights: greener stakeholders may reduce organizational sustainability, while browner ones might enhance it. We show that a top-down approach consistently improves organizational sustainability, while a bottom-up approach can harm it. We also uncover an asymmetry in compensation and delegation decisions between green and brown principals, driven by the public good nature of social payoffs. These findings have implications for manager–employee, investor–entrepreneur, and board–CEO relationships.",
       "analysis_ko": "",
       "analysis_en": ""
     },
@@ -290,7 +290,7 @@
       "journal": "Journal of Financial Economics",
       "date": "2026-11-01",
       "url": "https://doi.org/10.1016/j.jfineco.2026.104358",
-      "abstract": "We create a new measure of the value of an important, but previously understudied, intangible asset--trademarks. We quantify the stock market reaction to the publication of individual trademarks manually matched to U.S. publicly traded firms. We find that trademarks are used ubiquitously and possess substantial value: the median trademark is worth $20.3 million. Firms that publish trademarks subsequently launch new products, increase sales, invest more in physical capital, hire more employees, increase production output, become more profitable, and increase their market share considerably. For identification, we exploit the quasi-random assignment of USPTO examining attorneys to trademarks.",
+      "abstract": "We create a new measure of the value of an important, but previously understudied, intangible asset —trademarks. We quantify the stock market reaction to the publication of individual trademarks manually matched to U.S. publicly traded firms. We find that trademarks are used ubiquitously and possess substantial value: the median trademark is worth $20 million. Firms that obtain new trademarks subsequently launch new products, increase sales, invest more in physical capital, hire more employees, increase production output, become more profitable, and increase their market share considerably. For identification, we exploit the quasi-random assignment of USPTO examining attorneys to trademarks.",
       "analysis_ko": "",
       "analysis_en": ""
     },
